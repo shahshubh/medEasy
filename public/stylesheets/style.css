@@ -1,0 +1,16 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+.container .row{
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+.img-thumbnail img{
+  max-height: 150px;
+}
+.price{
+  font-weight: bold;
+  font-size: 16px;
+}

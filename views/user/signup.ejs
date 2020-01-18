@@ -1,0 +1,41 @@
+<% include ../partials/header %>
+
+<div class="row">
+    <div class="col-md-4">
+        <% if(hasError){ %>
+            <div class="alert alert-danger">
+                <% messages.forEach(function(errmessage){ %>
+                    <p><%= errmessage %></p>
+                <% }) %>
+            </div>
+        <% } %>
+        <h1>Sign Up</h1>
+        <form name="myform" action="/user/signup" method="POST" onsubmit="return validate()">
+            <div class="form-group">
+                <label for="email">E-mail</label>
+                <input type="text" id="email" name="email" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" class="form-control">
+            </div>
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <button type="submit" class="btn btn-primary">Sign Up</button>
+        </form>
+    </div>
+</div>
+
+<script>
+function validate(){
+    var x=document.myform.email.value;  
+    var y=document.myform.password.value;  
+    var apos=x.indexOf("@");  
+    var dotpos=x.lastIndexOf(".");  
+    if (apos<1 || dotpos<apos+2 || dotpos+2>=x.length ){  
+        alert("Please enter a valid e-mail address");  
+        return false;  
+    }
+}
+</script>
+
+<% include ../partials/footer %>
