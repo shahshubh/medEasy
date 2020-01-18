@@ -19,6 +19,15 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <% if(!currentUser){ %>
                 <ul class="navbar-nav ml-auto">
+                    <%  if(session.cart && session.cart.totalQty > 0){ %>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/shopping-cart">  <i class="fa fa-shopping-cart"></i> Shopping Cart <span class="badge badge-success badge-pill"><%= session.cart.totalQty %></span> </a>
+                        </li>
+                    <% } else{ %>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/shopping-cart">  <i class="fa fa-shopping-cart"></i> Shopping Cart </a>
+                        </li>
+                    <% } %>
                     <li class="nav-item">
                         <a class="nav-link" href="/user/signin"> Sign In</a>
                     </li>   
@@ -28,7 +37,7 @@
                 </ul>
             <% } else { %>
                 <ul class="navbar-nav ml-auto">
-                    <%  if(session.cart){ %>
+                    <%  if(session.cart && session.cart.totalQty > 0){ %>
                         <li class="nav-item">
                             <a class="nav-link" href="/shopping-cart">  <i class="fa fa-shopping-cart"></i> Shopping Cart <span class="badge badge-success badge-pill"><%= session.cart.totalQty %></span> </a>
                         </li>

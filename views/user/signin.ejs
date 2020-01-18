@@ -11,6 +11,7 @@
         <% } %>
         <h1>Sign In</h1>
         <form name="myform" action="/user/signin" method="POST">
+
             <div class="form-group">
                 <label for="email">E-mail</label>
                 <input type="text" id="email" name="email" class="form-control">
@@ -19,9 +20,11 @@
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" class="form-control">
             </div>
-            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <!-- <input type="hidden" name="_csrf" value="ejstag csrfToken "> -->
             <button type="submit" class="btn btn-primary">Sign In</button>
         </form>
+
+        <p>Don't have an account? <a href="/user/signup">Sign Up instead!</a></p>
     </div>
 </div>
 

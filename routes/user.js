@@ -4,11 +4,25 @@ var csrf = require('csurf');
 var passport = require('passport');
 
 
-var csrfProtection = csrf();
-router.use(csrfProtection);
+var Order = require('../models/order');
+var Cart = require('../models/cart');
+
+
+// var csrfProtection = csrf();
+// router.use(csrfProtection);
 
 router.get('/user/profile', isLoggedIn ,function (req, res) {
-    res.render('user/profile', {currentUser: req.user});
+    Order.find({user: req.user}, function(err, orders){
+        if(err){
+            return res.write('Error !');
+        }
+        var cart;
+        orders.forEach(function(order){
+            cart = new Cart(order.cart);
+            order.items = cart.generateArray();
+        });
+        res.render('user/profile', {currentUser: req.user, orders: orders});
+    });
 });
 router.get('/user/logout', function(req, res, next){
     req.logout();
@@ -17,27 +31,38 @@ router.get('/user/logout', function(req, res, next){
 
 router.get('/user/signup', function (req, res) {
     var messages = req.flash('error');
-    res.render('user/signup', { csrfToken: req.csrfToken(), messages: messages, hasError: messages.length > 0 });
+    res.render('user/signup', { /*csrfToken: req.csrfToken(),*/ messages: messages, hasError: messages.length > 0 });
 });
 
 router.post('/user/signup', passport.authenticate('local.signup', {
-    successRedirect: '/user/profile',
     failureRedirect: '/user/signup',
     failureFlash: true
-
-}));
+}), function(req,res){
+    if(req.session.oldUrl){
+        var oldUrl = req.session.oldUrl;
+        req.session.oldUrl = null;
+        res.redirect(oldUrl);
+    } else {
+        res.redirect('/user/profile');
+    }
+});
 
 router.get('/user/signin', function (req, res) {
     var messages = req.flash('error');
-    res.render('user/signin', { csrfToken: req.csrfToken(), messages: messages, hasError: messages.length > 0 });
+    res.render('user/signin', { /*csrfToken: req.csrfToken(),*/ messages: messages, hasError: messages.length > 0 });
 });
 
 router.post('/user/signin', passport.authenticate('local.signin', {
-    successRedirect: '/',
     failureRedirect: '/user/signin',
     failureFlash: true
 }), function(req,res){
-
+    if(req.session.oldUrl){
+        var oldUrl = req.session.oldUrl;
+        req.session.oldUrl = null;
+        res.redirect(oldUrl);
+    } else {
+        res.redirect('/user/profile');
+    }
 });
 
 
