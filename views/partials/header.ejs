@@ -9,6 +9,11 @@
     <!--Bootstrap-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel='stylesheet' href='/stylesheets/style.css' />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!--<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>-->
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -16,6 +21,7 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
+        
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <% if(!currentUser){ %>
                 <ul class="navbar-nav ml-auto">
@@ -61,3 +67,74 @@
             <% } %>
         </div>
     </nav>
+
+
+    <div class="nav nav-bar navbar-left">
+        <input type="text" id="searchName" placeholder="Search..">
+    </div>
+    <div id="match-list"></div>
+
+    <script>
+        const search = document.getElementById('searchName');
+        const matchList = document.getElementById('match-list');
+    
+        const searchProducts = async searchText => {
+            const res = await fetch('/api/products');
+            const products = await res.json();
+            //Get match to input
+            let matches = products.filter(product => {
+                const regex = new RegExp(`${searchText}`,'gi');
+                console.log(searchText);
+                return  product.title.match(regex);
+            });
+            if(searchText.length === 0){
+                matches=[];
+                matchList.innerHTML ="";
+            }
+            outputHtml(matches);
+        };
+    
+        //show result in html
+        const outputHtml = matches =>{
+            if(matches.length>0){
+                const html = matches.map(match => `
+                    <div class="card card-body mb-1">
+                        <a href="/products/${match._id}"><h4>${match.title} (${match.price})</h4></a>
+                    </div>
+                `).join('');
+                matchList.innerHTML = html;
+            }
+        }
+        search.addEventListener('input',() => searchProducts(search.value))
+    </script>
+
+
+
+<!--
+    <script>
+        $(function(){
+            $('#searchName').autocomplete({
+                source: function(req,res){
+                    $.ajax({
+                        url: "autocomplete/",
+                        dataType:"jsonp",
+                        type: "GET",
+                        data: req,
+                        success: function(data){
+                            res(data);
+                        },
+                        error: function(err){
+                            console.log(err);
+                        }
+                    });
+                },
+                minLength: 1,
+                select: function(event,ui){
+                    if(ui.items){
+                        $('#searchName').text(ui.item.label);
+                    }
+                }
+            })
+        })
+    </script>
+-->

@@ -1,0 +1,26 @@
+/* Monkey-patching history support into readline.
+ * Usage: createInterface is like readline's createInterface, but also takes a path and 
+ * a maximum (in-memory) history length. Also it's async, so use CPS.
+ *
+ * maxDiskSize is maximum bytes that can go in disk history
+ * before a rotation. Rotation is super simple, removes previous .old, renames to .old
+ *
+ * console.log(module.example) to see an example of how to use.
+ */
+
+var rl = require('readline-history');
+rl.createInterface({
+    path: "/tmp/history",
+    maxLength: 1234,
+    input: process.input,
+    output: process.output,
+    next: function(rli) {
+        rli.setPrompt("? ");
+        rli.prompt();
+        rli.on('line',function(line) {
+            console.log("Got line "+line);
+            rli.prompt();
+        });
+    };
+});
+

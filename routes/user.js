@@ -6,6 +6,7 @@ var passport = require('passport');
 
 var Order = require('../models/order');
 var Cart = require('../models/cart');
+var User = require('../models/user');
 
 
 // var csrfProtection = csrf();
@@ -43,7 +44,13 @@ router.post('/user/signup', passport.authenticate('local.signup', {
         req.session.oldUrl = null;
         res.redirect(oldUrl);
     } else {
-        res.redirect('/user/profile');
+        User.findOne({'email': req.body.email}, function(err, user){
+            if(user.isSeller){
+                res.redirect('/');
+            } else {
+                res.redirect('/user/profile');
+            }
+        });
     }
 });
 

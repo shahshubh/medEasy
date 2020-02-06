@@ -18,17 +18,30 @@ passport.use('local.signup', new LocalStrategy({
     usernameField: 'email',
     passwordField: 'password',
     passReqToCallback: true
-}, function(req, email, password, done) {
+}, function(req,email, password, done) {
+    
     User.findOne({'email': email},function(err, user){
         if(err){
             return done(err);
         }
+        if(req.body.fullname=="" || req.body.username==""){
+            return done(null, false, {message: 'Missing credentials'});
+        }
         if(user){
             return done(null, false, {message: 'Email is already in use'});
         }
+        if(req.body.isseller!=""){
+            if(req.body.isseller!="secretcode"){
+                return done(null, false, {message: 'Admin Code is incorrect. Please signup as a user instead'});
+            }
+        }
         var newUser = new User();
+        newUser.fullname = req.body.fullname;
         newUser.email = email;
         newUser.password = newUser.encryptPassword(password);
+        if(req.body.isseller=="secretcode"){
+            newUser.isSeller = true;
+        }
         newUser.save(function(err, result){
             if(err){
                 return done(err);

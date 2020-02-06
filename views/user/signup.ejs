@@ -1,15 +1,71 @@
 <% include ../partials/header %>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Colorlib Templates">
+    <meta name="author" content="Colorlib">
+    <meta name="keywords" content="Colorlib Templates">
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
-<div class="row">
-    <div class="col-md-4">
+    <!-- Main CSS-->
+    <link href="/stylesheets/css/main.css" rel="stylesheet" media="all">
+
+
+<div class="page-wrapper bg-gra-01 p-t-180 p-b-100 font-poppins">
+    <div class="wrapper wrapper--w780">
         <% if(hasError){ %>
             <div class="alert alert-danger">
                 <% messages.forEach(function(errmessage){ %>
-                    <p><%= errmessage %></p>
+                    <p style="text-align: center;"><%= errmessage %></p>
                 <% }) %>
             </div>
         <% } %>
-        <h1>Sign Up</h1>
+        <div class="card card-3">
+            <div class="card-heading">
+                <h2 class="glow">Join us now and </h2>
+                <h2 class="glow" style="padding-top: 15px;" >enjoy the Best Deals</h2>
+            </div>
+            <div class="card-body">
+                <h2 class="title">Register Now</h2>
+                <form name="myform" action="/user/signup" method="POST">
+                    <div class="input-group">
+                        <input class="input--style-3" type="text" id="fullname" placeholder="Full Name *" name="fullname">
+                    </div>
+                    <!--<div class="input-group">
+                        <div class="rs-select2 js-select-simple select--no-search">
+                            <select name="gender">
+                                <option disabled="disabled" selected="selected">Gender</option>
+                                <option>Male</option>
+                                <option>Female</option>
+                                <option>Other</option>
+                            </select>
+                            <div class="select-dropdown"></div>
+                        </div>
+                    </div>-->
+                    <div class="input-group">
+                        <input class="input--style-3" type="email" id="email" placeholder="Email *" name="email">
+                    </div>
+                    <div class="input-group">
+                        <input class="input--style-3" type="password" id="password" placeholder="Password *" name="password">
+                    </div>
+                    <div class="input-group">
+                        <input class="input--style-3" type="password" class="checkbox" name="isseller" placeholder="Admin Code">
+                    </div>
+                    <div class="p-t-10">
+                        <button class="btn btn--pill btn--green" type="submit">Submit</button>
+                    </div>
+                </form>
+                <p  style="padding-top: 15px;" >
+                    <a style="text-decoration: none;" href="/user/signin">Already a member ? Sign in here</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+        <!--<h1>Sign Up</h1>
         <form name="myform" action="/user/signup" method="POST" onsubmit="return validate()">
             <div class="form-group">
                 <label for="email">E-mail</label>
@@ -19,13 +75,22 @@
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" class="form-control">
             </div>
+            <div class="form-group">
+                <input type="checkbox" class="checkbox" name="isseller">Be a seller
+            </div>-->
             <!-- <input type="hidden" name="_csrf" value="ejstags  csrfToken"> -->
-            <button type="submit" class="btn btn-primary">Sign Up</button>
+            <!--<button type="submit" class="btn btn-primary signup-btn">Sign Up</button>
         </form>
     </div>
 </div>
 
 <script>
+var btn = document.querySelector('.signup-btn')
+btn.onclick=function(){
+if(document.querySelector('.checkbox').checked){
+alert("HEllo");
+}
+}
 function validate(){
     var x=document.myform.email.value;  
     var y=document.myform.password.value;  
@@ -37,5 +102,13 @@ function validate(){
     }
 }
 </script>
+-->
+
+
+
+
+
+
+
 
 <% include ../partials/footer %>

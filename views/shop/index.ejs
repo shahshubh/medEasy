@@ -8,6 +8,7 @@
     </div>
 </div>
 
+
 <div class="container">
     <div class="row">
         <% products.forEach(function(product){ %>
@@ -15,7 +16,7 @@
                 <div class="img-thumbnail">
                     <img class="img-fluid" src="<%= product.image %>" alt="Generic placeholder thumbnail"/>
                     <div class="caption">
-                        <h3><%= product.title %></h3>
+                        <a href="/products/<%= product._id %>" ><h3><%= product.title %></h3></a>
                         <p><%= product.description %></p>
                         <div class="clearfix">
                             <div class="price pull-left">₹ <%= product.price %></div>
@@ -27,5 +28,9 @@
         <% }) %>
     </div>
 </div>
+
+
+
+
 
 <% include ../partials/footer %>

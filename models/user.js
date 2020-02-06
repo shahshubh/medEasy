@@ -1,9 +1,15 @@
+/*
+Remaining work
+    save full name
+*/
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
 
 var userSchema = new mongoose.Schema({
+    fullname: {type: String, required: true},
     email: {type: String, required: true},
-    password: {type: String, required: true}
+    password: {type: String, required: true},
+    isSeller: {type: Boolean, default: false}
 });
 
 userSchema.methods.encryptPassword = function(password){

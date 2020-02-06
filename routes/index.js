@@ -5,8 +5,24 @@ var Product = require("../models/product");
 var Cart = require('../models/cart');
 var Order = require('../models/order');
 
+const nodemailer = require('nodemailer');
+
+
+/* api route */ 
+router.get('/api/products',function(req,res){
+  Product.find({},function(err,allProducts){
+    if(err){
+      console.log(err);
+    }
+    else{
+      res.json(allProducts);
+    }
+  });
+});
+
 
 /* GET home page. */
+
 router.get('/', function(req, res, next) {
   var successMsg = req.flash('success')[0];
   Product.find({},function(err, allProducts){
@@ -17,6 +33,22 @@ router.get('/', function(req, res, next) {
     }
   });
 });
+
+router.get('/products/:id',function(req,res){
+  var productId = req.params.id;
+  Product.findById(productId, function(err,foundProduct){
+    if(err){
+      console.log(err);
+    }
+    else{
+      console.log(foundProduct);
+      res.render('shop/show',{product: foundProduct })
+    }
+  });
+});
+
+
+
 
 router.get('/add-to-cart/:id', function(req, res){
   var productId = req.params.id;
@@ -97,6 +129,8 @@ stripe.charges.create(
       req.flash('error', err.message);
       return res.redirect('/checkout');
     }
+
+
     var order = new Order({
       user: req.user,
       cart: cart,
@@ -104,6 +138,59 @@ stripe.charges.create(
       name: req.body.name,
       paymentId: charge.id
     });
+    console.log(cart);
+    console.log("ORDER: ",order);
+
+    //mail
+    //Object.value(cart.items).forEach(fn(product){
+
+
+    let transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+          user: 'shahshubh1010@gmail.com',
+          pass: 'chandra#401'
+      }
+  });
+  
+  let mailOptions = {
+      from: 'shahshubh1010@gmail.com',
+      to:    req.user.email,
+      subject: 'MedEasy',
+      text: '',
+      html: `
+      <h2>Successfully recieved your order ${order.user.fullname}</h2>
+      <br>
+      Your order quantity: <b>${cart.totalQty}</b>
+      <br>
+      Your order price: <b>₹ ${cart.totalPrice}</b>
+      <p>You can view you order details in order history under your account</p>
+      <hr>
+      <b>
+      <h3>Thank you for ordering with MedEasy!</h3>
+      <h4>Get Well Soon !!</h4>
+      </b>
+      
+      `
+  };
+  
+  transporter.sendMail(mailOptions, function(err,data){
+      if(err){
+          console.log("Failed ",err);
+      }
+      else{
+          console.log("Email sent !!");
+      }
+  });
+
+
+
+
+
+
+
+
+    
     order.save(function(err, result){
       req.flash('success', 'Sucessfully bought the product');
       req.session.cart = null;
@@ -112,6 +199,28 @@ stripe.charges.create(
   });
 });
 
+/*
+router.get('/autocomplete',function(req,res,next){
+  var regex = new RegExp(req.query["term"],'i');
+  var productfilter = Product.find({title: regex},{'title': 1}).sort({"updated_at": -1}).sort({"created_at": -1}).limit(5)
+  productfilter.exec(function(err,data){
+    console.log(data);
+    var result =[];
+    if(!err){
+      if(data && data.length && data.length >0){
+        data.forEach(function(user){
+          let obj={
+            id: user._id,
+            label: user.title
+          };
+          result.push(obj);
+        })
+      }
+      res.jsonp(result);
+    }
+  })
+});
+*/
 module.exports = router;
 
 function isLoggedIn(req, res, next){
