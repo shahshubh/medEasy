@@ -16,6 +16,7 @@ var app = express();
 var flash = require('connect-flash');
 var indexRoutes = require('./routes/index');
 var userRoutes = require('./routes/user');
+var cartRoutes = require('./routes/shoppingcart');
 
 require('./config/passport');
 
@@ -24,10 +25,6 @@ mongoose.set('useNewUrlParser', true);
 mongoose.set('useUnifiedTopology', true);
 var url = process.env.DATABASEURL || "mongodb://localhost/medlife";
 mongoose.connect(url);
-
-
-
-
 
 
 
@@ -63,6 +60,7 @@ app.use(function(req, res, next){
 
 app.use(userRoutes);
 app.use(indexRoutes);
+app.use(cartRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

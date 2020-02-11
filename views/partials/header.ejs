@@ -87,7 +87,8 @@
                 console.log(searchText);
                 return  product.title.match(regex);
             });
-            if(searchText.length === 0){
+            console.log("Matches: ",matches);
+            if(searchText.length === 0 || matches.length === 0){
                 matches=[];
                 matchList.innerHTML ="";
             }

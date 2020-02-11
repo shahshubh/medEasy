@@ -46,7 +46,7 @@ router.post('/user/signup', passport.authenticate('local.signup', {
     } else {
         User.findOne({'email': req.body.email}, function(err, user){
             if(user.isSeller){
-                res.redirect('/');
+                res.redirect('/admin');
             } else {
                 res.redirect('/user/profile');
             }
@@ -68,7 +68,13 @@ router.post('/user/signin', passport.authenticate('local.signin', {
         req.session.oldUrl = null;
         res.redirect(oldUrl);
     } else {
-        res.redirect('/user/profile');
+        User.findOne({'email': req.body.email}, function(err, user){
+            if(user.isSeller){
+                res.redirect('/admin');
+            } else {
+                res.redirect('/user/profile');
+            }
+        });
     }
 });
 
