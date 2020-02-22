@@ -23,13 +23,19 @@ router.get('/api/products',function(req,res){
 
 router.get('/', function(req, res, next) {
   var successMsg = req.flash('success')[0];
+  var errorMsg = req.flash('error')[0];
+
   Product.find({},function(err, allProducts){
     if(err){
       console.log(err);
     }else{
-      res.render('shop/index', { products: allProducts, successMsg: successMsg, noMessages: !successMsg });
+      res.render('shop/index', { products: allProducts, successMsg: successMsg, errorMsg: errorMsg ,noMessages: !successMsg, noError: !errorMsg});
     }
   });
+});
+
+router.get('/developer',function(req,res){
+  res.render('developers/developer');
 });
 
 
@@ -40,15 +46,11 @@ router.get('/products/:id',function(req,res){
       console.log(err);
     }
     else{
-      console.log(foundProduct);
       res.render('shop/show',{product: foundProduct })
     }
   });
 });
 
-router.get('/admin',isAdmin,function(req,res){
-  res.send("ADMIN");
-})
 
 
 /*
@@ -81,12 +83,4 @@ function isLoggedIn(req, res, next){
   }
   req.session.oldUrl = req.url;
   res.redirect('/user/signin');
-}
-
-function isAdmin(req, res, next){
-  if(req.user.isSeller){
-      return next();
-  }
-  req.session.oldUrl = req.url;
-  res.redirect('/');
 }

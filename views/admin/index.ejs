@@ -5,12 +5,10 @@
         <div id="success" class="alert alert-success <% if(noMessages){ %> d-none <% } %>" >
             <%= successMsg %>
         </div>
-        <div id="error" class="alert alert-danger <% if(noError){ %> d-none <% } %>" >
-            <%= errorMsg %>
-        </div>
     </div>
 </div>
-
+<h1>ADMIN INDEX</h1>
+<a href="/admin/products/new" class="btn btn-success pull-right" role="button">Add Product</a>
 
 <div class="container">
     <div class="row">
@@ -23,7 +21,10 @@
                         <p><%= product.description %></p>
                         <div class="clearfix">
                             <div class="price pull-left">₹ <%= product.price %></div>
-                            <a href="/add-to-cart/<%= product._id %>" class="btn btn-success pull-right" role="button">Add to cart</a>
+                            <a href="/admin/products/<%= product._id %>/edit" class="btn btn-success pull-right" role="button">Edit</a>
+                            <form id="delete-form" action="/admin/products/<%= product._id %>?_method=DELETE" method="POST">
+                                <button class="btn btn-xs btn-danger">Delete</button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -31,9 +32,3 @@
         <% }) %>
     </div>
 </div>
-
-
-
-
-
-<% include ../partials/footer %>

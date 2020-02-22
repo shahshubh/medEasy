@@ -8,6 +8,9 @@
         <% orders.forEach(function(order){ %>
             <div class="card mb-3 justify-content-center" style="max-width: 50%; margin: auto;">
                 <div class="card-body text-success">
+                    <p><% if(order.purchaseDate){ %>
+                        <%= order.purchaseDate.getDate() %> / <%= order.purchaseDate.getMonth() %> / <%= order.purchaseDate.getFullYear() %>
+                    <% } %></p>
                     <p class="card-text">
                         <ul class="list-group">
                             <% order.items.forEach(function(item){ %>

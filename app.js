@@ -9,7 +9,7 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 var LocalStrategy = require('passport-local');
 var MongoStore = require('connect-mongo')(session);
-
+var methodOverride = require("method-override");
 
 var app = express();
 
@@ -17,14 +17,21 @@ var flash = require('connect-flash');
 var indexRoutes = require('./routes/index');
 var userRoutes = require('./routes/user');
 var cartRoutes = require('./routes/shoppingcart');
+var adminRoutes = require('./routes/admin');
+
 
 require('./config/passport');
+
+
 
 
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useUnifiedTopology', true);
 var url = process.env.DATABASEURL || "mongodb://localhost/medlife";
-mongoose.connect(url);
+//mongodb+srv://shubh:medeasy@cluster0-tikja.mongodb.net/test?retryWrites=true&w=majority
+console.log(process.env.DATABASEURL);
+console.log(url);
+mongoose.connect("mongodb+srv://shubh:medeasy@cluster0-tikja.mongodb.net/test?retryWrites=true&w=majority");
 
 
 
@@ -45,6 +52,7 @@ app.use(session({
   cookie: { maxAge: 180 * 60 * 1000 }/* 180 minutes */ 
 }));
 
+app.use(methodOverride("_method"));
 app.use(flash());
 
 app.use(passport.initialize());
@@ -61,6 +69,8 @@ app.use(function(req, res, next){
 app.use(userRoutes);
 app.use(indexRoutes);
 app.use(cartRoutes);
+app.use(adminRoutes);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

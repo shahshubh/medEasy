@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
-
 var Product = require("../models/product");
 var Cart = require('../models/cart');
 var Order = require('../models/order');
+var ObjectId = require('mongoose').Types.ObjectId;
 
 const nodemailer = require('nodemailer');
 
@@ -88,13 +88,15 @@ router.post('/checkout', isLoggedIn, function (req, res) {
                 return res.redirect('/checkout');
             }
 
-
+            var date = new Date();
+            date.setHours(0,0,0,0);
             var order = new Order({
                 user: req.user,
                 cart: cart,
                 address: req.body.address,
                 name: req.body.name,
-                paymentId: charge.id
+                paymentId: charge.id,
+                purchaseDate: date
             });
             //console.log(cart);
             //console.log("ORDER: ", order);
@@ -102,8 +104,20 @@ router.post('/checkout', isLoggedIn, function (req, res) {
                 let prevQty = product.item.qty;
                 let newQty = prevQty-product.qty; 
 
-                //UPDATE QTY in database
-                Product.findOneAndUpdate({"title": product.item.title},{$set: {"qty": newQty}},function(err,data){
+//UPDATE QTY in database
+
+/*
+    const getId = (id) => {
+        if(id){
+            if(id.length !== 24){
+                return id;
+            }
+        }
+        return ObjectId(id);
+    };
+*/
+    //db.orders.findOne({ _id: getId(req.params.id) })
+                Product.findOneAndUpdate({"_id": ObjectId(`${product.item._id}`)},{$set: {"qty": newQty}},function(err,data){
                     if(err){
                         console.log(err);
                     }
@@ -144,12 +158,6 @@ router.post('/checkout', isLoggedIn, function (req, res) {
                     console.log("Email sent !!");
                 }
             });
-
-
-
-
-
-
 
 
 

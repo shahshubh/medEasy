@@ -2,9 +2,9 @@ var mongoose    = require("mongoose");
 var Product = require("../models/product");
 
 mongoose.set('useNewUrlParser', true);
-mongoose.set('useUnifiedTopology', true);
+mongoose.set('useUnifiedTopology', false);
 
-var url = process.env.DATABASEURL || "mongodb://localhost/medlife";
+var url = process.env.DATABASEURL || "mongodb://localhost/medlife" ;
 mongoose.connect(url);
 
 
