@@ -1,12 +1,126 @@
 <% include ../partials/header %>
+<link rel="stylesheet" href="/stylesheets/checkout.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" >
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+<div class="container con1 payment wrapper ">
+  <div class="payment-logo">
+    <p>p</p>
+  </div>
+  <h2>Payment Gateway</h2>
+  <div style="text-align: center;" id="charge-error" class="alert alert-danger <% if(noErrors){ %> d-none <% } %>">
+    <%= errMsg %>
+  </div>
+<div class="row">
+    
+    <div class="col-8">
+      <form action="/checkout" method="POST" id="checkout-form">
+          <div class="container con2">
+          <div class="row">
+            <div class="col-6">
+              <div class="container con_bil">
+                
+                  <h3>Billing Details</h3>
+                  <label for="name"><i class="fa fa-user"></i> Full Name</label>
+                  <input type="text" id="name" name="name" placeholder="John M. Doe">
+                  <label for="address"><i class="fa fa-address-card-o"></i> Address</label>
+                  <input type="text" id="adr" name="address" placeholder="542 W. 15th Street">
+                  <label for="city"><i class="fa fa-institution"></i> City</label>
+                  <input type="text" id="city" name="city" placeholder="Mumbai">
+                <div class="row">
+                  <div class="col-6">
+                    <label for="state"><i class="fa fa-globe"></i> State</label>
+                    <input type="text" id="state" name="state" placeholder="Maharashtra">
+                  </div>
+                  <div class="col-5">
+                    <label for="zip"><i class="fa fa-map-marker"></i> Zip</label>
+                    <input type="text" id="zip" name="zip" placeholder="400008">
+                  </div>
+              </div>
+              
+            </div>
+          </div>
+  
+            <div class="col-6">
+              <div style="font-size:18px;color:gray">Accepted cards</div>
+              <div class="icon-container">
+                <i class="fa fa-cc-visa" style="color:navy;"></i>
+                <i class="fa fa-cc-amex" style="color:blue;"></i>
+                <i class="fa fa-cc-mastercard" style="color:red;"></i>
+                <i class="fa fa-cc-discover" style="color:orange;"></i>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="Radio" id="Radio1" value="a" onclick="show2()" >
+                  <label class="form-check-label" for="Radio1">
+                  Online Payment
+                  </label>
+                </div>
+                <div class="container con_pay not_selected" id="pay">
+                <label for="card-name">Name on Card</label>
+                <input type="text" id="cname" name="card-name" placeholder="John More Doe">
+                <label for="card-number">Credit card number</label>
+                <input type="text" id="ccnum" name="card-number" placeholder="1111-2222-3333-4444">
+                <label for="card-expiry-month">Exp Month</label>
+                <input type="text" id="expmonth" name="card-expiry-month" placeholder="September">
+    
+                <div class="row">
+                  <div class="col-6">
+                    <label for="card-expiry-year">Exp Year</label>
+                    <input type="text" id="expyear" name="card-expiry-year" placeholder="2018">
+                  </div>
+                  <div class="col-6">
+                    <label for="card-cvc">CVV</label>
+                    <input type="text" id="cvv" name="card-cvc" placeholder="352">
+                  </div>
+                </div>
+              </div>
+              </div>
+              <hr>
+              <div class="icon-container">
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="Radio" id="Radio2" value="b" onclick="show1()" checked>
+                  <label class="form-check-label" for="Radio2">
+                  Cash on delivery
+                  </label>
+                  <i class="fa fa-money" style="color:green;"></i>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-success">Buy Now</button>
+            </div>
+          </div>
+      </div>
+      </form>
+      </div>
+    <div class="col-4">
+      <div class="container con3">
+        <h4>Order Summary</h4>
+        <% Object.values(cart.items).forEach(function(product){ %>
+        <p><%= product.item.title %><span class="price">₹ <%= product.price %></span></p>
+        <% }); %>
+        <hr>
+        <p>Total <span class="price" style="color:black"><b>₹ <%= total %></b></span></p>
+      </div>
+    </div>
+  </div>
+  </div>
+  
 
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
 <div class="row justify-content-center">
     <div class="col-sm-6 col-md-4">
         <h1>Checkout</h1>
         <h4>Your Total: ₹ <%= total %></h4>
-        <div id="charge-error" class="alert alert-danger <% if(noErrors){ %> d-none <% } %>">
-            <%= errMsg %>
-        </div>
+        
         <form action="/checkout" method="POST" id="checkout-form">
             <div class="row">
                 <div class="col-xs-12">
@@ -61,6 +175,7 @@
         </form>
     </div>
 </div>
+-->
 
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

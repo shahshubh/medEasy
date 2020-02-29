@@ -24,12 +24,15 @@ router.get('/api/products',function(req,res){
 router.get('/', function(req, res, next) {
   var successMsg = req.flash('success')[0];
   var errorMsg = req.flash('error')[0];
-
+  var isIcon;
+  if(successMsg==="Added to Cart"){
+    isIcon = true;
+  }
   Product.find({},function(err, allProducts){
     if(err){
       console.log(err);
     }else{
-      res.render('shop/index', { products: allProducts, successMsg: successMsg, errorMsg: errorMsg ,noMessages: !successMsg, noError: !errorMsg});
+      res.render('shop/index', { products: allProducts, successMsg: successMsg, errorMsg: errorMsg ,noMessages: !successMsg, noError: !errorMsg, isIcon: isIcon});
     }
   });
 });

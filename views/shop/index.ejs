@@ -3,7 +3,11 @@
 <div class="row justify-content-center">
     <div class="col-sm-6 col-md-4">
         <div id="success" class="alert alert-success <% if(noMessages){ %> d-none <% } %>" >
-            <%= successMsg %>
+            <% if(isIcon){ %>
+                <i class="fa fa-check" aria-hidden="true"></i> <%= successMsg %>
+            <% } else { %>
+                <%= successMsg %>
+            <% } %>
         </div>
         <div id="error" class="alert alert-danger <% if(noError){ %> d-none <% } %>" >
             <%= errorMsg %>

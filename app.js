@@ -10,6 +10,8 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local');
 var MongoStore = require('connect-mongo')(session);
 var methodOverride = require("method-override");
+require('dotenv').config()
+
 
 var app = express();
 
@@ -29,9 +31,10 @@ mongoose.set('useNewUrlParser', true);
 mongoose.set('useUnifiedTopology', true);
 var url = process.env.DATABASEURL || "mongodb://localhost/medlife";
 //mongodb+srv://shubh:medeasy@cluster0-tikja.mongodb.net/test?retryWrites=true&w=majority
-console.log(process.env.DATABASEURL);
-console.log(url);
+console.log("env DATABASE url: "+process.env.DATABASEURL);
+console.log("Selected Url: " + url);
 mongoose.connect("mongodb+srv://shubh:medeasy@cluster0-tikja.mongodb.net/test?retryWrites=true&w=majority");
+//mongoose.connect("mongodb://localhost/medlife");
 
 
 
