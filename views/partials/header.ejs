@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Medlife</title>
+    <title>MedEasy</title>
     
     <!--Fontawesome icons-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel='stylesheet' href='/stylesheets/style.css' />
 
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <!--<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -84,8 +85,10 @@
             //Get match to input
             let matches = products.filter(product => {
                 const regex = new RegExp(`${searchText}`,'gi');
-                console.log(searchText);
-                return  product.title.match(regex);
+                console.log("Searchtext "+searchText);
+                let tagsArray = product._tags.join(" ");
+                console.log("tagsArray "+tagsArray);
+                return  product.title.match(regex) || tagsArray.match(regex);
             });
             console.log("Matches: ",matches);
             if(searchText.length === 0 || matches.length === 0){
@@ -94,7 +97,6 @@
             }
             outputHtml(matches);
         };
-    
         //show result in html
         const outputHtml = matches =>{
             if(matches.length>0){
@@ -108,7 +110,6 @@
         }
         search.addEventListener('input',() => searchProducts(search.value))
     </script>
-
 
 
 <!--

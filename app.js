@@ -33,10 +33,8 @@ var url = process.env.DATABASEURL || "mongodb://localhost/medlife";
 //mongodb+srv://shubh:medeasy@cluster0-tikja.mongodb.net/test?retryWrites=true&w=majority
 console.log("env DATABASE url: "+process.env.DATABASEURL);
 console.log("Selected Url: " + url);
-mongoose.connect("mongodb+srv://shubh:medeasy@cluster0-tikja.mongodb.net/test?retryWrites=true&w=majority");
+mongoose.connect(process.env.DATABASEURL);
 //mongoose.connect("mongodb://localhost/medlife");
-
-
 
 
 // view engine setup

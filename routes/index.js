@@ -2,6 +2,10 @@ var express = require('express');
 var router = express.Router();
 
 var Product = require("../models/product");
+var Order = require("../models/order");
+var User = require("../models/user");
+var ObjectId = require('mongoose').Types.ObjectId;
+
 
 
 
@@ -54,6 +58,58 @@ router.get('/products/:id',function(req,res){
   });
 });
 
+router.get('/test',function(req,res){
+  Order.aggregate(
+    [
+      {$match: {}},
+      {$group: {_id: "$purchaseDate", total: {$sum: "$cart.totalPrice"}}}
+    ], function(err,result){
+      res.json(result);
+    }
+  )
+});
+
+router.get('/test1',function(req,res){
+  Order.aggregate(
+    [
+      {$match: {}},
+      {$group: {
+                _id: {
+                      month: {$month: "$purchaseDate"},
+                      year: {$year: "$purchaseDate"}
+                    }, total: {$sum: "$cart.totalPrice"}}}
+    ], function(err,result){
+      res.json(result);
+    }
+  )
+});
+
+router.get('/test2',function(req,res){
+  Order.aggregate(
+    [
+      {$match: {}},
+      {$group: {_id: "$user", total: {$sum: "$cart.totalPrice"}}},
+      {$sort: {total: -1}},
+      //{$limit: 5}
+    ], function(err,result){
+      res.json(result);
+      /*User.findById(result[0]._id,function(err,result){
+        res.json(result);
+      });*/
+    }
+  )
+});
+
+router.get('/test3',function(req,res){
+  Product.aggregate(
+    [
+      {$match: {}},
+      {$group: {_id: "$_id", total: {$sum: "$soldQty"}}}
+    ], function(err,result){
+      res.json(result);
+    }
+  )
+});
 
 
 /*

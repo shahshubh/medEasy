@@ -7,47 +7,75 @@
         </div>
     </div>
 <% } else if(products){ %>
-    <div class="row justify-content-center">
-        <div class="col-sm-6 col-md-6"><!--col-md-offset-3-->
-            <ul class="list-group">
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-md-10 col-md-offset-1">
+            <table class="table table-hover table-borderless">
+                <thead class="table-borderless">
+                    <tr >
+                        <th class="bg-light">Product</th>
+                        <th class="bg-light">Quantity</th>
+                        <th class="text-center bg-light">Price</th>
+                        <th class="text-center bg-light">Total</th>
+                        <th class="bg-light">Remove</th>
+                    </tr>
+                </thead>
+                <tbody>
                 <% products.forEach(function(product){ %>
-                    <li class="list-group-item">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <strong><%= product.item.title %></strong>
-                        <span class="label label-success">₹ <%= product.price %></span>
-                        <div class="btn-group">
-                            <button class="btn btn-primary btn-xs dropdown-toggle" type="button" data-toggle="dropdown">Action <span class="caret"></span></button>
-                            <ul class="dropdown-menu">
-                                <li><a href="/reduce/<%= product.item._id %>">Reduce by 1</a></li>
-                                <li><a href="/increase/<%= product.item._id %>">Increase by 1</a></li>
-                                <li><a href="/remove/<%= product.item._id %>">Remove all</a></li>
-                            </ul>
-                        </div>
+                    <tr style="border-bottom: 1px solid #dee2e6;">
+                        <td class="col-sm-8 col-md-6">
+                        <div class="media">
+                            <a class="thumbnail pull-left" href="/products/<%= product.item._id %>"> <img class="media-object" src="<%= product.item.image %>" style="width: 72px; height: 72px;"> </a>
+                            <div class="media-body">
+                                <h4 class="media-heading"><a href="/products/<%= product.item._id %>"><%= product.item.title %></a></h4>
+                                <h5 class="media-heading"> by Brand name</h5>
+                                <span>Status: </span><span class="text-success"><strong>In Stock</strong></span>
                             </div>
-                            <div style="text-align: end;" class="col-md-6">
-                                <span class="badge badge-pill badge-primary"><%= product.qty %></span>
+                        </div></td>
+                        <td class="col-sm-1 col-md-1" style="text-align: center">
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <a href="/reduce/<%= product.item._id %>"><button type="button" class="btn btn-sm btn-light">-</button></a>
+                                <button type="button" class="btn btn-sm "><%= product.qty %></button>
+                                <a href="/increase/<%= product.item._id %>"><button type="button" class="btn btn-sm btn-light ">+</button></a>
                             </div>
-                        </div>
-                        <!-- <span><img src="<%= product.item.image %>"></span> -->
-                        
-                    </li>
-                <% }) %>
-            </ul>
+                        </td>
+                        <td class="col-sm-1 col-md-1 text-center"><strong>₹<%= product.price/product.qty %></strong></td>
+                        <td class="col-sm-1 col-md-1 text-center"><strong>₹<%= product.price %></strong></td>
+                        <td class="col-sm-1 col-md-1">
+                        <a href="/remove/<%= product.item._id %>">
+                            <i style="color: red;font-size: 25px;" class="fa fa-trash" aria-hidden="true"></i>
+                        </a>
+                        </td>
+                    </tr>
+                    <% }) %>
+                    <tr>
+                        <td>   </td>
+                        <td>   </td>
+                        <td>   </td>
+                        <td><h3>Total</h3></td>
+                        <td class="text-right"><h3><strong>₹<%= totalPrice %></strong></h3></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <!--<a href="<%= prevUrl %>">-->
+                            <a href="/">
+                                <button type="button" style="white-space: nowrap;" class="btn btn-primary">Continue Shopping</button>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="/checkout">
+                                <button type="button" class="btn btn-success">Checkout</button>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
-    <div class="row justify-content-center">
-        <div class="col-sm-6 col-md-6"><!--col-md-offset-3-->
-            <strong>Total: <%= totalPrice %> </strong>
-        </div>
-    </div>
-    <hr>
-    <div class="row justify-content-center">
-        <div class="col-sm-6 col-md-6"><!--col-md-offset-3-->
-            <a href="/checkout" ><button type="button" class="btn btn-success" >Checkout</button></a>
-        </div>
-    </div>
+</div>
 <% } %>
-
 
 <% include ../partials/footer %>

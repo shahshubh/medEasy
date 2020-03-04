@@ -7,10 +7,9 @@ var ObjectId = require('mongoose').Types.ObjectId;
 
 const nodemailer = require('nodemailer');
 
-
 router.get('/add-to-cart/:id', function (req, res) {
-    console.log(process.env.DATABASEURL);
-    console.log(process.env.MAILPASS);
+    console.log(req.session);
+    
     var productId = req.params.id;
     var cart = new Cart(req.session.cart ? req.session.cart : {});
 
@@ -47,43 +46,63 @@ router.get('/increase/:id', function (req, res) {
 router.get('/remove/:id', function (req, res) {
     var productId = req.params.id;
     var cart = new Cart(req.session.cart ? req.session.cart : {});
-
+    console.log(cart);
     cart.removeItem(productId);
     req.session.cart = cart;
     res.redirect('/shopping-cart');
 });
 
-router.get('/shopping-cart', function (req, res) {
+router.get('/shopping-cart', function (req, res) {  
     if (!req.session.cart) {
         return res.render('shop/shopping-cart', { products: null });
     }
+    let result;
+    let referer = req.get('referer');
+    let temp = "http://"+req.get('host');
+    if(referer){
+        result = referer.replace(temp, '');
+    } else {
+        result = "/"
+    }
+    console.log("CART: ",result);
+    //console.log(temp);
+    //console.log(req.get('referer'));
+    //console.log(req.get('host'));
     var cart = new Cart(req.session.cart);
-    res.render('shop/shopping-cart', { products: cart.generateArray(), totalPrice: cart.totalPrice });
+    res.render('shop/shopping-cart', { products: cart.generateArray(), totalPrice: cart.totalPrice, prevUrl: result });
 });
 
 router.get('/checkout', isLoggedIn, function (req, res) {
     if (!req.session.cart) {
         res.redirect('/shopping-cart');
     }
+    let result;
+    let referer = req.get('referer');
+    let temp = "http://"+req.get('host');
+    if(referer){
+        result = referer.replace(temp, '');
+    } else {
+        result = "/"
+    }
+    console.log("CHECKOUT: ",result);
+
     var cart = new Cart(req.session.cart);
     var errMsg = req.flash('error')[0];
-    res.render('shop/checkout', {cart: cart, total: cart.totalPrice, errMsg: errMsg, noErrors: !errMsg });
+    res.render('shop/checkout', {cart: cart, total: cart.totalPrice, errMsg: errMsg, noErrors: !errMsg, prevUrl: result });
 });
 
 router.post('/checkout', isLoggedIn, function (req, res) {
     if (!req.session.cart) {
         res.redirect('/shopping-cart');
     }
-    console.log("Reached here");
     var cart = new Cart(req.session.cart);
-    console.log("====================>> "+req.body.Radio);
     if(req.body.name==="" || req.body.address==="" || req.body.city==="" || req.body.state==="" || req.body.zip===""){
         req.flash('error', "Please fill out all the shipping details");
         return res.redirect('/checkout');
     }
     if(req.body.Radio==='a')
     {
-        console.log("*************************");
+        
         var stripe = require('stripe')('sk_test_D7997ZtAIPpJolaDEaFl4cp0007MSV4quL');
     // `source` is obtained with Stripe.js; see https://stripe.com/docs/payments/accept-a-payment-charges#web-create-token
     //console.log(req.body.Radio);
@@ -102,6 +121,8 @@ router.post('/checkout', isLoggedIn, function (req, res) {
             }
             var date = new Date();
             date.setHours(0,0,0,0);
+            console.log("Date: ",date);
+            console.log("DATE: ",date.getDate(),"-",date.getMonth(),"-",date.getFullYear());
             var order = new Order({
                 user: req.user,
                 cart: cart,
@@ -183,9 +204,10 @@ router.post('/checkout', isLoggedIn, function (req, res) {
     }
     else if(req.body.Radio==='b')
     {
-        console.log("-------------------------------");
         var date = new Date();
         date.setHours(0,0,0,0);
+        console.log("Date: ",date);
+        console.log("DATE: ",date.getDate(),"-",date.getMonth(),"-",date.getFullYear());
         var order = new Order({
             user: req.user,
             cart: cart,
@@ -199,8 +221,11 @@ router.post('/checkout', isLoggedIn, function (req, res) {
         Object.values(cart.items).forEach(function(product){
             let prevQty = product.item.qty;
             let newQty = prevQty-product.qty; 
+
+            let newsoldQty = product.item.soldQty + product.qty;
+
             //UPDATE QTY in database
-            Product.findOneAndUpdate({"_id": ObjectId(`${product.item._id}`)},{$set: {"qty": newQty}},function(err,data){
+            Product.findOneAndUpdate({"_id": ObjectId(`${product.item._id}`)},{$set: {qty: newQty, soldQty: newsoldQty}},function(err,data){
                 if(err){
                     console.log(err);
                 }
@@ -255,6 +280,8 @@ router.post('/checkout', isLoggedIn, function (req, res) {
 });
 
 module.exports = router;
+
+
 
 //MIDDLEWARE
 function isLoggedIn(req, res, next) {

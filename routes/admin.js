@@ -4,9 +4,8 @@ var router = express.Router();
 var Product = require("../models/product");
 
 
-
 router.get('/admin',isLoggedIn,isAdmin,function(req,res){
-    res.send("ADMIN");
+    res.render('admin/dashboard');
 });
 
 router.get('/admin/products',isLoggedIn,isAdmin,function(req,res){
