@@ -1,7 +1,7 @@
 var passport = require('passport');
 var User = require('../models/user');
 var LocalStrategy = require('passport-local').Strategy;
-
+const adminCode = "secretcode";
 
 /*done(err,__) err as a first parameter*/
 passport.serializeUser(function(user, done){
@@ -31,7 +31,7 @@ passport.use('local.signup', new LocalStrategy({
             return done(null, false, {message: 'Email is already in use'});
         }
         if(req.body.isseller!=""){
-            if(req.body.isseller!="secretcode"){
+            if(req.body.isseller!=adminCode){
                 return done(null, false, {message: 'Admin Code is incorrect. Please signup as a user instead'});
             }
         }
@@ -39,7 +39,7 @@ passport.use('local.signup', new LocalStrategy({
         newUser.fullname = req.body.fullname;
         newUser.email = email;
         newUser.password = newUser.encryptPassword(password);
-        if(req.body.isseller=="secretcode"){
+        if(req.body.isseller==adminCode){
             newUser.isSeller = true;
         }
         newUser.save(function(err, result){

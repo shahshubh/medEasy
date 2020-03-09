@@ -7,9 +7,7 @@ var ObjectId = require('mongoose').Types.ObjectId;
 
 const nodemailer = require('nodemailer');
 
-router.get('/add-to-cart/:id', function (req, res) {
-    console.log(req.session);
-    
+router.get('/add-to-cart/:id', function (req, res) {    
     var productId = req.params.id;
     var cart = new Cart(req.session.cart ? req.session.cart : {});
 
