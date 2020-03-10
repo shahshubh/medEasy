@@ -104,13 +104,24 @@ router.get('/test3',function(req,res){
   Product.aggregate(
     [
       {$match: {}},
-      {$group: {_id: "$_id", total: {$sum: "$soldQty"}}}
+      {$project: {_id: 0,title: 1,price: 1,soldQty: 1}}
     ], function(err,result){
       res.json(result);
     }
   )
 });
 
+router.get('/test4',function(req,res){
+  Order.aggregate(
+    [
+      {$match: {}},
+      {$group: {_id: "$purchaseDate", count: {$sum: 1}}}
+      
+    ], function(err,result){
+      res.json(result);
+    }
+  )
+});
 
 /*
 router.get('/autocomplete',function(req,res,next){
