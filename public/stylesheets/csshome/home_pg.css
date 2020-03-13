@@ -1,0 +1,282 @@
+
+.con2 .box-row a{
+  text-decoration: none !important;
+}
+
+
+body{
+    font-family:poppins;
+    width:100%;
+}
+
+h1{  
+
+    color:black;
+    text-shadow: 0 2px 2px gray;
+    font-size :50px;
+    margin-block-end: 0em;
+
+}
+
+.carousel-inner img {
+  vertical-align: middle;
+  border-style: none;
+  max-height: 700px;
+  height: 650px;
+  width: 1600px;
+}
+
+.carousel-inner
+{
+  background-color:white;
+}
+.carousel-item img
+{
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.offer
+{
+  width:100%;
+  height:100%;
+}
+
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+height: 30px;
+width: 30px;
+/* outline: black; */
+background-image: none;
+color: darkorchid;
+vertical-align:center;
+font-size: 55px;
+filter:invert(100%)
+}
+
+
+.carousel-control-next-icon:hover
+{
+filter:invert(100%)
+}
+
+.carousel-control-prev-icon:hover
+{
+filter:invert(100%)
+}
+
+
+
+
+
+.bg
+{
+  background-image:url('gallery/all.jpg');
+}
+
+.con1
+{
+    background-color: white;
+    max-width:100%;
+    height: 100%;
+    padding-bottom:1.5em;
+    display: block;
+    text-align: center;
+    
+}
+
+.head_name{
+  height: 40px;
+  align-content: center;
+  vertical-align: center;
+}
+
+.image
+{
+    align-content: center;
+    display:block;
+    margin-left:auto;
+    margin-right: auto; 
+    max-width: 200px;
+    max-height: 200px;
+
+}
+div .image
+{
+    text-align: center;
+}
+.inner
+{
+    background :  #7952b3;
+    align-content: center;
+    padding: 15px;
+    height : 260px;
+    transition: all 0.9s ease 0s;
+    margin-bottom: 10px; 
+    border-radius: 7%;   
+    opacity:0.8;
+
+}
+.inner h4
+{
+    color:#fff;
+    font-size:22px;
+    font-weight:bold;
+    text-align: center;
+    
+}
+
+.inner img{
+    transition: all 0.9s ease;
+    width: 143px;
+    height: 143px;
+    align-content: center;
+    border-radius: 50%;
+
+}
+ 
+.inner:hover img{
+    transform: scale(1.15);
+}
+.inner:hover{
+  box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2);
+}
+
+.cat_head
+{
+  text-align: left;
+  padding-left: 5px;
+}
+
+.view
+{
+  text-align: right;
+  font-size:20px; 
+}
+
+
+.line
+{
+  width: 200px;
+    height: 30px;
+    border-style: solid;
+    border-color:  #7952b3;
+    border-width: 1px 0 0 0;
+    border-radius: 20px; 
+}
+hr.line:before {
+  display: block;
+  content: "";
+  height: 30px;
+  margin-top: -31px;
+  border-style: solid;
+  border-color: #7952b3;
+  border-width: 0 0 1px 0;
+  border-radius: 20px;
+  }
+  
+  .con2,.con3{
+    /* width: 100%; */
+    text-align: center;
+    margin-left: 40px;
+    margin-right:40px ;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
+  .con3{
+    background-color: #e6e6f3;
+    margin: 0;
+  }
+
+  .con2
+  {
+    padding-bottom: 20px;
+  }
+
+  .inner-width{
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 20px;
+  }
+
+  .services_head
+  {
+    text-align: center;
+  }
+  
+  .services-section h1{
+    text-align: center;
+    font-size:40px;
+    font-weight: 500;
+    /* margin-bottom: 1em; */
+  }
+  
+  .services-section h1 strong{
+    color:rgb(159, 44, 212);
+  }
+  
+  .service{
+    text-align: center;
+    margin: 20px 20px;
+    width:240px;
+    height:270px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10%;
+   
+  }
+
+  
+  .service-icon{
+    width: 60px;
+    height: 60px;
+    margin: auto;
+    background: #ecf6ff;
+    border-radius: 50%;
+    color: rgb(159, 44, 212);
+    line-height: 60px;
+    font-size: 25px;
+  }
+  
+  .service-name{
+    font-weight: 600;
+    font-size: 18px;
+    margin: 20px 0;
+  }
+  
+  .service-desc{
+    max-width: 400px;
+    margin: auto;
+    color: #333;
+    font-size: 17px;
+  }
+  
+  .owl-dots{
+    text-align: center;
+    margin-top: 40px;
+  }
+  
+
+  
+  .owl-dot{
+    width: 14px;
+    height: 14px;
+    background: #808080 !important;
+    margin: 0 6px;
+    border-radius: 14px;
+    outline: none;
+    transition: .3s linear;
+  }
+  
+  .owl-dot.active{
+    width: 36px;
+    background: rgb(159, 44, 212) !important;
+  }
+  
+  .owl-dot:hover{
+    width: 36px;
+    background: rgb(159, 44, 212) !important;
+  }
+  
+

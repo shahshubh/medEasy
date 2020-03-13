@@ -1,0 +1,189 @@
+
+@import url('https://fonts.googleapis.com/css?family=Baloo+Bhaijaan|Ubuntu');
+body {
+    
+    background-size: cover;
+    background-position: center; 
+    font-family:Roboto;
+}
+
+
+body,
+html {
+    width: 100%;
+    height: 100%;
+    font-family: "Lato";
+    color: black;
+}
+
+h1 {
+	font-weight: 700;
+    font-size: 5em;
+    
+}
+
+
+.container {
+    margin: 0 auto;
+    max-width: 1280px;
+    width: 100%;
+  }
+
+  @media (min-width: 1200px) {
+    .container {
+      width: 1000px;
+    }
+  }
+  @media only screen and (min-width: 601px) {
+    .container {
+      width: 100%;
+    }
+  }
+  @media only screen and (min-width: 1000px and max-width:1200px) {
+    .container {
+      width: 100%;
+    }
+    .searchbar:hover
+    {
+      width:160px;
+    }
+  }
+
+
+
+.navbar
+{
+    width:100%;
+    background-color:#563d7c;
+    text-decoration-color: white;
+    /* height:30px; */
+}
+
+@media (max-width: 991.98px){
+.bd-navbar {
+    padding-right: .5rem;
+    padding-left: .5rem;
+}
+}
+
+bd-navbar {
+  min-height: 4rem;
+  background-color: #563d7c;
+  box-shadow: 0 0.5rem 1rem rgba(0,0,0,.05), inset 0 -1px 0 rgba(0,0,0,.1);
+}
+
+.logo
+{
+    max-width: 70px;
+    max-height:70px ;
+}
+
+#navBarSearchForm
+{
+    display: flex;
+    margin-right: 10px;
+    margin-left: 70px;
+}
+
+
+.name
+{
+    color: white;
+    font-weight: 400;
+    font-size:30px;
+    vertical-align: middle;
+
+}
+
+.nav-item
+{
+    color:white;
+    font-size: 22px;
+    font-weight: 400;
+    text-decoration: none;
+    vertical-align: middle;
+}
+p 
+{
+    color:white;
+    font-weight: bolder;
+    font-size: 25px;
+    line-height:25px;
+    font-weight: 400;
+    text-decoration: none;
+    vertical-align: middle;
+    display: inline-block;
+
+}
+
+.nav-item:hover {
+    text-decoration: underline;
+    }
+
+
+/* search */
+
+  
+.searchbar{
+    margin-left:27px;
+    margin-bottom: auto;
+    margin-top: auto;
+    height: 50px;
+    background-color: white;
+    border-radius: 25px;
+    padding: 10px;
+    align-content: center;
+    vertical-align: middle;
+    }
+
+    .search_input{
+    color: black;
+    border: 0;
+    outline: 0;
+    background: none;
+    width: 0;
+    caret-color:transparent;
+    transition: width 0.4s linear;
+    vertical-align: middle;
+    align-content: center;
+    font-size: 22px;
+    justify-content: center;
+    }
+
+    .s_label
+    {
+      vertical-align: middle;
+      align-content: center;
+      font-size: 22px;
+      justify-content: center;
+      color: black;
+    }
+
+    .searchbar:hover > .search_input{
+    width: 130px;
+    caret-color:black;
+    transition: width 0.5s linear;
+    vertical-align: middle;
+    }
+
+    .searchbar:hover > .search_icon{
+    background: white;
+    color:  #7952b3;
+    }
+
+
+    .search_icon{
+    height: 25px;
+    width: 25px;
+    float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color: #7952b3;
+    text-decoration:none;
+    }
+    .search_icon:hover{
+        color:black;
+        font-size: 30px;
+    }

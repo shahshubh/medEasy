@@ -1,6 +1,90 @@
-<% include ../partials/header %>
+<!-- #563d7c -->
+<html>
+    <head>
+        <title>Product page</title>
+        <link rel="stylesheet" href="/stylesheets/show.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" >
 
-<h1><%= product.title %></h1>
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" ></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" ></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <body>
+        <div class="container con1">
+            <div class="row">
+                <div class="col-lg-5 col-xs-12 image">
+                    <img src="<%= product.image %>>" class="w-100">
+                </div>
+                <div class="col-lg-7 col-xs-12 cont">
+                    <p class="category_name text-center">AYURVEDIC</p>
+                    <h2><%= product.title %><span> 60 Capsules</span></h2>
+                    <p><span>By Aadar Herbals</span></p>
+                    <hr>
+                    <!-- <p class="price">MRP Rs.216</p> -->
+                    <div class="row detail1">
+                        <div class="col-lg-6 col-xs-12">
+                            <p><span><b>Availibility: </b>In stock</span>
+                        </div>
+                    </div>
+                    <div class="row detail2">
+                        <div class="col-lg-6 col-xs-12 center">
+                            <span class="exp"><b>EXP Date: </b>20/12/21</span></p>
+                        </div>
+                    </div>
+                    <p class="price">MRP ₹ <%= product.price %></p>
+                    <!-- <div class="row col-lg-6 col-xs-12"> -->
+                        <!--<div class="qty mt-4">
+                                    <label><b>QTY   :</b></label>
+                                    <a href=""><span class="minus bg-dark">-</span></a>
+                                    <input type="number" class="count" name="qty" value="1" min="1" max="5">
+                                    <span class="plus bg-dark">+</span>
+                        </div>-->
+                    <div class="row d-flex align-items-end last ">
+                        <!--<div class="col-lg-6 col-xs-12 t_amt">
+                            <span style="font-size: large;"><b>Total Amt :</b><span class="tp">Rs.216</span></span>
+                        </div>-->
+                        <div class="col-lg-6 col-xs-12 ">
+                            <a href="/add-to-cart/<%= product._id %>"><button type="button" class="cart_button"><i class="fa fa-shopping-cart mr-2" aria-hidden="true"></i>Add to Cart</button></a>        
+                        </div>      
+                    </div>
+                </div>
+            </div>
+            
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link active" id="Desc-tab" data-toggle="tab" href="#Desc" role="tab" aria-controls="Desc" aria-selected="true">Desc</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="Composition-tab" data-toggle="tab" href="#Composition" role="tab" aria-controls="Composition" aria-selected="false">Composition</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="Precautions-tab" data-toggle="tab" href="#Precautions" role="tab" aria-controls="Precautions" aria-selected="false">Precautions</a>
+                </li>
+                <!-- <li class="nav-item">
+                    <a class="nav-link" id="brand-tab" data-toggle="tab" href="#brand" role="tab" aria-controls="brand" aria-selected="false">Brand</a>
+                  </li> -->
+              </ul>
+              <br>
+              <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="Desc" role="tabpanel" aria-labelledby="Desc-tab">
+                    They keep you satiated after a good meal which then reduces your calorie intake. Triphala keeps your digestion in check and keeps your body cleanse. GET YOUR FREE DIET PLAN: Healthy diet is an important part of the regime when you are trying to lose those extra kilos and managing your weight. AADAR provides you a curated diet plan with every pack designed by our dieticians that can help you decide what’s good for you and what not. FSSAI APPROVED AND NON-GMO: So that you are sure of the purity, quality and authenticity of what you put in your mouth. So, your mind can focus to lose weight, and not worrying about anything else. |Tested for Heavy Metals |Made in India |Zero chemicals |Cruelty Free (Not Tested on Animals) HOW TO USE: Two capsules in morning empty stomach, and Two capsules in night after meal, with warm water, every day. Living a healthy life is a matter of discipline. And making Weight No More as part of your routine helps you stay in great shape. Weight No More is safe for everyday use.Usage instruction: Two capsules with warm water on an empty stomach in the morning
+                </div>
+                <div class="tab-pane fade" id="Composition" role="tabpanel" aria-labelledby="Composition-tab">
+                    GARCINIA CAMBOGIA + GREEN TEA: The unique blend of these herbal ingredients boost metabolism naturally which in turn helps burn fat faster, thus helping you achieve your fitness goal. BENEFIT OF TRIPHALA AND FENUGREEK: Methi (or Fenugreek) seeds are rich in multi-vitamins and dig
+                </div>
+                <div class="tab-pane fade" id="Precautions" role="tabpanel" aria-labelledby="Precautions-tab">
+                    .Precautions: 1. Please check the seal before use. 2. Keep the container tighly closed. 3. Keep it away from children. 4. Read the label for instructions before use. 5. Store in a cool and dry place, away from sunlight. Ingredients: Neem Aloe Vera Harade
+                </div>
+                <!-- <div class="tab-pane fade" id="brand" role="tabpanel" aria-labelledby="brand-tab">
+                    By ARdan's company
+                </div> -->
+              </div>
+        </div>
 
-<% include ../partials/footer %>
+    </body>
+</html>
+
+
+
 

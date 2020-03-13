@@ -36,7 +36,7 @@ router.get('/', function(req, res, next) {
     if(err){
       console.log(err);
     }else{
-      res.render('shop/index', { products: allProducts, successMsg: successMsg, errorMsg: errorMsg ,noMessages: !successMsg, noError: !errorMsg, isIcon: isIcon});
+      res.render('shop/homepg', { products: allProducts, successMsg: successMsg, errorMsg: errorMsg ,noMessages: !successMsg, noError: !errorMsg, isIcon: isIcon});
     }
   });
 });
@@ -46,17 +46,7 @@ router.get('/developer',function(req,res){
 });
 
 
-router.get('/products/:id',function(req,res){
-  var productId = req.params.id;
-  Product.findById(productId, function(err,foundProduct){
-    if(err){
-      console.log(err);
-    }
-    else{
-      res.render('shop/show',{product: foundProduct })
-    }
-  });
-});
+
 
 router.get('/test',function(req,res){
   Order.aggregate(

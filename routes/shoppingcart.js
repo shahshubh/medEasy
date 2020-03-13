@@ -70,6 +70,20 @@ router.get('/shopping-cart', function (req, res) {
     res.render('shop/shopping-cart', { products: cart.generateArray(), totalPrice: cart.totalPrice, prevUrl: result });
 });
 
+
+router.get('/products/:id',function(req,res){
+    var productId = req.params.id;
+    Product.findById(productId, function(err,foundProduct){
+    if(err){
+        console.log(err);
+    }
+    else{
+        res.render('shop/show',{product: foundProduct })
+    }
+    });
+});
+
+
 router.get('/checkout', isLoggedIn, function (req, res) {
     if (!req.session.cart) {
         res.redirect('/shopping-cart');
