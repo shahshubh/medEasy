@@ -84,13 +84,13 @@
                             <ul class="navbar-nav mr-auto">
                                 <li class="nav-item active"><a class="nav-link" href="/user/signin">Login <i class="fa fa-user"></i></a></li>
                         <% } else { %>
-                            <li class="nav-item dropdown active">
+                            <li  class="nav-item dropdown active">
                                 <a class="nav-link dropdown-toggle extra" id="Username" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                     Username
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <a class="dropdown-item" href="#">My Orders</a>
-                                    <a class="dropdown-item" href="#">Logout</a>
+                                    <a class="dropdown-item" href="/user/profile">My Orders</a>
+                                    <a class="dropdown-item" href="/user/logout">Logout</a>
                                 </div>
                             </li>
                         <% } %>
