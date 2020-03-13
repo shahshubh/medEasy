@@ -1,103 +1,4 @@
-<!doctype html>
-<html lang="en">
-    <head>
-        <title>Home Page</title>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" href="/stylesheets/csshome/home_pg.css">
-        <link rel="stylesheet" href="/stylesheets/csshome/map.css">
-        <link rel="stylesheet" href="/stylesheets/csshome/brands.css">
-        <link rel="stylesheet" href="/stylesheets/csshome/footer.css">
-        <link rel="stylesheet" type="text/css" href="/stylesheets/csshome/finalheader.css">
-        <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script> -->
-
-
-        <!-- <link rel="import" href="finalheader.html"> -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" >
-        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" ></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" ></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" charset="utf-8"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js" charset="utf-8"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" charset="utf-8"></script>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-
-
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.js"></script>
-        <script>
-            $( "#headd" ).load( "finalheader.html" );
-        </script>
-            
-
-    </head>
-    <body>
-
-    <!-- <div id="headd">
-        This message is going to be replaced by the include file.
-    </div> -->
-
-    <!-- header start -->
-    <!--Navbar-->
-      
-      <nav class="navbar navbar-expand-xl navbar-dark flex-column flex-md-row bd-navbar fixed-top" >
-        <div class="container" style="width:100%">
-        <div class="navbar-header ">
-        <!-- Navbar brand -->
-        <span class="navbar-brand">
-            <img src="/images/gallery/logo2.png" alt="medeasy logo" class="logo"><span class="name">MEDEASY</span></a>
-        </span>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        </div>
-
-            <div class="collapse md-navbar-collapse navbar-collapse " id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home </a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Contact</a>
-                </li>
-                <li class="nav-item active">
-                    <div class="d-flex h-100">
-                        <div class="searchbar">
-                            <input class="search_input" type="text" name="" placeholder="search...">
-                            <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active"><a class="nav-link" href="#">Cart<i class="fa fa-shopping-cart"></i></a></li>
-                    <li class="nav-item active"><a class="nav-link" href="#">Signup  <i class="fa fa-user-plus"></i></a></li>
-                    <!-- <p class="extra">/</p> -->
-                    <li class="nav-item active"><a class="nav-link" href="#about">/ Login <i class="fa fa-user"></i></a></li>
-
-                    <!-- <li class="nav-item active"><a class="nav-link" href="#">CheckOut<i class="fa fa-check-circle" aria-hidden="true"></i></a></li> -->
-                    <li class="nav-item dropdown active">
-                        <a class="nav-link dropdown-toggle extra" id="Username" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                            Username
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="#">My Orders</a>
-                            <a class="dropdown-item" href="#">Logout</a>
-                        </div>
-                    </li>
-                </ul>
-            </form>
-            </div>
-        </div>
-        </div>
-    </nav>
-
+<% include ../partials/header %>
 
 
 
@@ -107,6 +8,20 @@
     <!--            offers -->
     <div id="wrapper">   
         <div class="boxx con1">
+          <div class="row justify-content-center">
+            <div style="margin-bottom: 0;" class="col-sm-12 col-md-12">
+                <div id="success" class="alert alert-success <% if(noMessages){ %> d-none <% } %>" >
+                    <% if(isIcon){ %>
+                        <i class="fa fa-check" aria-hidden="true"></i> <%= successMsg %>
+                    <% } else { %>
+                        <%= successMsg %>
+                    <% } %>
+                </div>
+                <div id="error" class="alert alert-danger <% if(noError){ %> d-none <% } %>" >
+                    <%= errorMsg %>
+                </div>
+            </div>
+        </div>
             <div id="demo" class="carousel slide" data-ride="carousel">
 
             <!-- Indicators -->
