@@ -1,0 +1,56 @@
+<% include ../partials/header %>
+<link rel="stylesheet" href="/stylesheets/css/category_products.css">
+    <div class="container">
+        <div class="row row_m">
+            <div class="col">
+                <h3>Category name</h3>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <% products.forEach(function(product){ %>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card mb-3">
+                        <div class="container con1">
+                            <img class="card-img-top" src="<%= product.image %>" alt="Card image cap">
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title"><a href="product.html" title="View Product"><span><%= product.title %></span></a></h4>
+                            <div class="row">
+                                <div class="col">
+                                    <p class="pr" >₹ <%= product.price %></p>
+                                </div>
+                                <div class="col">
+                                    <a href="/add-to-cart/<%= product._id %>"><button type="button" class="cart_button"><i class="fa fa-shopping-cart mr-2" aria-hidden="true"></i>Add to Cart</button></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <% }) %>
+            <div class="col-12">
+                <nav aria-label="...">
+                    <ul class="pagination">
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1">Previous</a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item active">
+                            <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">Next</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+</body>
+</html>
+
+
+
+
+
+
+

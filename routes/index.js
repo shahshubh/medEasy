@@ -59,6 +59,20 @@ router.get('/allproducts', function(req, res, next) {
 });
 
 
+router.get('/category/:name', function(req, res, next) {
+  var successMsg = req.flash('success')[0];
+  var errorMsg = req.flash('error')[0];
+  var catg = req.params.name;
+  Product.find({category: catg},function(err, catgProducts){
+    if(err){
+      console.log(err);
+    }else{
+      res.render('shop/category_products', { products: catgProducts, successMsg: successMsg, errorMsg: errorMsg ,noMessages: !successMsg, noError: !errorMsg});
+    }
+  });
+});
+
+
 
 
 

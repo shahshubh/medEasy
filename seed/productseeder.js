@@ -15,7 +15,13 @@ var products = [
         description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Id obcaecati a ducimus ex sed necessitatibus!',
         price: '250',
         qty: '5',
-        _tags: ['cough','cold']
+        _tags: ['cough','cold'],
+        category: "medicines",
+        composition: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Id obcaecati a ducimus ex sed necessitatibus!',
+        mfgDate: '10/02/2019',
+        expDate: '10/02/2022',
+        brand: 'johnsons',
+        precautions: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Id obcaecati a ducimus ex sed necessitatibus!'
     }),
     new Product({
         image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTch_xnS2RG8etW6r6vveUYXuJ4xhN9f7ewPmWOtUxolpjGtSrHpw&s',
@@ -23,7 +29,13 @@ var products = [
         description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Id obcaecati a ducimus ex sed necessitatibus!',
         price: '345',
         qty: '5',
-        _tags: ['cough']
+        _tags: ['cough'],
+        category: "medicines",
+        composition: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Id obcaecati a ducimus ex sed necessitatibus!',
+        mfgDate: '10/02/2019',
+        expDate: '10/02/2022',
+        brand: 'johnsons',
+        precautions: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Id obcaecati a ducimus ex sed necessitatibus!'
     }),
     new Product({
         image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5x3-4aTyaiQUvRWPtudzSAQi0LRLKE_FtwEQUmHanpxiCxja3&s',
@@ -31,7 +43,13 @@ var products = [
         description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Id obcaecati a ducimus ex sed necessitatibus!',
         price: '50',
         qty: '5',
-        _tags: ['cough','xyz']
+        _tags: ['cough','xyz'],
+        category: "diabetic-care",
+        composition: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Id obcaecati a ducimus ex sed necessitatibus!',
+        mfgDate: '10/02/2019',
+        expDate: '10/02/2022',
+        brand: 'johnsons',
+        precautions: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Id obcaecati a ducimus ex sed necessitatibus!'
     }),
     new Product({
         image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBQ-aranOoWPvtujWlETwEU36TO3X5z295yFJcDzKRXk1_HNk-bQ&s',
@@ -39,7 +57,13 @@ var products = [
         description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Id obcaecati a ducimus ex sed necessitatibus!',
         price: '600',
         qty: '5',
-        _tags: ['xyz']
+        _tags: ['xyz'],
+        category: "personal-care",
+        composition: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Id obcaecati a ducimus ex sed necessitatibus!',
+        mfgDate: '10/02/2019',
+        expDate: '10/02/2022',
+        brand: 'johnsons',
+        precautions: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Id obcaecati a ducimus ex sed necessitatibus!'
     }),
     new Product({
         image: 'https://healthwatched.files.wordpress.com/2014/12/veenat400mg.jpg',
@@ -47,7 +71,13 @@ var products = [
         description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Id obcaecati a ducimus ex sed necessitatibus!',
         price: '400',
         qty: '5',
-        _tags: ['cough']
+        _tags: ['cough'],
+        category: "ayurveda",
+        composition: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Id obcaecati a ducimus ex sed necessitatibus!',
+        mfgDate: '10/02/2019',
+        expDate: '10/02/2022',
+        brand: 'johnsons',
+        precautions: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Id obcaecati a ducimus ex sed necessitatibus!'
     }),
 ]
 

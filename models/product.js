@@ -6,7 +6,13 @@ var productSchema = new mongoose.Schema({
     price: {type: Number, required: true},
     qty: {type: Number, required: true},
     soldQty: {type: Number, default: 0},
-    _tags: {type: Array}
+    _tags: {type: Array},
+    category: {type: String},
+    composition: {type: String},
+    mfgDate: {type: String},
+    expDate: {type: String},
+    brand: {type: String},
+    precautions: {type: String}
 });
 
 module.exports = mongoose.model("Product", productSchema);
