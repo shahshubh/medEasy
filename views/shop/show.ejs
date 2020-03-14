@@ -17,9 +17,9 @@
                     <img src="<%= product.image %>>" class="w-100">
                 </div>
                 <div class="col-lg-7 col-xs-12 cont">
-                    <p class="category_name text-center">AYURVEDIC</p>
+                    <p class="category_name text-center"><%= category %></p>
                     <h2><%= product.title %><span> 60 Capsules</span></h2>
-                    <p><span>By Aadar Herbals</span></p>
+                    <p><span>By <%= product.brand %></span></p>
                     <hr>
                     <!-- <p class="price">MRP Rs.216</p> -->
                     <div class="row detail1">
@@ -29,10 +29,10 @@
                     </div>
                     <div class="row detail2">
                         <div class="col-lg-6 col-xs-12 center">
-                            <span class="exp"><b>EXP Date: </b>20/12/21</span></p>
+                            <span class="exp"><b>EXP Date: </b><%= product.expDate %></span></p>
                         </div>
                     </div>
-                    <p class="price">MRP ₹ <%= product.price %></p>
+                    <p class="price">₹ <%= product.price %></p>
                     <!-- <div class="row col-lg-6 col-xs-12"> -->
                         <!--<div class="qty mt-4">
                                     <label><b>QTY   :</b></label>
@@ -68,13 +68,13 @@
               <br>
               <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="Desc" role="tabpanel" aria-labelledby="Desc-tab">
-                    They keep you satiated after a good meal which then reduces your calorie intake. Triphala keeps your digestion in check and keeps your body cleanse. GET YOUR FREE DIET PLAN: Healthy diet is an important part of the regime when you are trying to lose those extra kilos and managing your weight. AADAR provides you a curated diet plan with every pack designed by our dieticians that can help you decide what’s good for you and what not. FSSAI APPROVED AND NON-GMO: So that you are sure of the purity, quality and authenticity of what you put in your mouth. So, your mind can focus to lose weight, and not worrying about anything else. |Tested for Heavy Metals |Made in India |Zero chemicals |Cruelty Free (Not Tested on Animals) HOW TO USE: Two capsules in morning empty stomach, and Two capsules in night after meal, with warm water, every day. Living a healthy life is a matter of discipline. And making Weight No More as part of your routine helps you stay in great shape. Weight No More is safe for everyday use.Usage instruction: Two capsules with warm water on an empty stomach in the morning
+                    <%= product.description %>
                 </div>
                 <div class="tab-pane fade" id="Composition" role="tabpanel" aria-labelledby="Composition-tab">
-                    GARCINIA CAMBOGIA + GREEN TEA: The unique blend of these herbal ingredients boost metabolism naturally which in turn helps burn fat faster, thus helping you achieve your fitness goal. BENEFIT OF TRIPHALA AND FENUGREEK: Methi (or Fenugreek) seeds are rich in multi-vitamins and dig
+                    <%= product.composition %>
                 </div>
                 <div class="tab-pane fade" id="Precautions" role="tabpanel" aria-labelledby="Precautions-tab">
-                    .Precautions: 1. Please check the seal before use. 2. Keep the container tighly closed. 3. Keep it away from children. 4. Read the label for instructions before use. 5. Store in a cool and dry place, away from sunlight. Ingredients: Neem Aloe Vera Harade
+                    <%= product.precautions %>
                 </div>
                 <!-- <div class="tab-pane fade" id="brand" role="tabpanel" aria-labelledby="brand-tab">
                     By ARdan's company

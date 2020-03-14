@@ -78,7 +78,9 @@ router.get('/products/:id',function(req,res){
         console.log(err);
     }
     else{
-        res.render('shop/show',{product: foundProduct })
+        var cat = foundProduct.category;
+        var category = cat.toUpperCase();
+        res.render('shop/show',{product: foundProduct, category: category })
     }
     });
 });
