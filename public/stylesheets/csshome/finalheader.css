@@ -1,46 +1,24 @@
 
 @import url('https://fonts.googleapis.com/css?family=Baloo+Bhaijaan|Ubuntu');
-body {
-    
-    background-size: cover;
-    background-position: center; 
-    font-family:Roboto;
-}
 
-
-body,
-html {
-    width: 100%;
-    height: 100%;
-    font-family: "Lato";
-    color: black;
-}
-
-h1 {
-	font-weight: 700;
-    font-size: 5em;
-    
-}
-
-
-.container {
+.con_head {
     margin: 0 auto;
-    max-width: 1280px;
+    /* max-width: 1280px; */
     width: 100%;
   }
 
   @media (min-width: 1200px) {
-    .container {
+    .con_head {
       width: 1000px;
     }
   }
   @media only screen and (min-width: 601px) {
-    .container {
+    .con_head {
       width: 100%;
     }
   }
   @media only screen and (min-width: 1000px and max-width:1200px) {
-    .container {
+    .con_head {
       width: 100%;
     }
     .searchbar:hover
@@ -50,32 +28,37 @@ h1 {
   }
 
 
-
-.navbar
-{
-    width:100%;
-    background-color:#563d7c;
-    text-decoration-color: white;
-    /* height:30px; */
-}
-
 @media (max-width: 991.98px){
-.bd-navbar {
+.headd{
     padding-right: .5rem;
-    padding-left: .5rem;
+    /* padding-left: .5rem; */
 }
 }
 
-bd-navbar {
-  min-height: 4rem;
+
+
+.headd
+{
+ 
   background-color: #563d7c;
   box-shadow: 0 0.5rem 1rem rgba(0,0,0,.05), inset 0 -1px 0 rgba(0,0,0,.1);
+  width:100%;
+  background-color:#563d7c;
+  text-decoration-color: white;
+  width: 100%;
+  font-family: "Lato";
+  color: black;
+  background-size: cover;
+  background-position: center; 
+  height:65px;
+  
 }
+
 
 .logo
 {
-    max-width: 70px;
-    max-height:70px ;
+    max-width: 50px;
+    max-height:50px ;
 }
 
 #navBarSearchForm
@@ -90,33 +73,21 @@ bd-navbar {
 {
     color: white;
     font-weight: 400;
-    font-size:30px;
+    font-size:27px;
     vertical-align: middle;
 
 }
 
-.nav-item
+.ni
 {
     color:white;
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 400;
     text-decoration: none;
     vertical-align: middle;
 }
-p 
-{
-    color:white;
-    font-weight: bolder;
-    font-size: 25px;
-    line-height:25px;
-    font-weight: 400;
-    text-decoration: none;
-    vertical-align: middle;
-    display: inline-block;
 
-}
-
-.nav-item:hover {
+.ni:hover {
     text-decoration: underline;
     }
 
@@ -160,7 +131,7 @@ p
     }
 
     .searchbar:hover > .search_input{
-    width: 130px;
+    width: 200px;
     caret-color:black;
     transition: width 0.5s linear;
     vertical-align: middle;
