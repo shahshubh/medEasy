@@ -11,7 +11,7 @@
         <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script> -->
 
 
-        <!-- <link rel="import" href="finalheader.html"> -->
+     
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" >
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" ></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" ></script>
@@ -43,12 +43,13 @@
 
     <!-- header start -->
     <!--Navbar-->
-    <nav class="navbar navbar-expand-xl navbar-dark flex-column flex-md-row bd-navbar" >
-        <div class="container" style="width:100%">
+   <nav class="navbar navbar-expand-xl navbar-dark flex-column flex-md-row bd-navbar headd" >
+        <div class="container con_head" style="width:100%">
         <div class="navbar-header ">
         <!-- Navbar brand -->
         <span class="navbar-brand">
-            <a style="text-decoration: none;" href="/"><img style="margin-right: 10px;" src="/images/gallery/logo2.png" alt="medeasy logo" class="logo"><span class="name">MEDEASY</span></a>
+            <a style="text-decoration: none;" href="/"><img style="margin-right: 10px;" src="/images/gallery/logo2.png" alt="medeasy logo" class="logo">
+                <span class="name">MEDEASY</span></a>
         </span>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -57,7 +58,7 @@
 
             <div style="z-index: 1;" class="collapse md-navbar-collapse navbar-collapse " id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
+                    <li class="nav-item ni active">
                         <div class="d-flex h-100">
                             <div class="searchbar">
                                 <input class="search_input" type="text" id="searchName" placeholder="search...">
@@ -71,20 +72,22 @@
                 <form class="form-inline my-2 my-lg-0">
                     <ul class="navbar-nav mr-auto">
                         <%  if(session.cart && session.cart.totalQty > 0){ %>
-                            <li class="nav-item active">
-                                <a class="nav-link" href="/shopping-cart">Cart<i class="fa fa-shopping-cart"></i><span class="badge badge-success badge-pill"><%= session.cart.totalQty %></span></a>
+                            <li class="nav-item ni active ">
+                                <a class="nav-link" href="/shopping-cart">Cart<i class="fa fa-shopping-cart"></i><span class="badge badge-success badge-pill">
+                                    <%= session.cart.totalQty %>
+                                </span></a>
                             </li>
                         <% } else{ %>
-                            <li class="nav-item active">
+                            <li class="nav-item ni active">
                                 <a class="nav-link" href="/shopping-cart">Cart<i class="fa fa-shopping-cart"></i></a>
                             </li>
                         <% } %>
 
                         <% if(!currentUser){ %>
                             <ul class="navbar-nav mr-auto">
-                                <li class="nav-item active"><a class="nav-link" href="/user/signin">Login <i class="fa fa-user"></i></a></li>
+                                <li class="nav-item ni active"><a class="nav-link" href="/user/signin">Login <i class="fa fa-user"></i></a></li>
                         <% } else { %>
-                            <li  class="nav-item dropdown active">
+                            <li  class="nav-item ni dropdown active">
                                 <a class="nav-link dropdown-toggle extra" id="Username" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                     Username
                                 </a>
@@ -98,10 +101,9 @@
                 </form>
             </div>
         </div>
-        </div>
+    
+        
 </nav>
-
-
 
 
 
