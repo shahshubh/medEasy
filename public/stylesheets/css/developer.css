@@ -29,7 +29,7 @@ h1:after{
     align-items: center;
     margin-left: auto;
     margin-right: auto;
-    width: 75%;
+    width: 60%;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     grid-template-rows: auto;
@@ -45,7 +45,6 @@ h1:after{
     justify-content: center;
     align-items: center;
     border: 1px solid #000;
-
     margin-top: 20px;
     margin-bottom: 20px;
 }
