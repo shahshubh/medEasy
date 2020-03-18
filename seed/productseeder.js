@@ -21,7 +21,8 @@ var products = [
         mfgDate: '10/02/2019',
         expDate: '10/02/2022',
         brand: 'johnsons',
-        precautions: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Id obcaecati a ducimus ex sed necessitatibus!'
+        precautions: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Id obcaecati a ducimus ex sed necessitatibus!',
+        tablets: '10 tablets'
     }),
     new Product({
         image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTch_xnS2RG8etW6r6vveUYXuJ4xhN9f7ewPmWOtUxolpjGtSrHpw&s',
@@ -35,7 +36,8 @@ var products = [
         mfgDate: '10/02/2019',
         expDate: '10/02/2022',
         brand: 'johnsons',
-        precautions: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Id obcaecati a ducimus ex sed necessitatibus!'
+        precautions: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Id obcaecati a ducimus ex sed necessitatibus!',
+        tablets: '10 tablets'
     }),
     new Product({
         image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5x3-4aTyaiQUvRWPtudzSAQi0LRLKE_FtwEQUmHanpxiCxja3&s',
@@ -49,7 +51,8 @@ var products = [
         mfgDate: '10/02/2019',
         expDate: '10/02/2022',
         brand: 'johnsons',
-        precautions: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Id obcaecati a ducimus ex sed necessitatibus!'
+        precautions: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Id obcaecati a ducimus ex sed necessitatibus!',
+        tablets: '10 tablets'
     }),
     new Product({
         image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBQ-aranOoWPvtujWlETwEU36TO3X5z295yFJcDzKRXk1_HNk-bQ&s',
@@ -63,7 +66,8 @@ var products = [
         mfgDate: '10/02/2019',
         expDate: '10/02/2022',
         brand: 'johnsons',
-        precautions: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Id obcaecati a ducimus ex sed necessitatibus!'
+        precautions: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Id obcaecati a ducimus ex sed necessitatibus!',
+        tablets: '10 tablets'
     }),
     new Product({
         image: 'https://healthwatched.files.wordpress.com/2014/12/veenat400mg.jpg',
@@ -77,7 +81,8 @@ var products = [
         mfgDate: '10/02/2019',
         expDate: '10/02/2022',
         brand: 'johnsons',
-        precautions: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Id obcaecati a ducimus ex sed necessitatibus!'
+        precautions: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Id obcaecati a ducimus ex sed necessitatibus!',
+        tablets: '10 tablets'
     }),
 ]
 

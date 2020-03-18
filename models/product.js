@@ -7,12 +7,13 @@ var productSchema = new mongoose.Schema({
     qty: {type: Number, required: true},
     soldQty: {type: Number, default: 0},
     _tags: {type: Array},
-    category: {type: String},
-    composition: {type: String},
-    mfgDate: {type: String},
-    expDate: {type: String},
-    brand: {type: String},
-    precautions: {type: String}
+    category: {type: String, required: true},
+    composition: {type: String, required: true},
+    mfgDate: {type: String, required: true},
+    expDate: {type: String, required: true},
+    brand: {type: String, required: true},
+    precautions: {type: String},
+    tablets: {type: String, required: true}
 });
 
 module.exports = mongoose.model("Product", productSchema);
