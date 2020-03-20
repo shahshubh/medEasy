@@ -47,7 +47,10 @@ $.getJSON("/test", addData);
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 </body>
 </html>-->
-<!DOCTYPE html>
+
+
+<!-- Working code by shubh -->
+<!-- <!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
@@ -55,9 +58,9 @@ $.getJSON("/test", addData);
 		<meta http-equiv="x-ua-compatible" content="ie=edge">
 		
 		<title>Annual Sales - 2015</title>
-		
+		 -->
 		<!-- Bootstrap CSS -->
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+		<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 		
 		<style>
 			body {
@@ -109,10 +112,227 @@ $.getJSON("/test", addData);
 			}
 		</style>
 		
-		<!-- Scripts -->
 		
 		<script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
 		<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+		<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+	
+		<script>
+			
+			$(function () {
+				var dataPoints = [];
+				var productDataPoints = [];
+				var ordersDataPoints = [];
+				
+				
+				var revenueColumnChart = new CanvasJS.Chart("revenue-column-chart", {
+					animationEnabled: true,
+					backgroundColor: "transparent",
+					theme: "theme2",
+					axisX: {
+						labelFontSize: 14,
+				
+					},
+					axisY: {
+						labelFontSize: 14,
+						prefix: "₹"
+					},
+					toolTip: {
+						borderThickness: 0,
+						cornerRadius: 0
+					},
+					data: [
+						{
+							type: "column",
+							yValueFormatString: "₹ ###,###.##",
+							dataPoints: dataPoints
+						}
+					]
+				});
+				
+				
+			
+				var productsRevenuePieChart = new CanvasJS.Chart("products-revenue-pie-chart", {
+					animationEnabled: true,
+					theme: "theme2",
+					legend: {
+						fontSize: 14
+					},
+					toolTip: {
+						borderThickness: 0,
+						content: "<span style='\"'color: {color};'\"'>{name}</span>: ₹ {y} (#percent%)",
+						cornerRadius: 0
+					},
+					data: [
+						{       
+							indexLabelFontColor: "#676464",
+							indexLabelFontSize: 14,
+							legendMarkerType: "square",
+							legendText: "{label}",
+							indexLabel: "{label}",
+							showInLegend: true,
+							startAngle:  90,
+							type: "pie",
+							dataPoints: productDataPoints
+						}
+					]
+				});
+				
+				
+		
+
+				var ordersSplineChart = new CanvasJS.Chart("orders-spline-chart", {
+					animationEnabled: true,
+					backgroundColor: "transparent",
+					theme: "theme2",
+					toolTip: {
+						borderThickness: 0,
+						cornerRadius: 0
+					},
+					axisX: {
+						labelFontSize: 14,
+
+						valueFormatString: "MMM YYYY"
+					},
+					axisY: {
+						gridThickness: 0,
+						labelFontSize: 14,
+						lineThickness: 2
+					},
+					data: [
+						{
+							type: "bar",
+							dataPoints: ordersDataPoints
+							[
+								{ x: new Date("1 Jan 2015"), y: 17376 },
+								{ x: new Date("1 Feb 2015"), y: 21431 },
+								{ x: new Date("1 Mar 2015"), y: 25724 },
+								{ x: new Date("1 Apr 2015"), y: 22138 },
+								{ x: new Date("1 May 2015"), y: 20676 },
+								{ x: new Date("1 Jun 2015"), y: 25429 },
+								{ x: new Date("1 Jul 2015"), y: 29160 },
+								{ x: new Date("1 Aug 2015"), y: 23317 },
+								{ x: new Date("1 Sep 2015"), y: 31883 },
+								{ x: new Date("1 Oct 2015"), y: 30034 },
+								{ x: new Date("1 Nov 2015"), y: 31768 },
+								{ x: new Date("1 Dec 2015"), y: 41215 }
+							]
+						}
+					]
+				});
+
+				function addData(data) {
+					for (var i = 0; i < data.length; i++) {
+						dataPoints.push({
+							x: new Date(data[i]._id),
+							y: data[i].total
+						});
+					}					
+					console.log("data",dataPoints);
+					revenueColumnChart.render();
+				}
+				function addProductData(data) {
+					for (var i = 0; i < data.length; i++) {
+						productDataPoints.push({
+							label: data[i].title,
+							y: data[i].soldQty*data[i].price,
+							name: data[i].title
+						});
+					}
+					console.log("productData",productDataPoints);
+					productsRevenuePieChart.render();
+				}
+
+				function addOrdersData(data) {
+					for (var i = 0; i < data.length; i++) {
+						ordersDataPoints.push({
+							x: new Date(data[i]._id),
+							y: data[i].count
+						});
+					}
+					console.log("orderData",ordersDataPoints);
+					ordersSplineChart.render();
+				}
+				$.getJSON("/test", addData);
+				$.getJSON("/test3", addProductData);
+				$.getJSON("/test4", addOrdersData);
+				
+			});
+		</script>
+		
+	</head>
+	<body>
+		<div class="container">
+			
+			
+			<div class="row">
+				<div class="col-md-12 col-xs-12">
+					<div class="card shadow">
+						<h4 class="card-header">Revenue <span class="tag tag-success" id="revenue-tag"></span></h4>
+						<div class="card-block">
+							<div id="revenue-column-chart"></div>
+						</div>
+					</div>
+				</div>
+			</div> row
+
+			<div class="row">
+				<div class="col-lg-6">
+					<div class="card shadow">
+						<h4 class="card-header">Product Wise Revenue</h4>
+						<div class="card-block">
+							<div id="products-revenue-pie-chart"></div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-6">
+					<div class="card shadow">
+						<h4 class="card-header">Orders</h4>
+						<div class="card-block">
+							<div id="orders-spline-chart"></div>
+						</div>
+					</div>
+				</div>
+			</div>  row
+		</div> container
+	</body>
+</html> -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>
+    Admin Page
+  </title>
+  <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="/stylesheets/css/material-dashboard.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" >
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+		<style>
+        #revenue-column-chart, #products-revenue-pie-chart, #orders-spline-chart 
+        {
+          height: 400px;
+		  width: 93%;
+		  align-content: center;
+		  background-color:transparent;
+        }			
+        .row{
+          margin-top: 20px;
+          margin-bottom: 20px;
+
+			}
+		</style>
+
+    <!-- for graphs -->
+    <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
 		<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 	
 		<script>
@@ -147,7 +367,6 @@ $.getJSON("/test", addData);
 						}
 					]
 				});
-				
 				
 				//CanvasJS pie chart to show product wise annual revenue for 2015
 				var productsRevenuePieChart = new CanvasJS.Chart("products-revenue-pie-chart", {
@@ -255,42 +474,404 @@ $.getJSON("/test", addData);
 				
 			});
 		</script>
-		
-	</head>
-	<body>
-		<div class="container">
-			
-			
-			<div class="row">
-				<div class="col-md-12 col-xs-12">
-					<div class="card shadow">
-						<h4 class="card-header">Revenue <span class="tag tag-success" id="revenue-tag"></span></h4>
-						<div class="card-block">
-							<div id="revenue-column-chart"></div>
-						</div>
-					</div>
-				</div>
-			</div> <!-- row -->
+<!-- end for graphs -->
 
-			<div class="row">
-				<div class="col-lg-6">
-					<div class="card shadow">
-						<h4 class="card-header">Product Wise Revenue</h4>
-						<div class="card-block">
-							<div id="products-revenue-pie-chart"></div>
-						</div>
-					</div>
-				</div>
+</head>
 
-				<div class="col-lg-6">
-					<div class="card shadow">
-						<h4 class="card-header">Orders</h4>
-						<div class="card-block">
-							<div id="orders-spline-chart"></div>
-						</div>
-					</div>
-				</div>
-			</div> <!-- row -->
-		</div> <!-- container -->
-	</body>
+<body class="dark-edition">
+  <div class="wrapper ">
+        <div class="sidebar" data-color="purple" data-background-color="black" data-image="/images/sidebar-1.jpg">
+
+      <div class="logo">
+        <a href="index.html" class="simple-text logo-normal">
+          ADMIN 
+        </a>
+      </div>
+      <div class="sidebar-wrapper">
+        <ul class="nav">
+          <li class="nav-item  ">
+            <a class="nav-link" href="dashboard.html">
+              <i class="material-icons">dashboard</i>
+              <p>Dashboard</p>
+            </a>
+          </li>
+          <li class="nav-item active ">
+            <a class="nav-link" href="user.html">
+              <i class="material-icons">person</i>
+              <p>User Profile</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="./tables.html">
+              <i class="material-icons">content_paste</i>
+              <p>Table List</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="store.html">
+              <i class="material-icons">bubble_chart</i>
+              <p>Store</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="./map.html">
+              <i class="material-icons">location_ons</i>
+              <p>Maps</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="./notifications.html">
+              <i class="material-icons">notifications</i>
+              <p>Notifications</p>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="main-panel">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top " id="navigation-example">
+        <div class="container-fluid">
+          <div class="navbar-wrapper">
+            <a class="navbar-brand" href="javascript:void(0)">Dashboard</a>
+          </div>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation" data-target="#navigation-example">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-end">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="javascript:void(0)">
+                  <i class="material-icons">dashboard</i>
+                  <p class="d-lg-none d-md-block">
+                    Stats
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link" href="javscript:void(0)" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="material-icons">notifications</i>
+                  <span class="notification">5</span>
+                  <p class="d-lg-none d-md-block">
+                    Some Actions
+                  </p>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="javascript:void(0)">Mike John responded to your email</a>
+                  <a class="dropdown-item" href="javascript:void(0)">You have 5 new tasks</a>
+                  <a class="dropdown-item" href="javascript:void(0)">You're now friend with Andrew</a>
+                  <a class="dropdown-item" href="javascript:void(0)">Another Notification</a>
+                  <a class="dropdown-item" href="javascript:void(0)">Another One</a>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="javascript:void(0)">
+                  <i class="material-icons">person</i>
+                  <p class="d-lg-none d-md-block">
+                    Account
+                  </p>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <!-- End Navbar -->
+
+      <div class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                <div class="card-header card-header-warning card-header-icon">
+                  <div class="card-icon">
+                    <i class="material-icons">shopping_cart</i>
+                  </div>
+                  <p class="card-category">Orders</p>
+                  <h1 class="card-title">+50</h1>
+                </div>
+                 <div class="card-footer">
+                  <div class="stats">
+                    <i class="material-icons">update</i> Just Updated
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                <div class="card-header card-header-success card-header-icon">
+                  <div class="card-icon">
+                    <i class="material-icons">store</i>
+                  </div>
+                  <p class="card-category">Revenue</p>
+                  <h3 class="card-title">$34,245</h3>
+                </div>
+                <div class="card-footer">
+                  <div class="stats">
+                    <i class="material-icons">date_range</i> Last 24 Hours
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                <div class="card-header card-header-danger card-header-icon">
+                  <div class="card-icon">
+                    <i class="material-icons">view_list</i>
+                  </div>
+                  <p class="card-category">Products</p>
+                  <h3 class="card-title">+750</h3>
+                </div>
+                 <div class="card-footer">
+                  <div class="stats">
+                    <i class="material-icons">update</i> Just Updated
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                <div class="card-header card-header-info card-header-icon">
+                  <div class="card-icon">
+                    <i class="material-icons">person</i>
+                  </div>
+                  <p class="card-category">Users</p>
+                  <h3 class="card-title">+245</h3>
+                </div>
+                <div class="card-footer">
+                  <div class="stats">
+                    <i class="material-icons">update</i> Just Updated
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="card card-chart">
+                <div class="card-header card-header-success">
+                  <div class="ct-chart" id="revenue-column-chart"></div>
+                </div>
+                <div class="card-body">
+                  <h4 class="card-title">Revenue</h4>
+                  <p class="card-category">
+                    <!-- <span class="text-success"><i class="fa fa-long-arrow-up"></i> 55% </span> increase in today sales.</p> -->
+                </div>
+                <div class="card-footer">
+                  <div class="stats">
+                    <i class="material-icons">access_time</i> updated 4 minutes ago
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-6 col-lg-12">
+              <div class="card card-chart">
+                <div class="card-header card-header-warning">
+                  <div class="ct-chart" id="products-revenue-pie-chart"></div>
+                </div>
+                <div class="card-body">
+                  <h4 class="card-title">Category Revenue Chart</h4>
+                </div>
+                <div class="card-footer">
+                  <div class="stats">
+                    <i class="material-icons">access_time</i>updated 4 minutes ago
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-6 col-lg-12">
+              <div class="card card-chart">
+                <div class="card-header card-header-danger">
+                  <div class="ct-chart" id="orders-spline-chart"></div>
+                </div>
+                <div class="card-body">
+                  <h4 class="card-title">Orders Chart</h4>
+                </div>
+                <div class="card-footer">
+                  <div class="stats">
+                    <i class="material-icons">access_time</i>updated 4 minutes ago
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          
+          <div class="row">
+            <div class="col-lg-6 col-md-12">
+              <div class="card">
+                <div class="card-header card-header-primary">
+                  <h4 class="card-title">Top 5 Users</h4>
+                </div>
+                <div class="card-body table-responsive">
+                  <table class="table table-hover">
+                    <thead class="text-warning">
+                      <th>ID</th>
+                      <th>Name</th>
+                      <th>Email</th>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>1</td>
+                        <td>Charlie Jonas</td>
+                        <td>abc@gmail.com</td>
+                      </tr>
+                      <tr>
+                        <td>2</td>
+                        <td>Minerva Hooper</td>
+                        <td>has@gmail.com</td>
+                      </tr>
+                      <tr>
+                        <td>3</td>
+                        <td>Sage Rodriguez</td>
+                        <td>sage@gmail.com</td>
+                        
+                      </tr>
+                      <tr>
+                        <td>4</td>
+                        <td>Philip Chaney</td>
+                        <td>philip@gmail.com</td>
+                        
+                      </tr>
+                      </tr>
+                      <tr>
+                        <td>5</td>
+                        <td>Harry Potter</td>
+                        <td>harry@gmail.com</td>
+                        
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-12">
+              <div class="card">
+                <div class="card-header card-header-primary">
+                  <h4 class="card-title">Top 5 Orders</h4>
+                </div>
+                <div class="card-body table-responsive">
+                  <table class="table table-hover">
+                    <thead class="text-warning">
+                      <th>ID</th>
+                      <th>Name</th>
+                      <th>Price</th>
+                      <th>Brand</th>
+                      <th>Status</th>
+
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>1</td>
+                        <td>Hajmola</td>
+                        <td>$17</td>
+                        <td>Hajmola</td>
+                         <td><span class="badge badge-pill badge-success">In stock</span></td>
+                      </tr>
+                       <tr>
+                        <td>2</td>
+                        <td>Hajmola</td>
+                        <td>$17</td>
+                        <td>Hajmola</td>
+                        <td><span class="badge badge-pill badge-success">In stock</span></td>
+                      </tr>
+                       <tr>
+                        <td>3</td>
+                        <td>Hajmola</td>
+                        <td>$17</td>
+                        <td>Hajmola</td>
+                        <td><span class="badge badge-pill badge-success">In stock</span></td>
+                      </tr>
+                       <tr>
+                        <td>4</td>
+                        <td>Hajmola</td>
+                        <td>$17</td>
+                        <td>Hajmola</td>
+                        <td><span class="badge badge-pill badge-danger">Out of stock</span></td>
+                      </tr>
+                       <tr>
+                        <td>5</td>
+                        <td>Hajmola</td>
+                        <td>$17</td>
+                        <td>Hajmola</td>
+                        <td><span class="badge badge-pill badge-danger">Out of stock</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" charset="utf-8"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js" charset="utf-8"></script>
+  <script src="https://unpkg.com/default-passive-events"></script>
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+
+  <script src="/javascripts/bootstrap-material-design.min.js"></script>
+  <!-- <script src="Js\perfect-scrollbar.jquery.min.js"></script>
+  <script src="Js\chartist.min.js"></script>
+  <script src="Js\bootstrap-notify.js"></script>
+  <script src="Js\material-dashboard.js?v=2.1.0"></script> --> -->
+
+  <script>
+    $(document).ready(function() {
+      $().ready(function() {
+        $sidebar = $('.sidebar');
+
+        $sidebar_img_container = $sidebar.find('.sidebar-background');
+
+        $full_page = $('.full-page');
+
+        $sidebar_responsive = $('body > .navbar-collapse');
+
+        window_width = $(window).width();
+   
+        $('.switch-sidebar-mini input').change(function() {
+          $body = $('body');
+
+          $input = $(this);
+
+          if (md.misc.sidebar_mini_active == true) {
+            $('body').removeClass('sidebar-mini');
+            md.misc.sidebar_mini_active = false;
+
+            $('.sidebar .sidebar-wrapper, .main-panel').perfectScrollbar();
+
+          } else {
+
+            $('.sidebar .sidebar-wrapper, .main-panel').perfectScrollbar('destroy');
+
+            setTimeout(function() {
+              $('body').addClass('sidebar-mini');
+
+              md.misc.sidebar_mini_active = true;
+            }, 300);
+          }
+
+          // we simulate the window Resize so the charts will get updated in realtime.
+          var simulateWindowResize = setInterval(function() {
+            window.dispatchEvent(new Event('resize'));
+          }, 180);
+
+          // we stop the simulation of Window Resize after the animations are completed
+          setTimeout(function() {
+            clearInterval(simulateWindowResize);
+          }, 1000);
+
+        });
+      });
+    });
+  </script>
+</body>
+
 </html>
