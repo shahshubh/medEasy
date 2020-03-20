@@ -61,7 +61,7 @@ router.get('/admin/products/:id',function(req,res){
     else{
         res.render('admin/show',{product: foundProduct })
     }
-    });
+    }); 
 });
 //EDIT 
 

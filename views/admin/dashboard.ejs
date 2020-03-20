@@ -448,11 +448,14 @@ $.getJSON("/test", addData);
 				}
 				function addProductData(data) {
 					for (var i = 0; i < data.length; i++) {
-						productDataPoints.push({
+            if(data[i].soldQty && data[i].soldQty > 0){
+              productDataPoints.push({
 							label: data[i].title,
 							y: data[i].soldQty*data[i].price,
 							name: data[i].title
 						});
+            }
+						
 					}
 					console.log("productData",productDataPoints);
 					productsRevenuePieChart.render();
@@ -481,7 +484,6 @@ $.getJSON("/test", addData);
 <body class="dark-edition">
   <div class="wrapper ">
         <div class="sidebar" data-color="purple" data-background-color="black" data-image="/images/sidebar-1.jpg">
-
       <div class="logo">
         <a href="index.html" class="simple-text logo-normal">
           ADMIN 
@@ -490,7 +492,7 @@ $.getJSON("/test", addData);
       <div class="sidebar-wrapper">
         <ul class="nav">
           <li class="nav-item  ">
-            <a class="nav-link" href="dashboard.html">
+            <a class="nav-link" href="/admin">
               <i class="material-icons">dashboard</i>
               <p>Dashboard</p>
             </a>
@@ -699,6 +701,11 @@ $.getJSON("/test", addData);
               </div>
             </div>
           </div>
+
+
+
+
+          
           
           
           <div class="row">
