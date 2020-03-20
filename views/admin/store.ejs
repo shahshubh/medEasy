@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <title>
+    Admin Page
+  </title>
+  <link href="css\store.css" rel="stylesheet">
+  <link href="css\material-dashboard.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+</head>
+
+<body class="dark-edition">
+  <div class="wrapper ">
+        <div class="sidebar" data-color="purple" data-background-color="black" data-image="gallery/sidebar-1.jpg">
+
+      <div class="logo">
+        <a href="index.html" class="simple-text logo-normal">
+          ADMIN 
+        </a>
+      </div>
+      <div class="sidebar-wrapper">
+        <ul class="nav">
+          <li class="nav-item  ">
+            <a class="nav-link" href="dashboard.html">
+              <i class="material-icons">dashboard</i>
+              <p>Dashboard</p>
+            </a>
+          </li>
+          <li class="nav-item active ">
+            <a class="nav-link" href="user.html">
+              <i class="material-icons">person</i>
+              <p>User Profile</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="./orders.html">
+              <i class="material-icons">content_paste</i>
+              <p>Orders</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="./store.html">
+              <i class="material-icons">store</i>
+              <p>Store</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="./orders.html">
+              <i class="material-icons">supervised_user_circle</i>
+              <p>Users</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="./map.html">
+              <i class="material-icons">location_ons</i>
+              <p>Maps</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="./notifications.html">
+              <i class="material-icons">notifications</i>
+              <p>Notifications</p>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="main-panel">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top " id="navigation-example">
+        <div class="container-fluid">
+          <div class="navbar-wrapper">
+            <div class="row ">
+              <a class="navbar-brand" href="javascript:void(0)">Store</a>
+            </div>
+          </div>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation" data-target="#navigation-example">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-end">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="javascript:void(0)">
+                  <a href="new.html" class="btn btn-success btn-md"><i class="material-icons">shopping_cart</i>Add New Product</a>
+                </a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link" href="javscript:void(0)" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="material-icons">notifications</i>
+                  <span class="notification">5</span>
+                  <p class="d-lg-none d-md-block">
+                    Some Actions
+                  </p>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="javascript:void(0)">Mike John responded to your email</a>
+                  <a class="dropdown-item" href="javascript:void(0)">You have 5 new tasks</a>
+                  <a class="dropdown-item" href="javascript:void(0)">You're now friend with Andrew</a>
+                  <a class="dropdown-item" href="javascript:void(0)">Another Notification</a>
+                  <a class="dropdown-item" href="javascript:void(0)">Another One</a>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <!-- End Navbar -->
+     <div class="content">
+        <div class="container-fluid">
+          <div class="row">
+                <div class="col-md-12">
+                  <div class="container" style="min-width:100%">
+                     <div class="row">
+                       <div class="col-md-6">
+                          <span >
+                            <div class="input-group ">
+                               <input class=" form-control searchh" type="text" id="myInput" onkeyup="myFunction()" placeholder="  Search.."ng-blur="$ctrl.blur('text')" ng-change="$ctrl.changeText('text')" ng-model-options="{debounce: 500}" ng-model="$ctrl.text">
+                            </div>
+                          </span>      
+                       </div>
+                       </div>
+                     <br>
+                    <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <nav>
+                      <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                          <a class="nav-item nav-link active" id="nav-ayurveda-tab" data-toggle="tab" href="#nav-ayurveda" role="tab" aria-controls="nav-ayurveda" aria-selected="true">Ayurveda</a>
+
+                          <a class="nav-item nav-link" id="nav-bamc-tab" data-toggle="tab" href="#nav-bamc" role="tab" aria-controls="nav-bamc" aria-selected="false">Baby & Mom Care</a>
+
+                          <a class="nav-item nav-link" id="nav-diabetic-tab" data-toggle="tab" href="#nav-diabetic" role="tab" aria-controls="nav-diabetic" aria-selected="false">Diabetic Care</a>
+
+                          <a class="nav-item nav-link" id="nav-health-tab" data-toggle="tab" href="#nav-health" role="tab" aria-controls="nav-health" aria-selected="true">Health Conditions</a>
+
+                          <a class="nav-item nav-link" id="nav-homeopathy-tab" data-toggle="tab" href="#nav-homeopathy" role="tab" aria-controls="nav-homeopathy" aria-selected="false">Homeopathy</a>
+
+                          <a class="nav-item nav-link" id="nav-medicine-tab" data-toggle="tab" href="#nav-medicine" role="tab" aria-controls="nav-medicine" aria-selected="false">Medicines</a>
+
+                            <a class="nav-item nav-link" id="nav-nutrition-tab" data-toggle="tab" href="#nav-nutrition" role="tab" aria-controls="nav-nutrition" aria-selected="true">Nutritions</a>
+
+                          <a class="nav-item nav-link" id="nav-personal-tab" data-toggle="tab" href="#nav-personal" role="tab" aria-controls="nav-personal" aria-selected="false">Personal Care</a>
+                          
+                    </div>
+                  </nav>
+                  <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="nav-ayurveda" role="tabpanel" aria-labelledby="nav-ayurveda-tab">
+                      <div class="card">
+                        <div class="card-header card-header-primary">
+                          <h4 class="card-title">Orders of category</h4>
+                        </div>
+                        <div class="card-body table-responsive">
+                          <table class="table table-hover" id="myTable1">
+                            <thead class="text-warning">
+                              <th>ID</th>
+                              <th>Name</th>
+                              <th>Expiry dt</th>
+                              <th>Brand</th>
+                              <th>Status</th>
+                              <th>Price</th>
+                              <th>Qty</th>
+                              <th></th>
+                              <th></th>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>1</td>
+                                <td>Hajmqola</td>
+                                <td>20/1/22</td>
+                                <td>Hajmola</td>
+                                <td><span class="badge badge-pill badge-success">In stock</span></td>
+                                <td>$17</td>
+                                <td>10</td>
+                                <td><a href="edit.html" class="btn btn-success btn-sm"><i class="fa fa-edit"></i> <strong>Edit</strong></a></td>
+                                <td><a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> <strong>Delete</strong></a></td>
+                              </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Hajmqqola</td>
+                                <td>20/1/22</td>
+                                <td>Hajmola</td>
+                                <td><span class="badge badge-pill badge-success">In stock</span></td>
+                                <td>$17</td>
+                                <td>10</td>
+                                <td><a href="edit.html" class="btn btn-success btn-sm"><i class="fa fa-edit"></i> <strong>Edit</strong></a></td>
+                                <td><a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> <strong>Delete</strong></a></td>
+                              </tr>
+                              <tr>
+                                <td>3</td>
+                                <td>Hajmwola</td>
+                                <td>20/1/22</td>
+                                <td>Hajmola</td>
+                                <td><span class="badge badge-pill badge-success">In stock</span></td>
+                                <td>$17</td>
+                                <td>10</td>
+                                <td><a href="edit.html" class="btn btn-success btn-sm"><i class="fa fa-edit"></i> <strong>Edit</strong></a></td>
+                                <td><a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> <strong>Delete</strong></a></td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="tab-pane fade" id="nav-bamc" role="tabpanel" aria-labelledby="nav-bamc-tab">
+                      <div class="card">
+                        <div class="card-header card-header-primary">
+                          <h4 class="card-title">Orders of category</h4>
+                        </div>
+                        <div class="card-body table-responsive">
+                          <table class="table table-hover" id="myTable2">
+                            <thead class="text-warning">
+                              <th>ID</th>
+                              <th>Name</th>
+                              <th>Expiry dt</th>
+                              <th>Brand</th>
+                              <th>Status</th>
+                              <th>Price</th>
+                              <th>Qty</th>
+                              <th></th>
+                              <th></th>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>1</td>
+                                <td>Hajmoela</td>
+                                <td>20/1/22</td>
+                                <td>Hajmola</td>
+                                <td><span class="badge badge-pill badge-success">In stock</span></td>
+                                <td>$17</td>
+                                <td>10</td>
+                                <td><a href="edit.html" class="btn btn-success btn-sm"><i class="fa fa-edit"></i> <strong>Edit</strong></a></td>
+                                <td><a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> <strong>Delete</strong></a></td>
+                              </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Hajmolqa</td>
+                                <td>20/1/22</td>
+                                <td>Hajmola</td>
+                                <td><span class="badge badge-pill badge-danger">Out of stock</span></td>
+                                <td>$17</td>
+                                <td>10</td>
+                                <td><a href="edit.html" class="btn btn-success btn-sm"><i class="fa fa-edit"></i> <strong>Edit</strong></a></td>
+                                <td><a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> <strong>Delete</strong></a></td>
+                              </tr>
+                              <tr>
+                                <td>3</td>
+                                <td>Hajmoqwla</td>
+                                <td>20/1/22</td>
+                                <td>Hajmola</td>
+                                <td><span class="badge badge-pill badge-success">In stock</span></td>
+                                <td>$17</td>
+                                <td>10</td>
+                                <td><a href="edit.html" class="btn btn-success btn-sm"><i class="fa fa-edit"></i> <strong>Edit</strong></a></td>
+                                <td><a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> <strong>Delete</strong></a></td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>                  
+                    </div>
+                      <div class="tab-pane fade" id="nav-diabetic" role="tabpanel" aria-labelledby="nav-diabetic-tab">
+                        <div class="card">
+                          <div class="card-header card-header-primary">
+                            <h4 class="card-title">Orders of category</h4>
+                          </div>
+                          <div class="card-body table-responsive">
+                            <table class="table table-hover" id="myTable3">
+                              <thead class="text-warning">
+                                <th>Product ID</th>
+                                <th>Name</th>
+                                <th>Expiry dt</th>
+                                <th>Brand</th>
+                                <th>Status</th>
+                                <th>Price</th>
+                                <th>Qty</th>
+                                <th></th>
+                                <th></th>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <td id="product_id">1</td>
+                                  <td id="title">Hajmola</td>
+                                  <td id="expDate">20/1/22</td>
+                                  <td id="brand">Hajmola</td>
+                                  <td id="status"><span class="badge badge-pill badge-success">In stock</span></td>
+                                  <td id="price">Rs.17</td>
+                                  <td id="qty">10</td>
+                                  <td><a href="edit.html" class="btn btn-success btn-sm"><i class="fa fa-edit"></i> <strong>Edit</strong></a></td>
+                                  <td><a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> <strong>Delete</strong></a></td>
+                                </tr>
+                              <tr>
+                                  <td>2</td>
+                                  <td>Hajmola</td>
+                                  <td>20/1/22</td>
+                                  <td>Hajmola</td>
+                                  <td><span class="badge badge-pill badge-success">In stock</span></td>
+                                  <td>$17</td>
+                                  <td>10</td>
+                                  <td><a href="edit.html" class="btn btn-success btn-sm"><i class="fa fa-edit"></i> <strong>Edit</strong></a></td>
+                                  <td><a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> <strong>Delete</strong></a></td>
+                                </tr>
+                                <tr>
+                                  <td>3</td>
+                                  <td>Hajmola</td>
+                                  <td>20/1/22</td>
+                                  <td>Hajmola</td>
+                                  <td><span class="badge badge-pill badge-success">In stock</span></td>
+                                  <td>$17</td>
+                                  <td>10</td>
+                                  <td><a href="edit.html" class="btn btn-success btn-sm"><i class="fa fa-edit"></i> <strong>Edit</strong></a></td>
+                                  <td><a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> <strong>Delete</strong></a></td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>                      
+                      </div>
+                        <div class="tab-pane fade show " id="nav-health" role="tabpanel" aria-labelledby="nav-health-tab">
+                          <div class="card">
+                          <div class="card-header card-header-primary">
+                            <h4 class="card-title">Orders of category</h4>
+                          </div>
+                          <div class="card-body table-responsive">
+                            <table class="table table-hover" id="myTable4">
+                              <thead class="text-warning">
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Expiry dt</th>
+                                <th>Brand</th>
+                                <th>Status</th>
+                                <th>Price</th>
+                                <th>Qty</th>
+                                <th></th>
+                                <th></th>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <td>1</td>
+                                  <td>Hajmola</td>
+                                  <td>20/1/22</td>
+                                  <td>Hajmola</td>
+                                  <td><span class="badge badge-pill badge-success">In stock</span></td>
+                                  <td>$17</td>
+                                  <td>10</td>
+                                  <td><a href="edit.html" class="btn btn-success btn-sm"><i class="fa fa-edit"></i> <strong>Edit</strong></a></td>
+                                  <td><a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> <strong>Delete</strong></a></td>
+                                </tr>
+                              <tr>
+                                  <td>2</td>
+                                  <td>Hajmola</td>
+                                  <td>20/1/22</td>
+                                  <td>Hajmola</td>
+                                  <td><span class="badge badge-pill badge-success">In stock</span></td>
+                                  <td>$17</td>
+                                  <td>10</td>
+                                  <td><a href="edit.html" class="btn btn-success btn-sm"><i class="fa fa-edit"></i> <strong>Edit</strong></a></td>
+                                  <td><a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> <strong>Delete</strong></a></td>
+                                </tr>
+                                <tr>
+                                  <td>3</td>
+                                  <td>Hajmola</td>
+                                  <td>20/1/22</td>
+                                  <td>Hajmola</td>
+                                  <td><span class="badge badge-pill badge-success">In stock</span></td>
+                                  <td>$17</td>
+                                  <td>10</td>
+                                  <td><a href="edit.html" class="btn btn-success btn-sm"><i class="fa fa-edit"></i> <strong>Edit</strong></a></td>
+                                  <td><a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> <strong>Delete</strong></a></td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>                      
+                      </div>
+                      <div class="tab-pane fade" id="nav-homeopathy" role="tabpanel" aria-labelledby="nav-homeopathy-tab">
+                      <div class="card">
+                        <div class="card-header card-header-primary">
+                          <h4 class="card-title">Orders of category</h4>
+                        </div>
+                        <div class="card-body table-responsive">
+                          <table class="table table-hover" id="myTable5">
+                            <thead class="text-warning">
+                              <th>ID</th>
+                              <th>Name</th>
+                              <th>Expiry dt</th>
+                              <th>Brand</th>
+                              <th>Status</th>
+                              <th>Price</th>
+                              <th>Qty</th>
+                              <th></th>
+                              <th></th>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>1</td>
+                                <td>Hajmola</td>
+                                <td>20/1/22</td>
+                                <td>Hajmola</td>
+                                <td><span class="badge badge-pill badge-success">In stock</span></td>
+                                <td>$17</td>
+                                <td>10</td>
+                                <td><a href="edit.html" class="btn btn-success btn-sm"><i class="fa fa-edit"></i> <strong>Edit</strong></a></td>
+                                <td><a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> <strong>Delete</strong></a></td>
+                              </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Hajmola</td>
+                                <td>20/1/22</td>
+                                <td>Hajmola</td>
+                                <td><span class="badge badge-pill badge-success">In stock</span></td>
+                                <td>$17</td>
+                                <td>10</td>
+                                <td><a href="edit.html" class="btn btn-success btn-sm"><i class="fa fa-edit"></i> <strong>Edit</strong></a></td>
+                                <td><a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> <strong>Delete</strong></a></td>
+                              </tr>
+                              <tr>
+                                <td>3</td>
+                                <td>Hajmola</td>
+                                <td>20/1/22</td>
+                                <td>Hajmola</td>
+                                <td><span class="badge badge-pill badge-success">In stock</span></td>
+                                <td>$17</td>
+                                <td>10</td>
+                                <td><a href="edit.html" class="btn btn-success btn-sm"><i class="fa fa-edit"></i> <strong>Edit</strong></a></td>
+                                <td><a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> <strong>Delete</strong></a></td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                      </div>
+                      <div class="tab-pane fade" id="nav-medicine" role="tabpanel" aria-labelledby="nav-medicine-tab">
+                        <div class="card">
+                        <div class="card-header card-header-primary">
+                          <h4 class="card-title">Orders of category</h4>
+                        </div>
+                        <div class="card-body table-responsive">
+                          <table class="table table-hover" id="myTable6">
+                            <thead class="text-warning">
+                              <th>ID</th>
+                              <th>Name</th>
+                              <th>Expiry dt</th>
+                              <th>Brand</th>
+                              <th>Status</th>
+                              <th>Price</th>
+                              <th>Qty</th>
+                              <th></th>
+                              <th></th>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>1</td>
+                                <td>Hajmola</td>
+                                <td>20/1/22</td>
+                                <td>Hajmola</td>
+                                <td><span class="badge badge-pill badge-success">In stock</span></td>
+                                <td>$17</td>
+                                <td>10</td>
+                                <td><a href="edit.html" class="btn btn-success btn-sm"><i class="fa fa-edit"></i> <strong>Edit</strong></a></td>
+                                <td><a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> <strong>Delete</strong></a></td>
+                              </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Hajmola</td>
+                                <td>20/1/22</td>
+                                <td>Hajmola</td>
+                                <td><span class="badge badge-pill badge-success">In stock</span></td>
+                                <td>$17</td>
+                                <td>10</td>
+                                <td><a href="edit.html" class="btn btn-success btn-sm"><i class="fa fa-edit"></i> <strong>Edit</strong></a></td>
+                                <td><a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> <strong>Delete</strong></a></td>
+                              </tr>
+                              <tr>
+                                <td>3</td>
+                                <td>Hajmola</td>
+                                <td>20/1/22</td>
+                                <td>Hajmola</td>
+                                <td><span class="badge badge-pill badge-success">In stock</span></td>
+                                <td>$17</td>
+                                <td>10</td>
+                                <td><a href="edit.html" class="btn btn-success btn-sm"><i class="fa fa-edit"></i> <strong>Edit</strong></a></td>
+                                <td><a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> <strong>Delete</strong></a></td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                      </div>
+                        <div class="tab-pane fade" id="nav-personal" role="tabpanel" aria-labelledby="nav-personal-tab">
+                        <div class="card">
+                        <div class="card-header card-header-primary">
+                          <h4 class="card-title">Orders of category</h4>
+                        </div>
+                        <div class="card-body table-responsive">
+                          <table class="table table-hover" id="myTable7">
+                            <thead class="text-warning">
+                              <th>ID</th>
+                              <th>Name</th>
+                              <th>Expiry dt</th>
+                              <th>Brand</th>
+                              <th>Status</th>
+                              <th>Price</th>
+                              <th>Qty</th>
+                              <th></th>
+                              <th></th>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>1</td>
+                                <td>Hajmola</td>
+                                <td>20/1/22</td>
+                                <td>Hajmola</td>
+                                <td><span class="badge badge-pill badge-success">In stock</span></td>
+                                <td>$17</td>
+                                <td>10</td>
+                                <td><a href="edit.html" class="btn btn-success btn-sm"><i class="fa fa-edit"></i> <strong>Edit</strong></a></td>
+                                <td><a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> <strong>Delete</strong></a></td>
+                              </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Hajmola</td>
+                                <td>20/1/22</td>
+                                <td>Hajmola</td>
+                                <td><span class="badge badge-pill badge-success">In stock</span></td>
+                                <td>$17</td>
+                                <td>10</td>
+                                <td><a href="edit.html" class="btn btn-success btn-sm"><i class="fa fa-edit"></i> <strong>Edit</strong></a></td>
+                                <td><a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> <strong>Delete</strong></a></td>
+                              </tr>
+                              <tr>
+                                <td>3</td>
+                                <td>Hajmola</td>
+                                <td>20/1/22</td>
+                                <td>Hajmola</td>
+                                <td><span class="badge badge-pill badge-success">In stock</span></td>
+                                <td>$17</td>
+                                <td>10</td>
+                                <td><a href="edit.html" class="btn btn-success btn-sm"><i class="fa fa-edit"></i> <strong>Edit</strong></a></td>
+                                <td><a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> <strong>Delete</strong></a></td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                      </div>
+                      <div class="tab-pane fade" id="nav-nutrition" role="tabpanel" aria-labelledby="nav-nutrition-tab">
+                                            <div class="card">
+                        <div class="card-header card-header-primary">
+                          <h4 class="card-title">Orders of category</h4>
+                        </div>
+                        <div class="card-body table-responsive">
+                          <table class="table table-hover" id="myTable8">
+                            <thead class="text-warning">
+                              <th>ID</th>
+                              <th>Name</th>
+                              <th>Expiry dt</th>
+                              <th>Brand</th>
+                              <th>Status</th>
+                              <th>Price</th>
+                              <th>Qty</th>
+                              <th></th>
+                              <th></th>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>1</td>
+                                <td>Hajmola</td>
+                                <td>20/1/22</td>
+                                <td>Hajmola</td>
+                                <td><span class="badge badge-pill badge-success">In stock</span></td>
+                                <td>$17</td>
+                                <td>10</td>
+                                <td><a href="edit.html" class="btn btn-success btn-sm"><i class="fa fa-edit"></i> <strong>Edit</strong></a></td>
+                                <td><a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> <strong>Delete</strong></a></td>
+                              </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Hajmola</td>
+                                <td>20/1/22</td>
+                                <td>Hajmola</td>
+                                <td><span class="badge badge-pill badge-success">In stock</span></td>
+                                <td>$17</td>
+                                <td>10</td>
+                                <td><a href="edit.html" class="btn btn-success btn-sm"><i class="fa fa-edit"></i> <strong>Edit</strong></a></td>
+                                <td><a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> <strong>Delete</strong></a></td>
+                              </tr>
+                              <tr>
+                                <td>3</td>
+                                <td>Hajmola</td>
+                                <td>20/1/22</td>
+                                <td>Hajmola</td>
+                                <td><span class="badge badge-pill badge-success">In stock</span></td>
+                                <td>$17</td>
+                                <td>10</td>
+                                <td><a href="edit.html" class="btn btn-success btn-sm"><i class="fa fa-edit"></i> <strong>Edit</strong></a></td>
+                                <td><a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> <strong>Delete</strong></a></td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>      
+      </div>
+    </div>
+  </div>
+
+    </div>
+  </div>
+
+  <script>
+        function myFunction() {
+        var input, filter, table, tr, td, i;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable1");
+        tr = table.getElementsByTagName("tr");
+        for (i = 1; i < tr.length; i++) {
+            // Hide the row initially.
+            tr[i].style.display = "none";
+
+            td = tr[i].getElementsByTagName("td");
+            for (var j = 0; j < td.length; j++) {
+            cell = tr[i].getElementsByTagName("td")[j];
+            if (cell) {
+                if (cell.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+                break;
+                } 
+            }
+            }
+        }
+        }
+    </script>
+
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" charset="utf-8"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js" charset="utf-8"></script>
+  <script src="https://unpkg.com/default-passive-events"></script>
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+
+  <script src="/javascripts/bootstrap-material-design.min.js"></script>
+  <!-- <script src="Js\perfect-scrollbar.jquery.min.js"></script>
+  <script src="Js\chartist.min.js"></script> -->
+  <script src="/javascripts/new.js"></script>
+  <!--<script src="Js\bootstrap-notify.js"></script>-->
+  <script src="/javascripts/material-dashboard.js?v=2.1.0"></script>
+  
+<script>
+    $(document).ready(function() {
+      $().ready(function() {
+        $sidebar = $('.sidebar');
+
+        $sidebar_img_container = $sidebar.find('.sidebar-background');
+
+        $full_page = $('.full-page');
+
+        $sidebar_responsive = $('body > .navbar-collapse');
+
+        window_width = $(window).width();
+   
+
+        $('.switch-sidebar-mini input').change(function() {
+          $body = $('body');
+
+          $input = $(this);
+
+          if (md.misc.sidebar_mini_active == true) {
+            $('body').removeClass('sidebar-mini');
+            md.misc.sidebar_mini_active = false;
+
+            $('.sidebar .sidebar-wrapper, .main-panel').perfectScrollbar();
+
+          } else {
+
+            $('.sidebar .sidebar-wrapper, .main-panel').perfectScrollbar('destroy');
+
+            setTimeout(function() {
+              $('body').addClass('sidebar-mini');
+
+              md.misc.sidebar_mini_active = true;
+            }, 300);
+          }
+
+          // we simulate the window Resize so the charts will get updated in realtime.
+          var simulateWindowResize = setInterval(function() {
+            window.dispatchEvent(new Event('resize'));
+          }, 180);
+
+          // we stop the simulation of Window Resize after the animations are completed
+          setTimeout(function() {
+            clearInterval(simulateWindowResize);
+          }, 1000);
+
+        });
+      });
+    });
+  </script>
+</body>
+</html>
