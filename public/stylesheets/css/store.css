@@ -1,0 +1,42 @@
+button,
+input {
+    font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+}
+
+.nav-item .nav-link,
+.nav-tabs .nav-link {
+    -webkit-transition: all 300ms ease 0s;
+    -moz-transition: all 300ms ease 0s;
+    -o-transition: all 300ms ease 0s;
+    -ms-transition: all 300ms ease 0s;
+    transition: all 300ms ease 0s;
+}
+
+.nav-tabs {
+    border: 0;
+    padding: 15px 0.7rem;
+}
+
+div .nav-tabs .nav-link:hover {
+    background-color: transparent;
+    border-radius: 30px;
+    background-color:#7b1fa2;
+}
+div .nav-tabs .nav-link
+{
+   color:#FFFFFF;
+   border:0;
+}
+div .nav-tabs .nav-item.show .nav-link, 
+div .nav-tabs .nav-link.active {
+    background-color:#7b1fa2;
+    border-radius: 30px;
+    color: #FFFFFF;
+}
+.searchh
+{
+ font-size:15px;
+  width:25%;
+  /* border-bottom: red; */
+  outline: 1px ridge rgb(109, 58, 114);
+}
