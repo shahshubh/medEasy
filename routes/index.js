@@ -7,7 +7,23 @@ var User = require("../models/user");
 var ObjectId = require('mongoose').Types.ObjectId;
 
 
+function Paginator(items, page, per_page) {
+  var page = parseInt(page) || 1,
+  per_page = parseInt(per_page) || 1,
+  offset = (page - 1) * per_page,
 
+  paginatedItems = items.slice(offset).slice(0, per_page),
+  total_pages = Math.ceil(items.length / per_page);
+  return {
+  page: page,
+  limit: per_page,
+  prev_page: page - 1 ? page - 1 : null,
+  next_page: (total_pages > page) ? page + 1 : null,
+  total: items.length,
+  total_pages: total_pages,
+  data: paginatedItems
+  };
+}
 
 
 /* api route */ 
@@ -42,7 +58,7 @@ router.get('/', function(req, res, next) {
 });
 
 
-router.get('/allproducts', function(req, res, next) {
+/*router.get('/allproducts', function(req, res, next) {
   var successMsg = req.flash('success')[0];
   var errorMsg = req.flash('error')[0];
   var isIcon;
@@ -53,10 +69,11 @@ router.get('/allproducts', function(req, res, next) {
     if(err){
       console.log(err);
     }else{
-      res.render('shop/index', { products: allProducts, successMsg: successMsg, errorMsg: errorMsg ,noMessages: !successMsg, noError: !errorMsg, isIcon: isIcon});
+      var result = Paginator(allProducts,req.query.page,req.query.limit)
+      res.render('shop/category_products', { products: result.data, paginationResult: result ,successMsg: successMsg, errorMsg: errorMsg ,noMessages: !successMsg, noError: !errorMsg});
     }
   });
-});
+});*/
 
 /*function cat(){
   var catg = req.params.name;
@@ -69,23 +86,7 @@ router.get('/allproducts', function(req, res, next) {
   });
 }*/
 
-function Paginator(items, page, per_page) {
-  var page = parseInt(page) || 1,
-  per_page = parseInt(per_page) || 1,
-  offset = (page - 1) * per_page,
 
-  paginatedItems = items.slice(offset).slice(0, per_page),
-  total_pages = Math.ceil(items.length / per_page);
-  return {
-  page: page,
-  limit: per_page,
-  prev_page: page - 1 ? page - 1 : null,
-  next_page: (total_pages > page) ? page + 1 : null,
-  total: items.length,
-  total_pages: total_pages,
-  data: paginatedItems
-  };
-}
 
 router.get('/category/:name' ,(req, res) => {
   var successMsg = req.flash('success')[0];
