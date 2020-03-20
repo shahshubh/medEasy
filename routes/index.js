@@ -164,9 +164,9 @@ router.get('/test2',function(req,res){
   Order.aggregate(
     [
       {$match: {}},
-      {$group: {_id: "$user", total: {$sum: "$cart.totalPrice"}}},
+      {$group: {_id: "$user",  name : { $first: '$name' },total: {$sum: "$cart.totalPrice"}}},
       {$sort: {total: -1}},
-      //{$limit: 5}
+      {$limit: 5}
     ], function(err,result){
       res.json(result);
       /*User.findById(result[0]._id,function(err,result){
@@ -180,7 +180,22 @@ router.get('/test3',function(req,res){
   Product.aggregate(
     [
       {$match: {}},
-      {$project: {_id: 0,title: 1,price: 1,soldQty: 1}}
+      {$project: {_id: 1,title: 1,price: 1,soldQty: 1,brand: 1,qty: 1}},
+      {$sort: {soldQty: -1}},
+      {$limit: 5}
+    ], function(err,result){
+      res.json(result);
+    }
+  )
+});
+
+router.get('/test5',function(req,res){
+  Order.aggregate(
+    [
+      {$match: {}},
+      {$group: {_id: '',total: {$sum: "$cart.totalPrice"}}},
+      {$project: {total: '$total' }}
+      
     ], function(err,result){
       res.json(result);
     }
@@ -192,6 +207,19 @@ router.get('/test4',function(req,res){
     [
       {$match: {}},
       {$group: {_id: "$purchaseDate", count: {$sum: 1}}}
+      
+    ], function(err,result){
+      res.json(result);
+    }
+  )
+});
+
+router.get('/test6',function(req,res){
+  Product.aggregate(
+    [
+      {$match: {}},
+
+      {$sort: -1}
       
     ], function(err,result){
       res.json(result);

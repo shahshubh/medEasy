@@ -3,10 +3,55 @@ var router = express.Router();
 
 var Order = require("../models/order");
 var Product = require("../models/product");
+var User = require("../models/user");
 
 
 router.get('/admin',isLoggedIn,isAdmin,function(req,res){
-    res.render('admin/dashboard');
+    Order.countDocuments({},function(err,c){
+        if(!err){
+            Product.countDocuments({},function(err,pc){
+                if(!err){
+                    User.countDocuments({},function(err,uc){
+                        if(!err){
+                            Order.aggregate(
+                                [
+                                    {$match: {}},
+                                    {$group: {_id: '',total: {$sum: "$cart.totalPrice"}}},
+                                    {$project: {total: '$total' }}
+                                ], function(err,result){
+                                    Order.aggregate(
+                                        [
+                                            {$match: {}},
+                                            {$group: {_id: "$user",  name : { $first: '$name' },total: {$sum: "$cart.totalPrice"}}},
+                                            {$sort: {total: -1}},
+                                            {$limit: 5}
+                                        ], function(err,result2){
+                                            Product.aggregate(
+                                                [
+                                                    {$match: {}},
+                                                    {$project: {_id: 1,title: 1,price: 1,soldQty: 1,brand: 1,qty: 1}},
+                                                    {$sort: {soldQty: -1}},
+                                                    {$limit: 5}
+                                                ], function(err,results){
+                                                    var orderCount = c;
+                                                    var productCount = pc;
+                                                    var userCount = uc;
+                                                    var revenue = result[0].total;
+                                                    res.render('admin/dashboard', {orderCount: orderCount, productCount: productCount, userCount: userCount, revenue: revenue, topUser: result2, topProduct: results });
+                                                }
+                                            )
+                                            
+                                            
+                                        }
+                                    )
+                                }
+                            )
+                        }
+                    })
+                }
+            });
+        }
+    });
 });
 
 router.get('/admin/products',isLoggedIn,isAdmin,function(req,res){
