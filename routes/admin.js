@@ -54,6 +54,35 @@ router.get('/admin',isLoggedIn,isAdmin,function(req,res){
     });
 });
 
+
+
+/*
+router.get("/admin/store",function(req,res){
+    Product.find({category: 'ayurveda'}, function(err,foundProduct){
+        if(err){
+            console.log(err);
+        } else {
+            res.render('admin/store', {products: foundProduct});
+        }
+    })
+});
+*/
+
+router.get("/admin/store/:category",function(req,res){
+    var cat = req.params.category;
+    Product.find({category: cat}, function(err,foundProducts){
+        if(err){
+            console.log(err);
+        } else {
+            res.render('admin/store', {products: foundProducts});
+        }
+    });
+});
+
+
+
+
+
 router.get('/admin/products',isLoggedIn,isAdmin,function(req,res){
     var successMsg = req.flash('success')[0];
     Product.find({},function(err, allProducts){

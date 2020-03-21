@@ -130,21 +130,21 @@
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <nav>
                       <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-                          <a class="nav-item nav-link active" id="nav-ayurveda-tab" data-toggle="tab" href="#nav-ayurveda" role="tab" aria-controls="nav-ayurveda" aria-selected="true">Ayurveda</a>
+                          <a class="nav-item nav-link" id="nav-ayurveda-tab" data-hover="tab" href="/admin/store/ayurveda" role="tab" aria-controls="nav-ayurveda" aria-selected="true">Ayurveda</a>
 
-                          <a class="nav-item nav-link" id="nav-bamc-tab" data-toggle="tab" href="#nav-bamc" role="tab" aria-controls="nav-bamc" aria-selected="false">Baby & Mom Care</a>
+                          <a class="nav-item nav-link" id="nav-bamc-tab" data-hover="tab" href="/admin/store/baby-and-mom-care" role="tab" aria-controls="nav-bamc" aria-selected="false">Baby & Mom Care</a>
 
-                          <a class="nav-item nav-link" id="nav-diabetic-tab" data-toggle="tab" href="#nav-diabetic" role="tab" aria-controls="nav-diabetic" aria-selected="false">Diabetic Care</a>
+                          <a class="nav-item nav-link" id="nav-diabetic-tab" data-hover="tab" href="/admin/store/diabetic-care" role="tab" aria-controls="nav-diabetic" aria-selected="false">Diabetic Care</a>
 
-                          <a class="nav-item nav-link" id="nav-health-tab" data-toggle="tab" href="#nav-health" role="tab" aria-controls="nav-health" aria-selected="true">Health Conditions</a>
+                          <a class="nav-item nav-link" id="nav-health-tab" data-hover="tab" href="/admin/store/health-conditions" role="tab" aria-controls="nav-health" aria-selected="true">Health Conditions</a>
 
-                          <a class="nav-item nav-link" id="nav-homeopathy-tab" data-toggle="tab" href="#nav-homeopathy" role="tab" aria-controls="nav-homeopathy" aria-selected="false">Homeopathy</a>
+                          <a class="nav-item nav-link" id="nav-homeopathy-tab" data-hover="tab" href="/admin/store/homeopathy" role="tab" aria-controls="nav-homeopathy" aria-selected="false">Homeopathy</a>
 
-                          <a class="nav-item nav-link" id="nav-medicine-tab" data-toggle="tab" href="#nav-medicine" role="tab" aria-controls="nav-medicine" aria-selected="false">Medicines</a>
+                          <a class="nav-item nav-link" id="nav-medicine-tab" data-hover="tab" href="/admin/store/medicines" role="tab" aria-controls="nav-medicine" aria-selected="false">Medicines</a>
 
-                            <a class="nav-item nav-link" id="nav-nutrition-tab" data-toggle="tab" href="#nav-nutrition" role="tab" aria-controls="nav-nutrition" aria-selected="true">Nutritions</a>
+                            <a class="nav-item nav-link" id="nav-nutrition-tab" data-hover="tab" href="/admin/store/nutritions" role="tab" aria-controls="nav-nutrition" aria-selected="true">Nutritions</a>
 
-                          <a class="nav-item nav-link" id="nav-personal-tab" data-toggle="tab" href="#nav-personal" role="tab" aria-controls="nav-personal" aria-selected="false">Personal Care</a>
+                          <a class="nav-item nav-link" id="nav-personal-tab" data-hover="tab" href="/admin/store/personal-care" role="tab" aria-controls="nav-personal" aria-selected="false">Personal Care</a>
                           
                     </div>
                   </nav>
@@ -161,46 +161,31 @@
                               <th>Name</th>
                               <th>Expiry dt</th>
                               <th>Brand</th>
-                              <th>Status</th>
                               <th>Price</th>
                               <th>Qty</th>
+                              <th>Status</th>
                               <th></th>
                               <th></th>
                             </thead>
                             <tbody>
-                              <tr>
-                                <td>1</td>
-                                <td>Hajmqola</td>
-                                <td>20/1/22</td>
-                                <td>Hajmola</td>
-                                <td><span class="badge badge-pill badge-success">In stock</span></td>
-                                <td>$17</td>
-                                <td>10</td>
-                                <td><a href="edit.html" class="btn btn-success btn-sm"><i class="fa fa-edit"></i> <strong>Edit</strong></a></td>
-                                <td><a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> <strong>Delete</strong></a></td>
-                              </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Hajmqqola</td>
-                                <td>20/1/22</td>
-                                <td>Hajmola</td>
-                                <td><span class="badge badge-pill badge-success">In stock</span></td>
-                                <td>$17</td>
-                                <td>10</td>
-                                <td><a href="edit.html" class="btn btn-success btn-sm"><i class="fa fa-edit"></i> <strong>Edit</strong></a></td>
-                                <td><a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> <strong>Delete</strong></a></td>
-                              </tr>
-                              <tr>
-                                <td>3</td>
-                                <td>Hajmwola</td>
-                                <td>20/1/22</td>
-                                <td>Hajmola</td>
-                                <td><span class="badge badge-pill badge-success">In stock</span></td>
-                                <td>$17</td>
-                                <td>10</td>
-                                <td><a href="edit.html" class="btn btn-success btn-sm"><i class="fa fa-edit"></i> <strong>Edit</strong></a></td>
-                                <td><a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> <strong>Delete</strong></a></td>
-                              </tr>
+                              <% products.forEach(function(product){ %>
+                                <tr>
+                                  <td><%= product._id %></td>
+                                  <td><%= product.title %></td>
+                                  <td><%= product.expDate %></td>
+                                  <td><%= product.brand %></td>
+                        
+                                  <td><%= product.price %></td>
+                                  <td><%= product.qty %></td>
+                                  <% if(product.qty > 2){ %>
+                                    <td><span class="badge badge-pill badge-success">In stock</span></td>
+                                  <% } else { %>
+                                    <td><span class="badge badge-pill badge-danger">Out of stock</span></td>
+                                  <% } %>
+                                  <td><a href="edit.html" class="btn btn-success btn-sm"><i class="fa fa-edit"></i> <strong>Edit</strong></a></td>
+                                  <td><a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> <strong>Delete</strong></a></td>
+                                </tr>
+                              <% }) %>
                             </tbody>
                           </table>
                         </div>
