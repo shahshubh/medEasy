@@ -56,7 +56,6 @@ router.get('/admin',isLoggedIn,isAdmin,function(req,res){
 
 
 
-/*
 router.get("/admin/store",function(req,res){
     Product.find({category: 'ayurveda'}, function(err,foundProduct){
         if(err){
@@ -66,7 +65,7 @@ router.get("/admin/store",function(req,res){
         }
     })
 });
-*/
+
 
 router.get("/admin/store/:category",function(req,res){
     var cat = req.params.category;
