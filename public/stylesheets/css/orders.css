@@ -1,0 +1,89 @@
+
+input::-webkit-datetime-edit{ color: transparent; }
+input:focus::-webkit-datetime-edit{ color: #a9afbbd1; }
+
+.idd
+{
+  color: #8b92a9;
+}
+.dark-edition a {
+   color: #8b92a9;
+}
+
+#orders tr:hover {
+    background-color: rgb(66, 60, 88);
+}
+
+#orders td:hover {
+    cursor: pointer;
+}
+
+.btnn
+{
+  color: #fff;
+  background-color:#913f9e;
+}
+
+.label
+{
+    display:inline-block;
+    padding:3px 10px;
+    color:white;
+    font-weight: 400;
+    border-radius: .25rem;
+    font-size: 75%;
+}
+
+.label-success
+{
+    background-color: #00c292;
+}
+
+.label-pending{
+    background-color: #e46a76;
+}
+
+.label-confirm{
+    background-color: #2596a5;
+}
+
+.form-control:focus
+{
+  color: rgb(255, 255, 255);
+}
+
+.searchh
+{
+color:rgb(255, 255, 255);
+ font-size:15px;
+  width:25%;
+  outline: 1px ridge rgb(109, 58, 114);
+  background-color: transparent;
+}
+
+
+
+#checked
+{
+    display: inline-block;
+    margin: 5px auto;
+    width: 30%;
+    outline: 3px ridge rgb(225, 157, 231);
+}
+
+input.checkmark
+{
+  height: 20px;
+  width: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+

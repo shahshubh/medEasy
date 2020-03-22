@@ -1,0 +1,30 @@
+.mapouter
+{
+    position:relative;
+    text-align:left;
+    height:550px;
+    max-width: 100%
+
+}
+
+.gmap_canvas 
+{
+    overflow:hidden;
+    background:none!important;
+    height:700px;
+}
+
+.contact
+{
+ border-style: solid;
+ border-color: #7952b3;
+ border-radius: 10px;
+ color: white;
+
+}
+.head_contact
+{
+    font-weight: 400;
+    font-size:2rem;
+    color: white;
+}
