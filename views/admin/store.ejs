@@ -87,7 +87,7 @@
             <ul class="navbar-nav">
               <li class="nav-item">
                 <a class="nav-link" href="javascript:void(0)">
-                  <a href="new.html" class="btn btn-success btn-md"><i class="material-icons">shopping_cart</i>Add New Product</a>
+                  <a href="/admin/products/new" class="btn btn-success btn-md"><i class="material-icons">shopping_cart</i>Add New Product</a>
                 </a>
               </li>
               <li class="nav-item dropdown">
@@ -182,8 +182,12 @@
                                   <% } else { %>
                                     <td><span class="badge badge-pill badge-danger">Out of stock</span></td>
                                   <% } %>
-                                  <td><a href="edit.html" class="btn btn-success btn-sm"><i class="fa fa-edit"></i> <strong>Edit</strong></a></td>
-                                  <td><a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> <strong>Delete</strong></a></td>
+                                  <td><a href="/admin/products/<%= product._id %>/edit" class="btn btn-success btn-sm"><i class="fa fa-edit"></i> <strong>Edit</strong></a></td>
+                                  <td>
+                                    <form id="delete-form" action="/admin/products/<%= product._id %>?_method=DELETE" method="POST">
+                                      <button class=" btn-danger btn-sm"><i class="fa fa-trash"></i> <strong>Delete</strong></a></button>
+                                    </form>
+                                  </td>
                                 </tr>
                               <% }) %>
                             </tbody>
