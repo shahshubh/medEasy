@@ -6,15 +6,6 @@ var Product = require("../models/product");
 var User = require("../models/user");
 
 
-
-
-
-
-
-
-
-
-
 router.get('/admin',isLoggedIn,isAdmin,function(req,res){
     Order.countDocuments({},function(err,c){
         if(!err){
@@ -127,12 +118,13 @@ router.get('/admin/store/new',function(req,res){
 }); 
 
 router.get("/admin/store/:category",function(req,res){
+    var successMsg = req.flash('success')[0];
     var cat = req.params.category;
     Product.find({category: cat}, function(err,foundProducts){
         if(err){
             console.log(err);
         } else {
-            res.render('admin/store', {products: foundProducts});
+            res.render('admin/store', {products: foundProducts, successMsg: successMsg, noMessages: !successMsg });
         }
     });
 });
