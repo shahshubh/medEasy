@@ -6,6 +6,15 @@ var Product = require("../models/product");
 var User = require("../models/user");
 
 
+
+
+
+
+
+
+
+
+
 router.get('/admin',isLoggedIn,isAdmin,function(req,res){
     Order.countDocuments({},function(err,c){
         if(!err){
@@ -57,15 +66,65 @@ router.get('/admin',isLoggedIn,isAdmin,function(req,res){
 
 
 router.get("/admin/store",function(req,res){
-    Product.find({category: 'ayurveda'}, function(err,foundProduct){
+    var successMsg = req.flash('success')[0];
+    Product.find({}, function(err,foundProduct){
         if(err){
             console.log(err);
         } else {
-            res.render('admin/store', {products: foundProduct});
+            res.render('admin/store', {products: foundProduct, successMsg: successMsg, noMessages: !successMsg });
         }
     })
 });
 
+//CREATE
+router.post('/admin/store',function(req,res){
+    var title = req.body.title; 
+    var brand = req.body.brand; 
+    var mfgDate = req.body.mfgDate; 
+    var expDate = req.body.expDate; 
+    var price = req.body.price;
+    var tablets = req.body.tablets; 
+    var image = req.body.image;
+    var qty = req.body.qty;
+    var tags = req.body._tags;
+    var composition = req.body.composition; 
+    var desc = req.body.description; 
+    var precautions = req.body.precautions; 
+
+    var category = req.body.select
+    
+    var newProduct = {
+        title: title, 
+        brand: brand, 
+        mfgDate: mfgDate, 
+        expDate: expDate, 
+        price: price, 
+        tablets: tablets, 
+        image: image, 
+        qty: qty,
+        //_tags: 
+        composition: composition,
+        description: desc,
+        precautions: precautions,
+        category: category
+    };
+
+    //create new cmpground and save to db
+    Product.create(newProduct,  function(err, newlyCreated){
+        if(err){
+            console.log(err);
+        }
+        else{
+            console.log(newlyCreated);  
+            req.flash('success', 'Sucessfully added product'); 
+            res.redirect("/admin/store");
+        }
+    });
+});
+
+router.get('/admin/store/new',function(req,res){
+    res.render("admin/new");
+}); 
 
 router.get("/admin/store/:category",function(req,res){
     var cat = req.params.category;
@@ -82,6 +141,44 @@ router.get("/admin/store/:category",function(req,res){
 
 
 
+
+router.get('/admin/orders', function(req,res){
+    res.render('admin/orders');
+});
+router.get('/admin/users', function(req,res){
+    User.find({isSeller: 'false'}, function(err,allUser){
+        if(err){
+            console.log(err);
+        } else {
+            res.render('admin/users',{users: allUser});
+        }   
+    })
+});
+
+router.get('/admin/admins', function(req,res){
+    User.find({isSeller: 'true'}, function(err,allAdmin){
+        if(err){
+            console.log(err);
+        } else {
+            res.render('admin/admins',{admins: allAdmin});
+        }   
+    })
+});
+
+router.get('/admin/order-details', function(req,res){
+    res.render('admin/order_list');
+});
+router.get('/admin/map', function(req,res){
+    res.render('admin/map');
+});
+
+
+
+
+
+
+
+/*
 router.get('/admin/products',isLoggedIn,isAdmin,function(req,res){
     var successMsg = req.flash('success')[0];
     Product.find({},function(err, allProducts){
@@ -93,37 +190,10 @@ router.get('/admin/products',isLoggedIn,isAdmin,function(req,res){
     });
     
 });
+*/
 
 
 
-
-
-//CREATE
-router.post('/admin/products',isLoggedIn,isAdmin,function(req,res){
-    var title = req.body.title; 
-    var desc = req.body.description; 
-    var image = req.body.image;
-    var price = req.body.price;
-    var qty = req.body.qty;
-
-    var newProduct = {image: image,title: title, description: desc, price: price, qty: qty};
-
-    //create new cmpground and save to db
-    Product.create(newProduct,  function(err, newlyCreated){
-        if(err){
-            console.log(err);
-        }
-        else{
-            console.log(newlyCreated);  
-            req.flash('success', 'Sucessfully added product'); 
-            res.redirect("/admin/products");
-        }
-    });
-});
-
-router.get('/admin/products/new',isLoggedIn,isAdmin,function(req,res){
-    res.render("admin/new");
-});
 
 router.get('/admin/products/:id',function(req,res){
     var productId = req.params.id;
@@ -138,10 +208,10 @@ router.get('/admin/products/:id',function(req,res){
 });
 //EDIT 
 
-router.get("/admin/products/:id/edit", isLoggedIn,isAdmin, function(req,res){  
+router.get("/admin/store/:id/edit", isLoggedIn,isAdmin, function(req,res){  
     Product.findById(req.params.id, function(err, foundProduct){
         if(err){
-            res.redirect("/admin/products");
+            res.redirect("/admin/store");
         }
         else{                
             res.render("admin/edit", {product: foundProduct});
@@ -150,34 +220,63 @@ router.get("/admin/products/:id/edit", isLoggedIn,isAdmin, function(req,res){
 });
 
 
-router.put("/admin/products/:id", isLoggedIn, isAdmin, function(req,res){
+router.put("/admin/store/:id", isLoggedIn, isAdmin, function(req,res){
+    var successMsg = req.flash('success')[0];
     //find and update
     var title = req.body.title; 
-    var desc = req.body.description; 
-    var image = req.body.image;
+    var brand = req.body.brand; 
+    var mfgDate = req.body.mfgDate; 
+    var expDate = req.body.expDate; 
     var price = req.body.price;
+    var tablets = req.body.tablets; 
+    var image = req.body.image;
     var qty = req.body.qty;
+    var tags = req.body._tags;
+    var composition = req.body.composition; 
+    var desc = req.body.description; 
+    var precautions = req.body.precautions; 
 
-    var updatedProduct = {image: image,title: title, description: desc, price: price, qty: qty};
+    var tags = req.body._tags;
+    var _tags = tags.split(",");
+    var category = req.body.select
+    
+    var updatedProduct = {
+        title: title, 
+        brand: brand, 
+        mfgDate: mfgDate, 
+        expDate: expDate, 
+        price: price, 
+        tablets: tablets, 
+        image: image, 
+        qty: qty,
+        _tags: _tags,
+        composition: composition,
+        description: desc,
+        precautions: precautions,
+        category: category
+    };
+
     Product.findByIdAndUpdate(req.params.id, updatedProduct, function(err,product){
         if(err){
             res.redirect("/admin");  
         }
         else{
-            res.redirect("/admin/products");
+            req.flash('success', 'Sucessfully Updated product'); 
+            res.redirect("/admin/store");
         }
     });
-    //redirect
 });
 
+
+
 //Destroy Route
-router.delete("/admin/products/:id",isLoggedIn, isAdmin, function(req,res){
+router.delete("/admin/store/:id",isLoggedIn, isAdmin, function(req,res){
     Product.findByIdAndRemove(req.params.id, function(err){
         if(err){
             res.redirect("/admin");
         }
         else{
-            res.redirect("/admin/products");
+            res.redirect("/admin/store");
         }
     });
 });

@@ -21,60 +21,8 @@
 <script src="/javascripts/search.js"></script>
 <body class="dark-edition">
   <div class="wrapper ">
-        <div class="sidebar" data-color="purple" data-background-color="black" data-image="gallery/sidebar-1.jpg">
+    <% include ../partials/admin-sidebar %>
 
-      <div class="logo">
-        <a href="index.html" class="simple-text logo-normal">
-          ADMIN 
-        </a>
-      </div>
-      <div class="sidebar-wrapper">
-        <ul class="nav">
-          <li class="nav-item  ">
-            <a class="nav-link" href="dashboard.html">
-              <i class="material-icons">dashboard</i>
-              <p>Dashboard</p>
-            </a>
-          </li>
-          <li class="nav-item active ">
-            <a class="nav-link" href="user.html">
-              <i class="material-icons">person</i>
-              <p>User Profile</p>
-            </a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="./orders.html">
-              <i class="material-icons">content_paste</i>
-              <p>Orders</p>
-            </a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="./store.html">
-              <i class="material-icons">store</i>
-              <p>Store</p>
-            </a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="./orders.html">
-              <i class="material-icons">supervised_user_circle</i>
-              <p>Users</p>
-            </a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="./map.html">
-              <i class="material-icons">location_ons</i>
-              <p>Maps</p>
-            </a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="./notifications.html">
-              <i class="material-icons">notifications</i>
-              <p>Notifications</p>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
     <div class="main-panel">
       <!-- Navbar -->
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top " id="navigation-example">
@@ -111,27 +59,15 @@
                       <th>ID</th>
                       <th>Name</th>
                       <th>Email</th>
-                      <th>Total Products Bought</th>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>1</td>
-                        <td>Charlie Jonas</td>
-                        <td>abc@gmail.com</td>
-                        <td>11</td>
-                      </tr>
-                      <tr>
-                        <td>2</td>
-                        <td>Minerva Hooper</td>
-                        <td>has@gmail.com</td>
-                        <td>4</td>
-                      </tr>
-                      <tr>
-                        <td>3</td>
-                        <td>Sage Rodriguez</td>
-                        <td>sage@gmail.com</td>
-                        <td>6</td>
-                      </tr>
+                      <% users.forEach(function(user){ %>
+                        <tr>
+                          <td><%= user._id %></td>
+                          <td><%= user.fullname %></td>
+                          <td><%= user.email %></td>
+                        </tr>
+                      <% }); %>
                     </tbody>
                   </table>
                 </div>
@@ -162,11 +98,11 @@
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
 
-  <script src="Js\bootstrap-material-design.min.js"></script>
-  <script src="Js\perfect-scrollbar.jquery.min.js"></script>
-  <script src="Js\chartist.min.js"></script>
-  <script src="Js\bootstrap-notify.js"></script>
-  <script src="Js\material-dashboard.js?v=2.1.0"></script>
+  <script src="/javascripts/bootstrap-material-design.min.js"></script>
+  <script src="/javascripts/perfect-scrollbar.jquery.min.js"></script>
+  <script src="/javascripts/chartist.min.js"></script>
+  <script src="/javascripts/bootstrap-notify.js"></script>
+  <script src="/javascripts/material-dashboard.js?v=2.1.0"></script>
 <!-- <script>
     $(document).ready(function() {
       $().ready(function() {
