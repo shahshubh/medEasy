@@ -8,7 +8,9 @@ var orderSchema = new Schema({
     name: {type: String, required: true},
     paymentId: {type: String},
     paymentMode: {type: String, required: true},
-    purchaseDate: { type: Date, default: Date.now }
+    purchaseDate: { type: Date, default: Date.now },
+    isConfirmed: {type: Boolean, default: false},
+    isDelivered: {type:Boolean, default: false}
 });
 
 module.exports = mongoose.model("Order", orderSchema);

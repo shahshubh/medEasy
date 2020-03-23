@@ -133,10 +133,40 @@ router.get("/admin/store/:category",function(req,res){
 
 
 
-
 router.get('/admin/orders', function(req,res){
-    res.render('admin/orders');
+    Order.find({}, function(err,allOrder){
+        if(err){
+            console.log(err);
+        } else {
+            res.render('admin/orders',{orders: allOrder});
+        }
+    })
 });
+
+router.put('/admin/orders/status/:id/confirmed', function(req,res){
+    var orderId = req.params.id;
+    Order.findByIdAndUpdate(orderId, {isConfirmed: true}, function(err,order){
+        if(err){
+            console.log(err);
+        } else {
+            res.redirect("/admin/orders");
+        }
+    });
+});
+
+router.put('/admin/orders/status/:id/delivered', function(req,res){
+    var orderId = req.params.id;
+    Order.findByIdAndUpdate(orderId, {isDelivered: true}, function(err,order){
+        if(err){
+            console.log(err);
+        } else {
+            res.redirect("/admin/orders");
+        }
+    });
+});
+
+
+
 router.get('/admin/users', function(req,res){
     User.find({isSeller: 'false'}, function(err,allUser){
         if(err){

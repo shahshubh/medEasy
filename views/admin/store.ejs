@@ -107,9 +107,19 @@
                   <div class="tab-content" id="nav-tabContent">
                     <div class="tab-pane fade show active" id="nav-ayurveda" role="tabpanel" aria-labelledby="nav-ayurveda-tab">
                       <div class="card">
-                        <div class="card-header card-header-primary">
-                          <h4 class="card-title">Orders of category</h4>
-                        </div>
+                        <% var arr = []; %>
+                        <% for(var i=0; i< products.length; i++){ 
+                          arr.push(products[i].category);
+                        } %>
+                        <% if(arr.every( (val, i, arr) => val === arr[0] )){ %>
+                          <div class="card-header card-header-primary">
+                            <h4 class="card-title">Products of category <%= arr[0] %></h4>
+                          </div>
+                        <% } else { %>
+                          <div class="card-header card-header-primary">
+                            <h4 class="card-title">All Products</h4>
+                          </div>
+                        <% } %>
                         <div class="card-body table-responsive">
                           <table class="table table-hover" id="myTable1">
                             <thead class="text-warning">
