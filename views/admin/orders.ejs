@@ -64,8 +64,29 @@
           <br>
           <div class="card">
             <div class="card-header card-header-primary">
+              <div class="row">
+                <div class="col-md-6">
                   <h4 class="card-title ">Orders</h4>
                   <p class="card-category">All Orders</p>
+                </div> 
+             
+              <div class="col-md-6">
+                <div class="btn-group" data-toggle="buttons">
+                  <label class="btn btn-confirm active">
+                      <input type="radio" name="status" value="all" checked="checked"> All
+                  </label>
+                  <label class="btn btn-success">
+                      <input type="radio" name="status" value="delivered"> Delivered
+                  </label>
+                  <label class="btn btn-info">
+                      <input type="radio" name="status" value="confirmed"> Confirmed
+                  </label>	
+                  <label class="btn btn-warning" style="background-color:yellow;color:black">
+                      <input type="radio" name="status" value="pending"> Pending
+                  </label>						
+              </div>
+            </div>
+          </div>
             </div>
             <div class="card-body">
               <div class="table-responsive table-striped" style="text-align: center;" >
@@ -96,7 +117,7 @@
                     </th>
                   </thead>
                   <tbody>
-                    <tr>
+                    <tr data-status="delivered">
                       <td id="order_id">
                         <a  class="idd" href="order_list.html">
                         1
@@ -125,7 +146,7 @@
                         </td>
                       
                     </tr>
-                    <tr>
+                    <tr data-status="pending" >
                       <td id="order_id">
                         <a  class="idd" href="order_list.html">
                         2
@@ -151,12 +172,12 @@
                       </td>
                       
                       <td id="status">
-                        <span class="label label-pending">Pending</span>
+                        <span class="label label-warning">Pending</span>
 
                       </td>
                       
                     </tr>
-                    <tr>
+                    <tr data-status="confirmed">
                       <td id="order_id">
                         <a class="idd" href="order_list.html">
                         3
@@ -182,7 +203,7 @@
                       </td>
                       
                       <td id="status">
-                        <span class="label label-confirm">Confirmed</span>
+                        <span class="label label-info">Confirmed</span>
                         <!-- <input type="checkbox" id="checked"> -->
                       </td>
                     </tr>
@@ -331,7 +352,30 @@
 <!-- <td id="check">
 <input type="checkbox" id="checked" class="checkmark">
 </td> -->
-
+<script type="text/javascript">
+  $(document).ready(function(){
+    $(".btn-group .btn").click(function(){
+      var inputValue = $(this).find("input").val();
+      if(inputValue != 'all'){
+        var target = $('table tr[data-status="' + inputValue + '"]');
+        $("table tbody tr").not(target).hide();
+        target.fadeIn();
+      } else {
+        $("table tbody tr").fadeIn();
+      }
+    });
+    // Changing the class of status label to support Bootstrap 4
+      var bs = $.fn.tooltip.Constructor.VERSION;
+      var str = bs.split(".");
+      if(str[0] == 4){
+          $(".label").each(function(){
+            var classStr = $(this).attr("class");
+              var newClassStr = classStr.replace(/label/g, "badge");
+              $(this).removeAttr("class").addClass(newClassStr);
+          });
+      }
+  });
+  </script>
 
   <script>
     function checkFunction(id) {

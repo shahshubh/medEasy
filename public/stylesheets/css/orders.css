@@ -26,26 +26,21 @@ input:focus::-webkit-datetime-edit{ color: #a9afbbd1; }
 
 .label
 {
-    display:inline-block;
-    padding:3px 10px;
-    color:white;
-    font-weight: 400;
-    border-radius: .25rem;
-    font-size: 75%;
+  display:inline-block;
+  padding:3px 10px;
+  color:white;
+  font-weight: 400;
+  border-radius: .25rem;
+  font-size: 75%;
 }
 
-.label-success
+
+.dark-edition .btn
 {
-    background-color: #00c292;
+   background-color: none;
 }
 
-.label-pending{
-    background-color: #e46a76;
-}
 
-.label-confirm{
-    background-color: #2596a5;
-}
 
 .form-control:focus
 {
@@ -61,14 +56,12 @@ color:rgb(255, 255, 255);
   background-color: transparent;
 }
 
-
-
 #checked
 {
-    display: inline-block;
-    margin: 5px auto;
-    width: 30%;
-    outline: 3px ridge rgb(225, 157, 231);
+  display: inline-block;
+  margin: 5px auto;
+  width: 30%;
+  outline: 3px ridge rgb(225, 157, 231);
 }
 
 input.checkmark
@@ -77,12 +70,19 @@ input.checkmark
   width: 20px;
 }
 
+ .btn-group {
+		float: right;
+	}
 
-
-
-
-
-
+.btn-group .btn {
+  min-width: 90px;
+  border-radius: 2px;
+  border: none;
+  padding: 6px 12px;
+font-size: 15px;
+  outline: none !important;
+  height: 40px;
+	}
 
 
 
