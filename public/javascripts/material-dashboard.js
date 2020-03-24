@@ -318,7 +318,6 @@
   
         nav_content = $navbar.html();
   
-        nav_content = '<ul class="nav navbar-nav nav-mobile-menu">' + nav_content + '</ul>';
   
         navbar_form = $('nav').find('.navbar-form').length != 0 ? $('nav').find('.navbar-form')[0].outerHTML : null;
   
