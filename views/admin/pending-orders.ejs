@@ -30,7 +30,7 @@
         <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top " id="navigation-example">
         <div class="container-fluid">
           <div class="navbar-wrapper">
-            <a class="navbar-brand" href="javascript:void(0)">Orders</a>
+            <a class="navbar-brand" href="javascript:void(0)">Pending Orders</a>
           </div>
         </div>
         </nav>
@@ -64,33 +64,11 @@
           <br>
           <div class="card">
             <div class="card-header card-header-primary">
-              <div class="row">
-                <div class="col-md-6">
-                  <h4 class="card-title ">Orders</h4>
-                  <p class="card-category">All Orders</p>
-                </div> 
-             
-              <div class="col-md-6">
-                <div class="btn-group" data-toggle="buttons">
-                  <label class="btn btn-confirm active">
-                      <input type="radio" name="status" value="all" checked="checked"> All
-                  </label>
-                  <label class="btn btn-success">
-                      <input type="radio" name="status" value="delivered"> Delivered
-                  </label>
-                  <label class="btn btn-info">
-                      <input type="radio" name="status" value="confirmed"> Confirmed
-                  </label>	
-                  <label class="btn btn-warning" style="background-color:yellow;color:black">
-                      <input type="radio" name="status" value="pending"> Pending
-                  </label>						
-              </div>
-            </div>
-          </div>
+              <h4 class="card-title ">Pending Orders</h4>
             </div>
             <div class="card-body">
               <div class="table-responsive table-striped" style="text-align: center;" >
-                <table class="table" id="orders"> 
+                <table class="table" id="pending_orders" > 
                   <thead class=" text-primary">
                     <th>
                       Sr No.
@@ -116,28 +94,21 @@
                     Payment Mode
                     </th>
                       <th>
-                      Status
+                    Confirmation 
+                    <!-- order confirmed -->
+                    </th>
+                    <th>
+                      Deliverd
                     </th>
                   </thead>
                   <tbody>
-<!--pending
-confirmed-->        
-
-                    <% var sr = 0; %>
-                    <% orders.forEach(function(order){ 
-                      sr = sr+1;
-                      var status;
-                      if(order.isConfirmed && order.isDelivered){ 
-                        status = "delivered";
-                      } else if(order.isConfirmed && !order.isDelivered){
-                        status = "confirmed";
-                      } else if(!order.isConfirmed && !order.isDelivered){
-                        status = "pending";
-                      } %>
-                      <tr data-status="<%= status %>">
+                    <% var sr2 = 0; %>
+                    <% orders.forEach(function(order){ %>
+                      <% sr2 = sr2 + 1; %>
+                      <tr>
                         <td id="sr-no">
-                          <%= sr %>
-                        </td>  
+                          <%= sr2 %>
+                        </td>
                         <td id="order_id">
                           <a  class="idd" href="order_list.html">
                           <%= order._id %>
@@ -157,38 +128,48 @@ confirmed-->
                           ₹<%= order.cart.totalPrice %>
                         </td>
                         <td id="payment_id">
-                          <% if(order.paymentId) { %>
-                            <%= order.paymentId %>
-                          <% } else { %>
-                            -
-                          <% } %>
+                            <% if(order.paymentId) { %>
+                                <%= order.paymentId %>
+                              <% } else { %>
+                                -
+                              <% } %>
                         </td>
                         <td id="payment_mode">
                           <%= order.paymentMode %>
                         </td>
-                        <% if(order.isConfirmed && order.isDelivered){ %>
-                          <td id="status">
-                            <span class="label label-success">Delivered</span>
-                          </td>
-                        <% } else if(order.isConfirmed && !order.isDelivered){ %>
-                          <td id="status">
-                            <span class="label label-info">Confirmed</span>
-                          </td>
+
+
+
+                        <% if(order.isConfirmed && !order.isDelivered){ %>
+                            <td>
+                                <form action="/admin/orders/status/<%= order._id %>/confirmed?_method=PUT" method="POST">
+                                    <button id="Btn1" class="btnn" disabled><i class="fa fa-check" ></i></button>
+                                </form>
+                            </td>
+                            <td>
+                                <form action="/admin/orders/status/<%= order._id %>/delivered?_method=PUT" method="POST">
+                                    <button id="Btn2" class="btnn" ><i class="fa fa-truck" ></i></button>
+                                </form>
+                            </td>
                         <% } else if(!order.isConfirmed && !order.isDelivered){ %>
-                          <td id="status">
-                            <span class="label label-warning">Pending</span>
-                          </td>
+                            <td>
+                                <form action="/admin/orders/status/<%= order._id %>/confirmed?_method=PUT" method="POST">
+                                    <button id="Btn1" class="btnn" ><i class="fa fa-check" ></i></button>
+                                </form>
+                            </td>
+                            <td>
+                                <form action="/admin/orders/status/<%= order._id %>/delivered?_method=PUT" method="POST">
+                                    <button id="Btn2" class="btnn" disabled ><i class="fa fa-truck" ></i></button>
+                                </form>
+                            </td>
                         <% } %>
-                      </tr>
+                    </tr>
                     <% }) %>
-                    
                   </tbody>
                 </table>
               </div>
             </div>
-          </div>
-          <br>
-          <br>
+          </div> 
         </div>
       </div>
     </div>
@@ -199,6 +180,11 @@ confirmed-->
 <input type="checkbox" id="checked" class="checkmark">
 </td> -->
 <script type="text/javascript">
+/*
+FOR BUTTONS CONFIRMING AND DELIVERED
+*/
+
+
   $(document).ready(function(){
     $(".btn-group .btn").click(function(){
       var inputValue = $(this).find("input").val();

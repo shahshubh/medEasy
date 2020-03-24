@@ -82,7 +82,18 @@ input.checkmark
 font-size: 15px;
   outline: none !important;
   height: 40px;
-	}
+  }
+  
+
+  button{
+    border: none;
+  }
+
+  button:disabled{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+} 
 
 
 

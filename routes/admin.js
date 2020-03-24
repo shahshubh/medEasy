@@ -143,13 +143,23 @@ router.get('/admin/orders', function(req,res){
     })
 });
 
+router.get('/admin/pending-orders', function(req,res){
+    Order.find({isDelivered: false}, function(err,allOrder){
+        if(err){
+            console.log(err);
+        } else {
+            res.render('admin/pending-orders',{orders: allOrder});
+        }
+    });
+});
+
 router.put('/admin/orders/status/:id/confirmed', function(req,res){
     var orderId = req.params.id;
     Order.findByIdAndUpdate(orderId, {isConfirmed: true}, function(err,order){
         if(err){
             console.log(err);
         } else {
-            res.redirect("/admin/orders");
+            res.redirect("/admin/pending-orders");
         }
     });
 });
@@ -160,7 +170,7 @@ router.put('/admin/orders/status/:id/delivered', function(req,res){
         if(err){
             console.log(err);
         } else {
-            res.redirect("/admin/orders");
+            res.redirect("/admin/pending-orders");
         }
     });
 });
