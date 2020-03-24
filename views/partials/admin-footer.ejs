@@ -1,14 +1,9 @@
-<script>
-    const x = new Date().getFullYear();
-    let date = document.getElementById('date');
-    date.innerHTML = '&copy; ' + x + date.innerHTML;
-  </script>
+
  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" charset="utf-8"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js" charset="utf-8"></script>
   <script src="https://unpkg.com/default-passive-events"></script>
   <script async defer src="https://buttons.github.io/buttons.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
   <script src="/javascripts/bootstrap-material-design.min.js"></script>
   <script src="/javascripts/perfect-scrollbar.jquery.min.js"></script>
   <script src="/javascripts/chartist.min.js"></script>
@@ -164,15 +159,15 @@
             }, 300);
           }
 
-          // we simulate the window Resize so the charts will get updated in realtime.
-          var simulateWindowResize = setInterval(function() {
-            window.dispatchEvent(new Event('resize'));
-          }, 180);
+        //   // we simulate the window Resize so the charts will get updated in realtime.
+        //   var simulateWindowResize = setInterval(function() {
+        //     window.dispatchEvent(new Event('resize'));
+        //   }, 180);
 
-          // we stop the simulation of Window Resize after the animations are completed
-          setTimeout(function() {
-            clearInterval(simulateWindowResize);
-          }, 1000);
+        //   // we stop the simulation of Window Resize after the animations are completed
+        //   setTimeout(function() {
+        //     clearInterval(simulateWindowResize);
+        //   }, 1000);
 
         });
       });
