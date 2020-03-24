@@ -531,7 +531,7 @@ $.getJSON("/test", addData);
                 </div>
                 <div class="card-footer">
                   <div class="stats">
-                    <i class="material-icons">date_range</i> Just Updated
+                    <i class="material-icons">update</i> Just Updated
                   </div>
                 </div>
               </div>
@@ -676,7 +676,7 @@ $.getJSON("/test", addData);
                           <td>₹ <%= product.price %></td>
                           <td><%= product.brand %></td>
                           <td><%= product.soldQty%></td>
-                          <% if(product.qty > 2){ %>
+                          <% if(product.qty > 0){ %>
                             <td><span class="badge badge-pill badge-success">In stock</span></td>
                           <% } else { %>
                             <td><span class="badge badge-pill badge-danger">Out of stock</span></td>

@@ -29,7 +29,7 @@
       <!-- End Navbar -->
       <div class="row justify-content-center">
         <div class="col-sm-6 col-md-4">
-            <div id="success" class="alert alert-success <% if(noMessages){ %> d-none <% } %>" >
+            <div style="margin-top: 40px;" id="success" class="alert alert-success <% if(noMessages){ %> d-none <% } %>" >
                 <%= successMsg %>
             </div>
         </div>
@@ -111,7 +111,7 @@
                         
                                   <td><%= product.price %></td>
                                   <td><%= product.qty %></td>
-                                  <% if(product.qty > 2){ %>
+                                  <% if(product.qty > 0){ %>
                                     <td><span class="badge badge-pill badge-success">In stock</span></td>
                                   <% } else { %>
                                     <td><span class="badge badge-pill badge-danger">Out of stock</span></td>

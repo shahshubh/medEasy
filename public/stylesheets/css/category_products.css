@@ -67,3 +67,9 @@ button:hover
 {
     background-color: rgb(244, 244, 248);
 }
+
+button:disabled{
+    border: 1px solid #999999;
+    background-color: #cccccc;
+    color: #666666;
+  } 

@@ -51,6 +51,7 @@ router.get('/remove/:id', function (req, res) {
 });
 
 router.get('/shopping-cart', function (req, res) {  
+    var errMsg = req.flash('error')[0];
     if (!req.session.cart) {
         return res.render('shop/shopping-cart', { products: null });
     }
@@ -67,7 +68,7 @@ router.get('/shopping-cart', function (req, res) {
     //console.log(req.get('referer'));
     //console.log(req.get('host'));
     var cart = new Cart(req.session.cart);
-    res.render('shop/shopping-cart', { products: cart.generateArray(), totalPrice: cart.totalPrice, prevUrl: result });
+    res.render('shop/shopping-cart', { products: cart.generateArray(), totalPrice: cart.totalPrice, prevUrl: result ,errMsg: errMsg, noErrors: !errMsg});
 });
 
 
@@ -85,6 +86,7 @@ router.get('/products/:id',function(req,res){
 
 
 router.get('/checkout', isLoggedIn, function (req, res) {
+    var errMsg = req.flash('error')[0];
     if (!req.session.cart) {
         res.redirect('/shopping-cart');
     }
@@ -97,10 +99,20 @@ router.get('/checkout', isLoggedIn, function (req, res) {
         result = "/"
     }
     console.log("CHECKOUT: ",result);
-
     var cart = new Cart(req.session.cart);
-    var errMsg = req.flash('error')[0];
-    res.render('shop/checkout', {cart: cart, total: cart.totalPrice, errMsg: errMsg, noErrors: !errMsg, prevUrl: result });
+    var flag = 0;
+    Object.values(cart.items).forEach(function(product){
+        if(product.qty>product.item.qty){
+            flag = 1;
+            return false;
+        } 
+    });
+    if(flag === 1){
+        req.flash('error','Some items in your cart are out of stock ! Please remove some items. ');
+        res.redirect('/shopping-cart');
+    } else {
+        res.render('shop/checkout', {cart: cart, total: cart.totalPrice, errMsg: errMsg, noErrors: !errMsg, prevUrl: result });
+    }
 });
 
 router.post('/checkout', isLoggedIn, function (req, res) {

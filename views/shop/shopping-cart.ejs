@@ -6,8 +6,14 @@
             <h2>No items in cart</h2>
         </div>
     </div>
+
+
+
 <% } else if(products){ %>
 <div class="container">
+    <div style="text-align: center;margin-top: 10px;" id="charge-error" class="alert alert-danger <% if(noErrors){ %> d-none <% } %>">
+        <%= errMsg %>
+    </div>
     <div class="row">
         <div class="col-sm-12 col-md-10 col-md-offset-1">
             <table class="table table-hover table-borderless">

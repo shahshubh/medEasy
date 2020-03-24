@@ -188,3 +188,10 @@ input:disabled{
 .detail2{
     margin-bottom: 50px;
 }
+
+
+button:disabled{
+    border: 1px solid #999999;
+    background-color: #cccccc;
+    color: #666666;
+} 

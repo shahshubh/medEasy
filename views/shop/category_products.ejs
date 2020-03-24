@@ -20,9 +20,16 @@
                                 <div class="col">
                                     <p class="pr" >₹ <%= product.price %></p>
                                 </div>
-                                <div class="col">
-                                    <a href="/add-to-cart/<%= product._id %>"><button type="button" class="cart_button"><i class="fa fa-shopping-cart mr-2" aria-hidden="true"></i>Add to Cart</button></a>
-                                </div>
+                                <% if(product.qty > 0) { %>
+                                    <div class="col">
+                                        <a href="/add-to-cart/<%= product._id %>"><button type="button" class="cart_button"><i class="fa fa-shopping-cart mr-2" aria-hidden="true"></i>Add to Cart</button></a>
+                                    </div>
+                                <% } else { %>
+                                    <div class="col">
+                                        <a href="/add-to-cart/<%= product._id %>"><button type="button" class="cart_button" disabled><i class="fa fa-shopping-cart mr-2" aria-hidden="true"></i>Add to Cart</button></a>
+                                    </div>
+                                <% } %>
+                                
                             </div>
                         </div>
                     </div>

@@ -44,9 +44,15 @@
                         <!--<div class="col-lg-6 col-xs-12 t_amt">
                             <span style="font-size: large;"><b>Total Amt :</b><span class="tp">Rs.216</span></span>
                         </div>-->
-                        <div class="col-lg-6 col-xs-12 ">
-                            <a href="/add-to-cart/<%= product._id %>"><button type="button" class="cart_button"><i class="fa fa-shopping-cart mr-2" aria-hidden="true"></i>Add to Cart</button></a>        
-                        </div>      
+                        <% if(product.qty > 0) { %>
+                            <div class="col-lg-6 col-xs-12">
+                                <a href="/add-to-cart/<%= product._id %>"><button type="button" class="cart_button"><i class="fa fa-shopping-cart mr-2" aria-hidden="true"></i>Add to Cart</button></a>
+                            </div>
+                        <% } else { %>
+                            <div class="col-lg-6 col-xs-12">
+                                <a href="/add-to-cart/<%= product._id %>"><button type="button" class="cart_button" disabled><i class="fa fa-shopping-cart mr-2" aria-hidden="true"></i>Add to Cart</button></a>
+                            </div>
+                        <% } %>      
                     </div>
                 </div>
             </div>
