@@ -3,10 +3,11 @@ select
   color:white;
   background-color:#913f9e;
   border:0;
-  padding:6px;
-  font-size:18px;
+  padding:5px;
+  font-size:13px;
   border-radius:5px;
 }
+
 
  ul#nav li a:hover,ul#nav li.active a{
  
