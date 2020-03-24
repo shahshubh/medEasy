@@ -56,6 +56,7 @@
                 <div class="card-body table-responsive">
                   <table class="table table-hover table-striped" id="order_list">
                     <thead class="text-warning">
+                      <th>Sr No.</th>
                       <th>Product ID</th>
                       <th>Name</th>
                       <th>Photo</th>
@@ -67,40 +68,24 @@
                       <th>Total Price</th>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td id="product_id">1</td>
-                        <td id ="title">Crocin</td>
-                        <td id="image"><img src=" https://res.sastasundar.com/incom/images/product/CROCIN-1409821292-10015831.jpg" alt="crocin" width="60" height="60"></td>
-                        <td id="expDate">20/1/22</td>
-                        <td id="brand">Crocin 650 </td>
-                        <td id="category">Medicine</td>
-                        <td id="price">Rs.17</td>
-                        <td id="qty">10</td>
-                        <td id="total_price">Rs.170</td>
-                      </tr>
-                      <tr>
-                      <td id="product_id">2</td>
+
+                      <% var sr = 0; %>
+                      <% Object.values(order.cart.items).forEach(function(order){ %>
+                        <% sr = sr + 1; %>
+                        <tr>
+                          <td id="sr-no"><%= sr %></td>
+                          <td id="product_id"><%= order.item._id %></td>
+                          <td id ="title"><%= order.item.title %></td>
+                          <td id="image"><img src="<%= order.item.image %>" alt="<%= order.item.title %>" width="60" height="60"></td>
+                          <td id="expDate"><%= order.item.expDate %></td>
+                          <td id="brand"><%= order.item.brand %> </td>
+                          <td id="category"><%= order.item.category%></td>
+                          <td id="price"><%= order.item.price %></td>
+                          <td id="qty"><%= order.qty %></td>
+                          <td id="total_price"><%= order.price %></td>
+                        </tr>
+                      <% }) %>
                       
-                      <td id="title">Paracetamol</td>
-                      <td id="image"><img src=" https://c8.alamy.com/comp/EBY4RR/pack-of-tesco-paracetamol-500mg-tablets-isolated-on-white-background-EBY4RR.jpg" alt="Paracetamol" width="60" height="60"></td>
-                      <td id="expDate">11/1/09</td>
-                      <td id="brand">Tylenol </td>
-                      <td id="category">Medicine</td>
-                      <td id="price">Rs.30</td>
-                      <td id="qty">3</td>
-                        <td id="total_price">Rs.90</td>
-                    </tr>
-                    <tr>
-                      <td id="product_id">3</td>
-                      <td id="title">Crocin2</td>
-                      <td id="image"><img src=" https://res.sastasundar.com/incom/images/product/CROCIN-1409821292-10015831.jpg" alt="crocin" width="60" height="60"></td>
-                      <td id="expDate">20/1/22</td>
-                      <td id="brand">Crocin 650 </td>
-                      <td id="category">Medicine</td>
-                      <td id="price">Rs.17</td>
-                      <td id="qty">10</td>
-                        <td id="total_price">Rs.170</td>
-                    </tr>
                     </tbody>
                   </table>
                 </div>

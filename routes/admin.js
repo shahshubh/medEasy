@@ -197,8 +197,14 @@ router.get('/admin/admins', function(req,res){
     })
 });
 
-router.get('/admin/order-details', function(req,res){
-    res.render('admin/order_list');
+router.get('/admin/order-details/:id', function(req,res){
+    Order.findById(req.params.id, function(err, foundOrder){
+        if(err){
+            console.log(err);
+        } else {
+            res.render('admin/order_list',{order: foundOrder});
+        }
+    });
 });
 router.get('/admin/map', function(req,res){
     res.render('admin/map');
@@ -226,18 +232,6 @@ router.get('/admin/products',isLoggedIn,isAdmin,function(req,res){
 
 
 
-
-router.get('/admin/products/:id',function(req,res){
-    var productId = req.params.id;
-    Product.findById(productId, function(err,foundProduct){
-    if(err){
-        console.log(err);
-    }
-    else{
-        res.render('admin/show',{product: foundProduct })
-    }
-    }); 
-});
 //EDIT 
 
 router.get("/admin/store/:id/edit", isLoggedIn,isAdmin, function(req,res){  
