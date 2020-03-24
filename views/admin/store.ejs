@@ -17,16 +17,23 @@
 <% include ../partials/admin-sidebar %>
         
     <div class="main-panel">
-      <!-- Navbar -->
+     <!-- Navbar -->
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top " id="navigation-example">
-        <div class="container-fluid">
-          <div class="navbar-wrapper">
+      <div class="container-fluid">
+        <div class="navbar-wrapper">
+          <div class="row ">
             <a class="navbar-brand" href="javascript:void(0)">Store</a>
           </div>
-          <a href="/admin/store/new" class="btn btn-success btn-md"><i class="material-icons">shopping_cart</i>Add New Product</a>
         </div>
-        </nav>
-      <!-- End Navbar -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation" data-target="#navigation-example">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="navbar-toggler-icon icon-bar"></span>
+          <span class="navbar-toggler-icon icon-bar"></span>
+          <span class="navbar-toggler-icon icon-bar"></span>
+        </button>
+      </div>
+     </nav>
+    <!-- End Navbar -->
       <div class="row justify-content-center">
         <div class="col-sm-6 col-md-4">
             <div style="margin-top: 40px;" id="success" class="alert alert-success <% if(noMessages){ %> d-none <% } %>" >
@@ -46,6 +53,9 @@
                                <input class=" form-control searchh" type="text" id="myInput" onkeyup="myFunction()" placeholder="  Search.."ng-blur="$ctrl.blur('text')" ng-change="$ctrl.changeText('text')" ng-model-options="{debounce: 500}" ng-model="$ctrl.text">
                             </div>
                           </span>      
+                       </div>
+                       <div class="col-md-6">
+                        <a style="float:right;" href="/admin/store/new" class="btn btn-success btn-md mr-0"><i class="material-icons">shopping_cart</i>Add New Product</a>
                        </div>
                        </div>
                      <br>
