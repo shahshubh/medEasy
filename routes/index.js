@@ -9,7 +9,7 @@ var ObjectId = require('mongoose').Types.ObjectId;
 
 function Paginator(items, page, per_page) {
   var page = parseInt(page) || 1,
-  per_page = parseInt(per_page) || 1,
+  per_page = parseInt(per_page) || 6,
   offset = (page - 1) * per_page,
 
   paginatedItems = items.slice(offset).slice(0, per_page),
@@ -96,7 +96,8 @@ router.get('/category/:name' ,(req, res) => {
     if(err){
       console.log(err);
     } else {
-      var result = Paginator(foundProducts,req.query.page,req.query.limit)
+      var result = Paginator(foundProducts,req.query.page,req.query.limit);
+      console.log(result);
       res.render('shop/category_products', { products: result.data, paginationResult: result ,successMsg: successMsg, errorMsg: errorMsg ,noMessages: !successMsg, noError: !errorMsg});
     }
   })

@@ -1,5 +1,9 @@
 <% include ../partials/header %>
-
+<style>
+    .cart-div{
+        margin-top: 50px;
+    }
+</style>
 <% if(!products || totalPrice==0){ %>
     <div class="row justify-content-center">
         <div class="col-sm-6 col-md-6"><!--col-md-offset-3-->
@@ -10,12 +14,12 @@
 
 
 <% } else if(products){ %>
-<div class="container">
+<div class="container cart-div">
     <div style="text-align: center;margin-top: 10px;" id="charge-error" class="alert alert-danger <% if(noErrors){ %> d-none <% } %>">
         <%= errMsg %>
     </div>
     <div class="row">
-        <div class="col-sm-12 col-md-10 col-md-offset-1">
+        <div class="col-sm-12 col-md-12 col-md-offset-1">
             <table class="table table-hover table-borderless">
                 <thead class="table-borderless">
                     <tr >
