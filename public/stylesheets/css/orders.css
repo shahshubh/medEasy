@@ -17,6 +17,15 @@ input:focus::-webkit-datetime-edit{ color: #a9afbbd1; }
 #orders td:hover {
     cursor: pointer;
 }
+#pending_orders tr:hover {
+  background-color: rgb(66, 60, 88);
+}
+
+#pending_orders td:hover {
+  cursor: pointer;
+}
+
+
 
 .btnn
 {
