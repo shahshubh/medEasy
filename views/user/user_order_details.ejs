@@ -109,7 +109,7 @@
                   <td>₹ <%= product.item.price%></td>
                   <td><%= product.qty %></td>
                   <td>₹ <%= product.price %></td>
-                  <td><button type="button" class="btn btn-primary">Buy it again</button></td>
+                  <td><a href="/add-to-cart/<%= product.item._id %>"><button type="button" class="btn btn-primary">Buy it again</button></a></td>
                 </tr>
               <% }) %>
               <tr>
