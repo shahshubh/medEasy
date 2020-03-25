@@ -4,8 +4,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <title>rOrders</title>
-    <link rel="stylesheet" href="/stylesheets/my_orders.css">
+    <link rel="stylesheet" href="/stylesheets/css/my_orders.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"> 
   </head>
@@ -20,13 +19,14 @@
     <div class="container">
         <div id="order_detailss" class="col-lg-12">
             <div class="box">
-                <p class="text-muted">If you have any questions, please feel free to <a href="/homepg#mapp">Contact us</a>.</p>
+                <p class="text-muted">If you have any questions, please feel free to <a href="/#mapp">Contact us</a>.</p>
                 <hr>
-                <div class="table-responsive">
+                <% if(orders.length > 0){ %>
+                  <div class="table-responsive">
                     <table class="table">
                     <thead>
                         <tr>
-                        <th>Order</th>
+                        <th>Order Id</th>
                         <th>Date</th>
                         <th>Total</th>
                         <th>Status</th>
@@ -34,37 +34,35 @@
                         </tr>
                     </thead>
                     <tbody class="align-middle" style="font-weight:500;font-size:17px;vertical-align:center">
+                      <% orders.forEach(function(order){ %>
                         <tr>
-                        <th># 1735</th>
-                        <td>22/06/2013</td>
-                        <td>Rs. 150.00</td>
-                        <td><span class="badge badge-info">Shipped</span></td>
-                        <td><a href="user_order_details" class="btn btn-primary btn-sm">View</a></td>
+                          <th><%= order._id %></th>
+                          <% 
+                            var d = order.purchaseDate;
+                            var date = d.getDate() + '/' + (d.getMonth()+1) + '/' + d.getFullYear();
+                          %>
+                          <td><%= date %></td>
+                          <td>₹ <%= order.cart.totalPrice %></td>
+                          <% if(order.isConfirmed && order.isDelivered){ %>
+                            <td><span class="badge badge-success">Delivered</span></td>
+                          <% } else if(order.isConfirmed && !order.isDelivered){ %>
+                            <td><span class="badge badge-info">Confirmed</span></td>
+                          <% } else { %>
+                            <td><span class="badge badge-warning">Order Placed</span></td>
+                          <% } %>
+                          <td><a href="/user/order-history/details/<%= order._id %>" class="btn btn-primary btn-sm">View</a></td>
                         </tr>
-                        <tr>
-                        <th># 1735</th>
-                        <td>22/06/2013</td>
-                        <td>Rs. 150.00</td>
-                        <td><span class="badge badge-info">Shipped</span></td>
-                        <td><a href="user_order_details" class="btn btn-primary btn-sm">View</a></td>
-                        </tr>
-                        <tr>
-                        <th># 1735</th>
-                        <td>22/06/2013</td>
-                        <td>Rs. 150.00</td>
-                        <td><span class="badge badge-success">Received</span></td>
-                        <td><a href="user_order_details" class="btn btn-primary btn-sm">View</a></td>
-                        </tr>
-                        <tr>
-                        <th># 1735</th>
-                        <td>22/06/2013</td>
-                        <td>Rs. 150.00</td>
-                        <td><span class="badge badge-warning">Orderd</span></td>
-                        <td><a href="user_order_details" class="btn btn-primary btn-sm">View</a></td>
-                        </tr>
+                      <% }) %>
                     </tbody>
                     </table>
                 </div>
+                <% } else { %>
+                  <div>
+                    <div style="text-align: center;font-size: 30px;font-weight: 700;" >No Orders</div>
+                    <hr>
+                  </div>
+                <% } %>
+                
             </div>
         </div>
     </div>

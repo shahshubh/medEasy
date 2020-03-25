@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title>Order Details</title>
-    <link rel="stylesheet" href="/stylesheets/user_order_details.css">
+    <link rel="stylesheet" href="/stylesheets/css/user_order_details.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"> 
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
@@ -21,25 +21,39 @@
               <h4>Order Details</h4>
           </div>
         <div class="card-body">
-          <div class="container statusbox">
+          <div style="background-color: white;" class="container statusbox">
             <div class="card track">
               <div class="row d-flex justify-content-between px-3 top">
                 <div class="d-flex">
-                  <h5>ORDER <span class="text-primary font-weight-bold">#Y34ggggXDHR</span></h5>
+                  <h5> ORDER ID <span class="text-primary font-weight-bold"><%= order._id %></span></h5>
                 </div>
                   <div class="d-flex flex-column text-sm-left">
-                    <p class="mb-0">Your Order Date: <span class="font-weight-bold">01/12/19</span></p>
-                    <p class="mb-0">No of Products: <span class="font-weight-bold">3</span></p>
-                    <p class="mb-0">Payment Method: <span class="font-weight-bold">Cash</span></p>
+                    <% 
+                      var d = order.purchaseDate;
+                      var date = d.getDate() + '/' + (d.getMonth()+1) + '/' + d.getFullYear();
+                    %>
+                    <p class="mb-0">Your Order Date: <span class="font-weight-bold"><%= date %></span></p>
+                    <p class="mb-0">No of Products: <span class="font-weight-bold"><%= order.cart.totalQty %></span></p>
+                    <p class="mb-0">Payment Method: <span class="font-weight-bold"><%= order.paymentMode %></span></p>
                   </div>
               </div>
                   <!-- Add class 'active' to progress -->
                 <div class="row d-flex justify-content-center">
                   <div class="col-12">
                     <ul id="progressbar" class="text-center">
-                      <li class="active step0"></li>
-                      <li class="active step0"></li>
-                      <li class="step0"></li>
+                      <% if(order.isConfirmed && order.isDelivered){ %>
+                        <li class="active step0"></li>
+                        <li class="active step0"></li>
+                        <li class="active step0"></li>
+                      <% } else if(order.isConfirmed && !order.isDelivered){ %>
+                        <li class="active step0"></li>
+                        <li class="active step0"></li>
+                        <li class="step0"></li>
+                      <% } else { %>
+                          <li class="active step0"></li>
+                          <li class="step0"></li>
+                          <li class="step0"></li>
+                      <% } %>
                     </ul>
                   </div>
                 </div>
@@ -77,69 +91,32 @@
               <th></th>   
             </thead>
             <tbody class="details">
-
-              <tr>
-                <td>
-                  <img src="http://lorempixel.com/460/250/" alt="medicine" style="width:70px;height:70px">
-                </td>
-                <td>
-                  <a class= pull-left" href="#" style="color:inherit">
-                  <div class="media">
-                    <div class="media-body">
-                        <h5 class="media-header"> Product Name</h5>
-                        <i><h6 class="media-header">Brand name</h6></i>
+              <% products.forEach(function(product){ %>
+                <tr>
+                  <td>
+                    <img src="<%= product.item.image %>" alt="<%= product.item.title %>" style="width:70px;height:70px">
+                  </td>
+                  <td>
+                    <a class= pull-left" href="#" style="color:inherit">
+                    <div class="media">
+                      <div class="media-body">
+                          <h5 class="media-header"><%= product.item.title %></h5>
+                          <i><h6 class="media-header"><%= product.item.brand%></h6></i>
+                      </div>
                     </div>
-                  </div>
-                  </a>
-                </td>
-                <td>Rs.10.99</td>
-                <td>1</td>
-                <td> Rs.32.99</td>
-                <td><button type="button" class="btn btn-primary">Buy it again</button></td>
-              </tr>
-              <tr>
-                <td>
-                  <img src="http://lorempixel.com/460/250/" alt="medicine" style="width:70px;height:70px">
-                </td>
-                <td>
-                  <a class= pull-left" href="#" style="color:inherit">
-                  <div class="media">
-                    <div class="media-body">
-                        <h5 class="media-header"> Product Name</h5>
-                        <i><h6 class="media-header">Brand name</h6></i>
-                    </div>
-                  </div>
-                  </a>
-                </td>
-                <td>Rs.10.99</td>
-                <td>1</td>
-                <td> Rs.32.99</td>
-                <td><button type="button" class="btn btn-primary">Buy it again</button></td>
-              </tr>
-              <tr>
-                <td>
-                  <img src="http://lorempixel.com/460/250/" alt="medicine" style="width:70px;height:70px">
-                </td>
-                <td>
-                  <a class= pull-left" href="#" style="color:inherit">
-                  <div class="media">
-                    <div class="media-body">
-                        <h5 class="media-header"> Product Name</h5>
-                        <i><h6 class="media-header">Brand name</h6></i>
-                    </div>
-                  </div>
-                  </a>
-                </td>
-                <td>Rs.10.99</td>
-                <td>1</td>
-                <td> Rs.32.99</td>
-                <td><button type="button" class="btn btn-primary">Buy it again</button></td>
-              </tr>
-              
+                    </a>
+                  </td>
+                  <td>₹ <%= product.item.price%></td>
+                  <td><%= product.qty %></td>
+                  <td>₹ <%= product.price %></td>
+                  <td><button type="button" class="btn btn-primary">Buy it again</button></td>
+                </tr>
+              <% }) %>
               <tr>
                 <td colspan="3"></td>
                 <td  class="font-500"><b>Total Amount</b> </td>
-                <td class="font-500" ><b> Rs.99</b></td>
+                <td class="font-500" ><b><%= order.cart.totalPrice %></b></td>
+                <td colspan="1"></td>
               </tr>
             </tbody>
           </table> 
@@ -158,28 +135,29 @@
           </div>
           <div class="card-body">
             <div class="col-md-12">
-                <strong>Subtotal (# item)</strong>
-                <div class="pull-right"><span>Rs. 200.00</span></div>
-            </div>
-            <div class="col-md-12">
-                <strong>Tax</strong>
-                <div class="pull-right"><span>Rs. 200.00</span></div>
+                <strong>Subtotal</strong>
+                <div class="pull-right"><span>₹ <%= order.cart.totalPrice %></span></div>
             </div>
             <div class="col-md-12">
                 <strong>Shipping</strong>
-                <div class="pull-right"><span>Free</span></div>
-                <hr>
+                <div class="pull-right"><span>₹ <%= order.cart.totalPrice %></span></div>
             </div>
             <div class="col-md-12">
+              <strong>Payment</strong>
+              <div class="pull-right"><span><%= order.paymentMode %></span></div>
+              <hr>
+          </div>
+            <div class="col-md-12">
                 <strong>Order Total</strong>
-                <div class="pull-right"><span>Rs.</span><span>150.00</span></div>
+                <div class="pull-right"><span>₹ </span><span>₹ <%= order.cart.totalPrice %></span></div>
             </div>
+            
           </div>
           
       </div>
       <br>
-    <div class="row justify-content-sm-center" style="texxt-align:center">
-    <a href="index.html">   <button type="button" class="btn btn-primary btn-lg btn-block">Back to Order History</button></a>
+    <div class="row justify-content-sm-center" style="text-align:center">
+    <a href="/user/order-history"><button type="button" class="btn btn-primary btn-lg btn-block">Back to Order History</button></a>
     </div>
     </div>
         <!--PAYMENT DETAILS END -->
@@ -198,7 +176,7 @@
             </div>
             <div class="col-md-8 col-lg-9">
                 <div class="pull-left">
-                  <span>Street:  1, 121, Vidya Bhuvan, Keluskar Road, Shivaji Park, Dadar (west)
+                  <span><%= order.address %>
                   </span>
                 </div>
             </div>
@@ -208,19 +186,19 @@
           <div class="col-md-12">
             <i class="fa fa-institution"></i>
               <strong>City:</strong>
-              <div class="pull-right"><span>Mumbai</span></div>
+              <div class="pull-right"><span><%= order.city%></span></div>
                 <hr>
           </div>
           <div class="col-md-12">
             <i class="fa fa-globe"></i> 
               <strong>State:</strong>
-              <div class="pull-right"><span>Maharashtra</span></div>
+              <div class="pull-right"><span><%= order.state %></span></div>
               <hr>
           </div>
           <div class="col-md-12">
             <i class="fa fa-map-marker"></i> 
               <strong>Zip:</strong>
-              <div class="pull-right"><span>400028</span></div>
+              <div class="pull-right"><span><%= order.zip %></span></div>
               
           </div>
         </div>

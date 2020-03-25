@@ -154,7 +154,10 @@ router.post('/checkout', isLoggedIn, function (req, res) {
                 name: req.body.name,
                 paymentId: charge.id,
                 paymentMode: "Online",
-                purchaseDate: date
+                purchaseDate: date,
+                city: req.body.city,
+                state: req.body.state,
+                zip: req.body.zip
             });
             //console.log(cart);
             //console.log("ORDER: ", order);
@@ -238,7 +241,10 @@ router.post('/checkout', isLoggedIn, function (req, res) {
             address: req.body.address,
             name: req.body.name,
             paymentMode: "Cash",
-            purchaseDate: date
+            purchaseDate: date,
+            city: req.body.city,
+            state: req.body.state,
+            zip: req.body.zip
         });
         //console.log(cart);
         //console.log("ORDER: ", order);

@@ -12,7 +12,7 @@ var User = require('../models/user');
 // var csrfProtection = csrf();
 // router.use(csrfProtection);
 
-router.get('/user/profile', isLoggedIn ,function (req, res) {
+router.get('/user/order-history', isLoggedIn ,function (req, res) {
     Order.find({user: req.user}, function(err, orders){
         if(err){
             return res.write('Error !');
@@ -25,9 +25,23 @@ router.get('/user/profile', isLoggedIn ,function (req, res) {
         /*console.log("---------------orders-------------");
         console.log(orders);
         console.log(Object.values(orders[0].cart.items)[0]);*/
-        res.render('user/profile', {currentUser: req.user, orders: orders});
+        res.render('user/my_orders', {currentUser: req.user, orders: orders});
     });
 });
+
+router.get('/user/order-history/details/:oid', isLoggedIn ,function (req, res) {
+    Order.findById(req.params.oid, function(err, order){
+        if(err){
+            return res.write('Error !');
+        }
+        /*console.log("---------------orders-------------");
+        console.log(orders);
+        console.log(Object.values(orders[0].cart.items)[0]);*/
+        var products = Object.values(order.cart.items);
+        res.render('user/user_order_details', {order: order, products: products});
+    });
+});
+
 router.get('/user/logout', function(req, res, next){
     req.logout();
     res.redirect('/');
@@ -51,7 +65,7 @@ router.post('/user/signup', passport.authenticate('local.signup', {
             if(user.isSeller){
                 res.redirect('/admin');
             } else {
-                res.redirect('/user/profile');
+                res.redirect('/user/order-history');
             }
         });
     }
@@ -75,7 +89,7 @@ router.post('/user/signin', passport.authenticate('local.signin', {
             if(user.isSeller){
                 res.redirect('/admin');
             } else {
-                res.redirect('/user/profile');
+                res.redirect('/user/order-history');
             }
         });
     }
