@@ -19,7 +19,7 @@ router.get('/add-to-cart/:id', function (req, res) {
         req.session.cart = cart;
         //console.log(req.session.cart);
         req.flash('success', 'Added to Cart');
-        res.redirect('/');  
+        res.redirect('/category/'+product.category);  
     });
 });
 

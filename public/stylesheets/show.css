@@ -195,3 +195,13 @@ button:disabled{
     background-color: #cccccc;
     color: #666666;
 } 
+
+.inStock{
+    color: green;
+    font-weight: 700;
+}
+
+.outOfStock{
+    color: red;
+    font-weight: 700;
+}

@@ -1,5 +1,5 @@
 <!-- #563d7c -->
-<html>
+<!--<html>
     <head>
         <title>Product page</title>
         <link rel="stylesheet" href="/stylesheets/show.css">
@@ -10,7 +10,10 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
         <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
-    <body>
+    <body>-->
+<% include ../partials/header %>
+<link rel="stylesheet" href="/stylesheets/show.css">
+
         <div class="container con1">
             <div class="row">
                 <div class="col-lg-5 col-xs-12 image">
@@ -18,13 +21,17 @@
                 </div>
                 <div class="col-lg-7 col-xs-12 cont">
                     <p class="category_name text-center"><%= product.category %></p>
-                    <h2><%= product.title %><span> 60 Capsules</span></h2>
+                    <h2><%= product.title %> - <span><%= product.tablets %></span></h2>
                     <p><span>By <%= product.brand %></span></p>
                     <hr>
                     <!-- <p class="price">MRP Rs.216</p> -->
                     <div class="row detail1">
                         <div class="col-lg-6 col-xs-12">
-                            <p><span><b>Availibility: </b>In stock</span>
+                            <% if(product.qty > 0){ %>
+                            <p><b>Availibility: </b><span class="inStock">In Stock</span></p>
+                            <% } else { %>
+                                <p><b>Availibility: </b><span class="outOfStock" >Out Of Stock</span></p>
+                            <% } %>
                         </div>
                     </div>
                     <div class="row detail2">

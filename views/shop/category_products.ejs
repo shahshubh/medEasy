@@ -1,11 +1,25 @@
 <% include ../partials/header %>
 <link rel="stylesheet" href="/stylesheets/css/category_products.css">
     <div class="container">
-        <div class="row row_m">
-            <div class="col">
-                <h2 class="cat_hd">Category Name</h2>
+        <div style="margin-bottom: 0;margin-top: 20px;text-align: center;" class="col-sm-12 col-md-12">
+            <div id="success" class="alert alert-success <% if(noMessages){ %> d-none <% } %>" >
+                <% if(isIcon){ %>
+                    <i class="fa fa-check" aria-hidden="true"></i> <%= successMsg %>
+                <% } else { %>
+                    <%= successMsg %>
+                <% } %>
+            </div>
+            <div id="error" class="alert alert-danger <% if(noError){ %> d-none <% } %>" >
+                <%= errorMsg %>
             </div>
         </div>
+        <% if(products.length > 0){ %>
+            <div class="row row_m">
+                <div class="col">
+                    <h2 class="cat_hd"><%= products[0].category.toUpperCase() %></h2>
+                </div>
+            </div>
+        <% } %>
         <hr class="line_hr">
         <div class="row">
             <% products.forEach(function(product){ %>

@@ -91,6 +91,10 @@ router.get('/', function(req, res, next) {
 router.get('/category/:name' ,(req, res) => {
   var successMsg = req.flash('success')[0];
   var errorMsg = req.flash('error')[0];
+  var isIcon;
+  if(successMsg==="Added to Cart"){
+    isIcon = true;
+  }
   var catg = req.params.name;
   Product.find({category: catg}, function(err, foundProducts){
     if(err){
@@ -98,7 +102,7 @@ router.get('/category/:name' ,(req, res) => {
     } else {
       var result = Paginator(foundProducts,req.query.page,req.query.limit);
       console.log(result);
-      res.render('shop/category_products', { products: result.data, paginationResult: result ,successMsg: successMsg, errorMsg: errorMsg ,noMessages: !successMsg, noError: !errorMsg});
+      res.render('shop/category_products', { products: result.data, paginationResult: result ,successMsg: successMsg, errorMsg: errorMsg ,noMessages: !successMsg, noError: !errorMsg, isIcon: isIcon});
     }
   })
 });
