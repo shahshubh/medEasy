@@ -1,13 +1,9 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <title>Order Details</title>
-    <link rel="stylesheet" href="/stylesheets/css/user_order_details.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"> 
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
+    <link rel="stylesheet" href="/stylesheets/css/user_order_details.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <% include ../partials/header %>
   </head>
   <body>
 
@@ -17,7 +13,7 @@
     <div class="col-xs-12 col-md-12 col-sm-12">
         <!--ORDER DETAILS-->
         <div class="card card-default">
-          <div class="card-header text-center hhead" style="background-color: rgb(159, 44, 212);">
+          <div class="card-header text-center hhead" style="background-color:#7952b3;">
               <h4>Order Details</h4>
           </div>
         <div class="card-body">
@@ -97,7 +93,7 @@
                     <img src="<%= product.item.image %>" alt="<%= product.item.title %>" style="width:70px;height:70px">
                   </td>
                   <td>
-                    <a class= pull-left" href="#" style="color:inherit">
+                    <a class= pull-left" href="/add-to-cart/<%= product._id %>" style="color:inherit">
                     <div class="media">
                       <div class="media-body">
                           <h5 class="media-header"><%= product.item.title %></h5>
@@ -130,7 +126,7 @@
     <div class="col-xs-12 col-md-6 col-sm-12">
         <!--PAYMENT DETAILS-->
       <div class="card card-default">
-          <div class="card-header text-center hhead" style="background-color: rgb(159, 44, 212);">
+          <div class="card-header text-center hhead" style="background-color: #7952b3;">
               <h4>Payment Details</h4>
           </div>
           <div class="card-body">
@@ -164,7 +160,7 @@
         <!--SHIPPING METHOD-->
     <div class="col-xs-12 col-md-6 col-sm-12">
       <div class="card card-default">
-        <div class="card-header text-center hhead" style="background-color: rgb(159, 44, 212);">
+        <div class="card-header text-center hhead" style="background-color: #7952b3;">
             <h4>Shipping Details</h4>
         </div>
         <div class="card-body">
