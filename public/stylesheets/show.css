@@ -103,7 +103,7 @@ button:hover
 .nav-link
 {
     color: #7952b3;
-    font-weight: bolder;
+    /* font-weight: bolder; */
 }
 .minus:hover{
     background-color:  #7952b3 !important;
