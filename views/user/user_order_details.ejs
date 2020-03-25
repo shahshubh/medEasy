@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Order Details</title>
+    <link rel="stylesheet" href="/stylesheets/user_order_details.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"> 
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+  </head>
+  <body>
+
+
+<div class="container con1 payment wrapper ">
+  <div class="row">
+    <div class="col-xs-12 col-md-12 col-sm-12">
+        <!--ORDER DETAILS-->
+        <div class="card card-default">
+          <div class="card-header text-center hhead" style="background-color: rgb(159, 44, 212);">
+              <h4>Order Details</h4>
+          </div>
+        <div class="card-body">
+          <div class="container statusbox">
+            <div class="card track">
+              <div class="row d-flex justify-content-between px-3 top">
+                <div class="d-flex">
+                  <h5>ORDER <span class="text-primary font-weight-bold">#Y34ggggXDHR</span></h5>
+                </div>
+                  <div class="d-flex flex-column text-sm-left">
+                    <p class="mb-0">Your Order Date: <span class="font-weight-bold">01/12/19</span></p>
+                    <p class="mb-0">No of Products: <span class="font-weight-bold">3</span></p>
+                    <p class="mb-0">Payment Method: <span class="font-weight-bold">Cash</span></p>
+                  </div>
+              </div>
+                  <!-- Add class 'active' to progress -->
+                <div class="row d-flex justify-content-center">
+                  <div class="col-12">
+                    <ul id="progressbar" class="text-center">
+                      <li class="active step0"></li>
+                      <li class="active step0"></li>
+                      <li class="step0"></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="row justify-content-between top">
+                  <div class="row d-flex icon-content"> <img class="icon" src="https://i.imgur.com/9nnc9Et.png">
+                    <div class="d-flex flex-column">
+                      <p class="font-weight-bold">Order<br>Processed</p>
+                    </div>
+                  </div>
+                  <div class="row d-flex icon-content"> <img class="icon" src="https://i.imgur.com/u1AzR7w.png">
+                    <div class="d-flex flex-column">
+                      <p class="font-weight-bold">Order<br>Shipped</p>
+                    </div>
+                  </div>
+                    <!-- <div class="row d-flex icon-content"> <img class="icon" src="https://i.imgur.com/TkPm63y.png">
+                        <div class="d-flex flex-column">
+                            <p class="font-weight-bold">Order<br>En Route</p>
+                        </div>
+                    </div> -->
+                  <div class="row d-flex icon-content"> <img class="icon" src="https://i.imgur.com/HdsziHP.png">
+                    <div class="d-flex flex-column">
+                      <p class="font-weight-bold">Order<br>Arrived</p>
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </div>
+          <br>
+          <table class="table borderless table-striped" id="order_details" >
+            <thead>       
+              <th colspan="2">Products</th>
+              <th>Price</th>
+              <th>Quantity</th>
+              <th>Total Price</th>     
+              <th></th>   
+            </thead>
+            <tbody class="details">
+
+              <tr>
+                <td>
+                  <img src="http://lorempixel.com/460/250/" alt="medicine" style="width:70px;height:70px">
+                </td>
+                <td>
+                  <a class= pull-left" href="#" style="color:inherit">
+                  <div class="media">
+                    <div class="media-body">
+                        <h5 class="media-header"> Product Name</h5>
+                        <i><h6 class="media-header">Brand name</h6></i>
+                    </div>
+                  </div>
+                  </a>
+                </td>
+                <td>Rs.10.99</td>
+                <td>1</td>
+                <td> Rs.32.99</td>
+                <td><button type="button" class="btn btn-primary">Buy it again</button></td>
+              </tr>
+              <tr>
+                <td>
+                  <img src="http://lorempixel.com/460/250/" alt="medicine" style="width:70px;height:70px">
+                </td>
+                <td>
+                  <a class= pull-left" href="#" style="color:inherit">
+                  <div class="media">
+                    <div class="media-body">
+                        <h5 class="media-header"> Product Name</h5>
+                        <i><h6 class="media-header">Brand name</h6></i>
+                    </div>
+                  </div>
+                  </a>
+                </td>
+                <td>Rs.10.99</td>
+                <td>1</td>
+                <td> Rs.32.99</td>
+                <td><button type="button" class="btn btn-primary">Buy it again</button></td>
+              </tr>
+              <tr>
+                <td>
+                  <img src="http://lorempixel.com/460/250/" alt="medicine" style="width:70px;height:70px">
+                </td>
+                <td>
+                  <a class= pull-left" href="#" style="color:inherit">
+                  <div class="media">
+                    <div class="media-body">
+                        <h5 class="media-header"> Product Name</h5>
+                        <i><h6 class="media-header">Brand name</h6></i>
+                    </div>
+                  </div>
+                  </a>
+                </td>
+                <td>Rs.10.99</td>
+                <td>1</td>
+                <td> Rs.32.99</td>
+                <td><button type="button" class="btn btn-primary">Buy it again</button></td>
+              </tr>
+              
+              <tr>
+                <td colspan="3"></td>
+                <td  class="font-500"><b>Total Amount</b> </td>
+                <td class="font-500" ><b> Rs.99</b></td>
+              </tr>
+            </tbody>
+          </table> 
+        </div>
+      </div>
+        <!--ORDER DETAILS END-->
+    </div>
+
+  <div class="container">
+  <div class="row ">
+    <div class="col-xs-12 col-md-6 col-sm-12">
+        <!--PAYMENT DETAILS-->
+      <div class="card card-default">
+          <div class="card-header text-center hhead" style="background-color: rgb(159, 44, 212);">
+              <h4>Payment Details</h4>
+          </div>
+          <div class="card-body">
+            <div class="col-md-12">
+                <strong>Subtotal (# item)</strong>
+                <div class="pull-right"><span>Rs. 200.00</span></div>
+            </div>
+            <div class="col-md-12">
+                <strong>Tax</strong>
+                <div class="pull-right"><span>Rs. 200.00</span></div>
+            </div>
+            <div class="col-md-12">
+                <strong>Shipping</strong>
+                <div class="pull-right"><span>Free</span></div>
+                <hr>
+            </div>
+            <div class="col-md-12">
+                <strong>Order Total</strong>
+                <div class="pull-right"><span>Rs.</span><span>150.00</span></div>
+            </div>
+          </div>
+          
+      </div>
+      <br>
+    <div class="row justify-content-sm-center" style="texxt-align:center">
+    <a href="index.html">   <button type="button" class="btn btn-primary btn-lg btn-block">Back to Order History</button></a>
+    </div>
+    </div>
+        <!--PAYMENT DETAILS END -->
+        <!--SHIPPING METHOD-->
+    <div class="col-xs-12 col-md-6 col-sm-12">
+      <div class="card card-default">
+        <div class="card-header text-center hhead" style="background-color: rgb(159, 44, 212);">
+            <h4>Shipping Details</h4>
+        </div>
+        <div class="card-body">
+          <div class="col-md-12">
+            <div class="row" style="max-width:100%">
+            <div class="col-md-4 col-lg-3">
+              <i class="fa fa-address-card-o"></i>
+              <strong>Address:</strong>
+            </div>
+            <div class="col-md-8 col-lg-9">
+                <div class="pull-left">
+                  <span>Street:  1, 121, Vidya Bhuvan, Keluskar Road, Shivaji Park, Dadar (west)
+                  </span>
+                </div>
+            </div>
+            </div>
+            <hr>
+          </div>
+          <div class="col-md-12">
+            <i class="fa fa-institution"></i>
+              <strong>City:</strong>
+              <div class="pull-right"><span>Mumbai</span></div>
+                <hr>
+          </div>
+          <div class="col-md-12">
+            <i class="fa fa-globe"></i> 
+              <strong>State:</strong>
+              <div class="pull-right"><span>Maharashtra</span></div>
+              <hr>
+          </div>
+          <div class="col-md-12">
+            <i class="fa fa-map-marker"></i> 
+              <strong>Zip:</strong>
+              <div class="pull-right"><span>400028</span></div>
+              
+          </div>
+        </div>
+      </div>
+        <!--SHIPPING METHOD END-->
+    </div>
+  </div> <!--row ends -->
+  </div>
+
+
+
+
+  </div>
+      
+</div>
+
+
+  </body>
+
+</html>

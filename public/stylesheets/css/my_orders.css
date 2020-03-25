@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css?family=Baloo+Bhaijaan|Ubuntu');
+body
+{
+	font-family:Roboto;
+	background: #2196F3;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #8ef7ff, #2196F3); 
+	background: linear-gradient(to right, #8ef7ff, #2196F3); 
+}
+.container {
+    margin-top:1rem;
+    padding: 5px 20px 15px 20px;
+    /*border: 1px solid lightgrey;*/
+    border-radius: 3px;
+    /*background-color:rgb(43, 114, 114);*/
+  }
+
+  input[type=text] {
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+  
+  label {
+    margin-bottom: 10px;
+    display: block;
+  }
+  
+  .icon-container {
+    margin-bottom: 20px;
+    padding: 7px 0;
+    font-size: 20px;
+  }
+  
+  .btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px;
+    margin: 10px 0;
+    border: none;
+    width: 100%;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 17px;
+  }
+  
+  .btn:hover {
+    background-color: #45a049;
+  }
+  
+  span.price {
+    float: right;
+    color: grey;
+  }
+  
+  .jumbo
+  {
+    border:1px solid black;
+    width:10rem;
+    padding:1rem;
+  }
+  .not_selected
+  {
+    display:none;
+  }
+  
+  .payment-logo{
+    position: absolute;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 100px;
+    background: #f8f8f8;
+    border-radius: 50%;
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    text-align: center;
+    line-height: 85px;
+  }
+  
+  .payment-logo:before{
+    content: "";
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 90px;
+    height: 90px;
+    background:#563d7c ;
+    border-radius: 50%;
+  }
+  
+  .payment-logo p{
+    position: relative;
+    color: #f8f8f8;
+    font-family: 'Baloo Bhaijaan', cursive;
+    font-size: 58px;
+    vertical-align: middle;
+  }
+  .payment{
+    background: #f8f8f8;
+    max-width: 360px;
+    margin: 80px auto;
+    height: auto;
+    padding: 35px;
+    padding-top: 70px;
+    border-radius: 5px;
+    position: relative;
+  } 
+
+  .payment h2{
+    text-align: center;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+    color: #0d3c61;
+  }
