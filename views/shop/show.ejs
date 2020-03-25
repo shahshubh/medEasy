@@ -3,15 +3,15 @@
     <head>
         <title>Product page</title>
         <link rel="stylesheet" href="/stylesheets/show.css">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" >
-
-        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" ></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" ></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" >-->
+        <!--<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>-->
 <% include ../partials/header %>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" ></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" ></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
 <link rel="stylesheet" href="/stylesheets/show.css">
 
         <div class="container con1">
@@ -63,21 +63,22 @@
                     </div>
                 </div>
             </div>
-            
-            <ul class="nav nav-tabs" id="myTab" role="tablist">
-                <li class="nav-item">
-                  <a class="nav-link active" id="Desc-tab" data-toggle="tab" href="#Desc" role="tab" aria-controls="Desc" aria-selected="true">Desc</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" id="Composition-tab" data-toggle="tab" href="#Composition" role="tab" aria-controls="Composition" aria-selected="false">Composition</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" id="Precautions-tab" data-toggle="tab" href="#Precautions" role="tab" aria-controls="Precautions" aria-selected="false">Precautions</a>
-                </li>
-                <!-- <li class="nav-item">
-                    <a class="nav-link" id="brand-tab" data-toggle="tab" href="#brand" role="tab" aria-controls="brand" aria-selected="false">Brand</a>
-                  </li> -->
-              </ul>
+            <div class="container">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                    <a class="nav-link active" id="Desc-tab" data-toggle="tab" href="#Desc" role="tab" aria-controls="Desc" aria-selected="true">Desc</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" id="Composition-tab" data-toggle="tab" href="#Composition" role="tab" aria-controls="Composition" aria-selected="false">Composition</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" id="Precautions-tab" data-toggle="tab" href="#Precautions" role="tab" aria-controls="Precautions" aria-selected="false">Precautions</a>
+                    </li>
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" id="brand-tab" data-toggle="tab" href="#brand" role="tab" aria-controls="brand" aria-selected="false">Brand</a>
+                    </li> -->
+                </ul>
+            </div>
               <br>
               <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="Desc" role="tabpanel" aria-labelledby="Desc-tab">

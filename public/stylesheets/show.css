@@ -1,13 +1,17 @@
- 
+/* body
+{
+    font-family:Roboto;
+}  */
 .container.con1
 {
+    background-color: white;
     margin-top:100px;
     margin-bottom: 50px;
     border: 1px solid lightgrey;
     border-radius: 10px;
     padding: 5px 20px 15px 20px;
     width:70%;
-
+    height:100%;
 }
 /* .container.con2
 {
@@ -41,6 +45,7 @@ b{
     color:white;
     font-size:16px;
     font-weight: bold;
+    text-transform: uppercase;
 }
 .cont h2
 {
@@ -52,7 +57,7 @@ b{
 } 
 .price
 {
-    color: #7952b3;
+    color:#7952b3;
     font-size: 26px;
     font-weight: bold;
     margin-top: 2%;
@@ -72,7 +77,6 @@ input[type="number"]
 .cart_button
 {
     background-color:#7952b3;
-    opacity: 0.8;
     color: whitesmoke;
     display: inline-block;
     font-weight: 400;
