@@ -3,38 +3,8 @@
 
 .con_head {
     margin: 0 auto;
-    /* max-width: 1280px; */
     width: 100%;
   }
-
-  @media (min-width: 1200px) {
-    .con_head {
-      width: 1000px;
-    }
-  }
-  @media only screen and (min-width: 601px) {
-    .con_head {
-      width: 100%;
-    }
-  }
-  @media only screen and (min-width: 1000px and max-width:1200px) {
-    .con_head {
-      width: 100%;
-    }
-    .searchbar:hover
-    {
-      width:160px;
-    }
-  }
-
-
-@media (max-width: 991.98px){
-.headd{
-    padding-right: .5rem;
-    /* padding-left: .5rem; */
-}
-}
-
 
 
 .headd
@@ -44,7 +14,7 @@
   box-shadow: 0 0.5rem 1rem rgba(0,0,0,.05), inset 0 -1px 0 rgba(0,0,0,.1);
   width:100%;
   background-color:#563d7c;
-  text-decoration-color: white;
+  text-decoration:none;
   width: 100%;
   font-family: "Lato";
   color: black;
@@ -88,7 +58,7 @@
 }
 
 .ni:hover {
-    text-decoration: underline;
+    text-decoration: none;
     }
 
 
