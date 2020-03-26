@@ -99,58 +99,6 @@
 </nav>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!--
 <!DOCTYPE html>
 <html>
@@ -250,8 +198,8 @@
         //show result in html
         const outputHtml = matches =>{
             if(matches.length>0){
-                const html = matches.map(match => `
-                    <div class="card card-body mb-1">
+                const html = matches.slice(0,4).map(match => `
+                    <div style="margin: 0;" class="card card-body">
                         <a href="/products/${match._id}"><h4>${match.title} (${match.price})</h4></a>
                     </div>
                 `).join('');
