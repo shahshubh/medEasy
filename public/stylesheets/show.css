@@ -209,3 +209,86 @@ button:disabled{
     color: red;
     font-weight: 700;
 }
+
+
+
+
+@import url('https://fonts.googleapis.com/css?family=Baloo+Bhaijaan|Ubuntu');
+body
+{
+	font-family:Roboto;
+	/* background: #2196F3;
+	background: -webkit-linear-gradient(to right, #8ef7ff, #2196F3); 
+  background: linear-gradient(to right, #8ef7ff, #2196F3);  */
+    background: -webkit-gradient(linear, left bottom, left top, from(#eb99eb), to(#a18cd1));
+    background: -webkit-linear-gradient(bottom, #fbc2eb 0%, #a18cd1 100%);
+    background: -moz-linear-gradient(bottom, #fbc2eb 0%, #a18cd1 100%);
+    background: -o-linear-gradient(bottom, #fbc2eb 0%, #a18cd1 100%);
+    background: linear-gradient(to top, #fbc2eb 0%, #a18cd1 100%);
+}
+
+.payment{
+  padding: 5px 20px 15px 20px;
+  /*border: 1px solid lightgrey;*/
+  border-radius: 3px;
+  margin-top:1rem;
+  background: #f8f8f8;
+  margin: 80px auto;
+  height: 90%;
+  padding: 35px;
+  padding-top:40px;
+  border-radius: 5px;
+  position: relative;
+} 
+
+  .jumbo
+  {
+    border:1px solid black;
+    width:10rem;
+    padding:1rem;
+  }
+  .not_selected
+  {
+    display:none;
+  }
+  
+  /* .payment-logo{
+    position: absolute;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 100px;
+    background: #f8f8f8;
+    border-radius: 50%;
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    text-align: center;
+    line-height: 85px;
+  }
+  
+  .payment-logo:before{
+    content: "";
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 90px;
+    height: 90px;
+    background:#7952b3;
+    border-radius: 50%;
+  }
+  
+  .payment-logo p{
+    position: relative;
+    color: #f8f8f8;
+    font-family: 'Baloo Bhaijaan', cursive;
+    font-size: 58px;
+    vertical-align: middle;
+  }
+  */
+
+  .payment h2{
+    text-align: center;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+    color: #0d3c61;
+  }

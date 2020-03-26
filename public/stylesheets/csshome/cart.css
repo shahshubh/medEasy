@@ -11,16 +11,18 @@ body
     background: -o-linear-gradient(bottom, #fbc2eb 0%, #a18cd1 100%);
     background: linear-gradient(to top, #fbc2eb 0%, #a18cd1 100%);
 }
+
 .payment{
   padding: 5px 20px 15px 20px;
   /*border: 1px solid lightgrey;*/
   border-radius: 3px;
   margin-top:1rem;
   background: #f8f8f8;
+  max-width: 360px;
   margin: 80px auto;
   height: 90%;
   padding: 35px;
-  padding-top: 40px;
+  padding-top:40px;
   border-radius: 5px;
   position: relative;
 } 
