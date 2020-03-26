@@ -1,36 +1,44 @@
+<link rel="stylesheet" href="/stylesheets/csshome/cart.css">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script> -->
+
 <% include ../partials/header %>
-<style>
+<!-- <style>
     .cart-div{
         margin-top: 50px;
     }
-</style>
+</style> -->
 <% if(!products || totalPrice==0){ %>
-    <div class="row justify-content-center">
-        <div class="col-sm-6 col-md-6"><!--col-md-offset-3-->
-            <h2>No items in cart</h2>
+    <div class="container con1 payment wrapper" style="height:45%">
+        <div class="row justify-content-center">
+            <div class="col-sm-6 col-md-6"><!--col-md-offset-3-->
+                <h2>No items in cart</h2>
+            </div>
         </div>
     </div>
 
 
 
 <% } else if(products){ %>
-<div class="container cart-div">
-    <div style="text-align: center;margin-top: 10px;" id="charge-error" class="alert alert-danger <% if(noErrors){ %> d-none <% } %>">
+<div class="container cart-div container con1 payment wrapper" style="height:90%">
+    <div style="text-align: center;margin-top: 30px;" id="charge-error" class="alert alert-danger <% if(noErrors){ %> d-none <% } %>">
         <%= errMsg %>
     </div>
     <div class="row">
         <div class="col-sm-12 col-md-12 col-md-offset-1">
-            <table class="table table-hover table-borderless">
-                <thead class="table-borderless">
-                    <tr >
-                        <th class="bg-light">Product</th>
-                        <th class="bg-light">Quantity</th>
-                        <th class="text-center bg-light">Price</th>
-                        <th class="text-center bg-light">Total</th>
-                        <th class="bg-light">Remove</th>
+            <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th >Quantity</th>
+                        <th >Price</th>
+                        <th >Total</th>
+                        <th >Remove</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody style="font-weight:500;font-size:17px;vertical-align:center">
                 <% products.forEach(function(product){ %>
                     <tr style="border-bottom: 1px solid #dee2e6;">
                         <td class="col-sm-8 col-md-6">
@@ -83,6 +91,7 @@
                     </tr>
                 </tbody>
             </table>
+            </div>
         </div>
     </div>
 </div>

@@ -28,6 +28,7 @@
                       var d = order.purchaseDate;
                       var date = d.getDate() + '/' + (d.getMonth()+1) + '/' + d.getFullYear();
                     %>
+                    <p class="mb-0">Name: <span class="font-weight-bold"><%= order.name%></span></p>
                     <p class="mb-0">Your Order Date: <span class="font-weight-bold"><%= date %></span></p>
                     <p class="mb-0">No of Products: <span class="font-weight-bold"><%= order.cart.totalQty %></span></p>
                     <p class="mb-0">Payment Method: <span class="font-weight-bold"><%= order.paymentMode %></span></p>
@@ -93,7 +94,7 @@
                     <img src="<%= product.item.image %>" alt="<%= product.item.title %>" style="width:70px;height:70px">
                   </td>
                   <td>
-                    <a class= pull-left" href="/add-to-cart/<%= product._id %>" style="color:inherit">
+                    <a class= pull-left" href="/products/<%= product.item._id %>" style="color:inherit">
                     <div class="media">
                       <div class="media-body">
                           <h5 class="media-header"><%= product.item.title %></h5>
@@ -171,7 +172,7 @@
               <strong>Address:</strong>
             </div>
             <div class="col-md-8 col-lg-9">
-                <div class="pull-left">
+                <div class="pull-right">
                   <span><%= order.address %>
                   </span>
                 </div>

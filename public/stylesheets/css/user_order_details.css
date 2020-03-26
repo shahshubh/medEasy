@@ -23,7 +23,6 @@ body
 .details
   {
     font-weight: 500;
-
   }
 
   a{
@@ -35,7 +34,7 @@ body
     background: #f8f8f8;
     margin: 80px auto;
     height: auto;
-    padding: 35px;
+    /* padding: 35px; */
     border-radius: 5px;
     position: relative;
   } 
