@@ -17,7 +17,6 @@ $('input:radio[name=Radio]').change(function(){
         });
         function stripeResponseHandler(status, response){
             if(response.error){
-                alert("HEllo");
                 $('#charge-error').text(response.error.message);
                 $('#charge-error').removeClass('d-none');
                 $form.find('button').prop('disabled', false);
