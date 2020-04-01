@@ -46,19 +46,20 @@
                             <a class="thumbnail pull-left" href="/products/<%= product.item._id %>"> <img class="media-object" src="<%= product.item.image %>" style="width: 72px; height: 72px; margin-right:20px"> </a>
                             <div class="media-body">
                                 <h4 class="media-heading"><a href="/products/<%= product.item._id %>"><%= product.item.title %></a></h4>
-                                <h5 class="media-heading"> by Brand name</h5>
+                                <h5 class="media-heading"><i>
+                                     <%= product.item.brand %></i></h5>
                                 <span>Status: </span><span class="text-success"><strong>In Stock</strong></span>
                             </div>
                         </div></td>
-                        <td class="col-sm-1 col-md-1" style="text-align: center">
+                        <td class="col-sm-1 col-md-1" >
                             <div class="btn-group" role="group" aria-label="Basic example">
                                 <a href="/reduce/<%= product.item._id %>"><button type="button" class="btn btn-sm btn-light">-</button></a>
                                 <button type="button" class="btn btn-sm "><%= product.qty %></button>
                                 <a href="/increase/<%= product.item._id %>"><button type="button" class="btn btn-sm btn-light ">+</button></a>
                             </div>
                         </td>
-                        <td class="col-sm-1 col-md-1 text-center"><strong>₹<%= product.price/product.qty %></strong></td>
-                        <td class="col-sm-1 col-md-1 text-center"><strong>₹<%= product.price %></strong></td>
+                        <td class="col-sm-1 col-md-1 "><strong>₹<%= product.price/product.qty %></strong></td>
+                        <td class="col-sm-1 col-md-1 "><strong>₹<%= product.price %></strong></td>
                         <td class="col-sm-1 col-md-1">
                         <a href="/remove/<%= product.item._id %>">
                             <i style="color: red;font-size: 25px;" class="fa fa-trash" aria-hidden="true"></i>
