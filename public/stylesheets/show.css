@@ -5,23 +5,23 @@
 .container.con1
 {
     background-color: white;
-    margin-top:100px;
+    margin-top:50px;
     margin-bottom: 50px;
     border: 1px solid lightgrey;
     border-radius: 10px;
     padding: 5px 20px 15px 20px;
-    width:70%;
+    width:63%;
     height:100%;
 }
 /* .container.con2
 {
     height: fit-content;
 } */
-.con3
+/* .con3
 {
     margin-top: 5rem;
 
-}
+} */
 b{
     color: gray;
 }
@@ -40,7 +40,7 @@ b{
 .category_name
 {
     background-color: green;
-    width: 180px;
+    width: 200px;
     height:30px;
     color:white;
     font-size:16px;
@@ -51,27 +51,23 @@ b{
 {
     color: #555;
 }
-.last
-{
-    margin-top: 4.5%;
-} 
+
 .price
 {
     color:#7952b3;
     font-size: 26px;
     font-weight: bold;
-    margin-top: 2%;
 
 }
 
-input[type="number"]
+/* input[type="number"]
 {
     
     font-weight: bold;
     height: 33px;
     text-align: center;
     width: 60px;
-} 
+}  */
 
 
 .cart_button
@@ -87,7 +83,6 @@ input[type="number"]
     line-height: 1.5;
     border-radius: .28rem;
     width:100%;
-    margin-top: 50px;
 }
 
 .exp
@@ -101,7 +96,7 @@ button:hover
 }
 
 #myTab{
-    margin-top: 30px;
+    margin-top: 10px;
 }
 
 .nav-link
@@ -109,7 +104,7 @@ button:hover
     color: #7952b3;
     /* font-weight: bolder; */
 }
-.minus:hover{
+/* .minus:hover{
     background-color:  #7952b3 !important;
 }
 .plus:hover{
@@ -134,7 +129,6 @@ button:hover
     font-weight: 700;
     line-height: 25px;
     padding: 0 2px;
-    /* min-width: 28px; */
     text-align: center;
 }
 .qty .plus {
@@ -159,7 +153,7 @@ button:hover
     text-align: center;
     border-radius: 50%;
     background-clip: padding-box;
-}
+} */
 
 /*Prevent text selection*/
 span{
@@ -184,14 +178,14 @@ input:disabled{
 
 
 
-
+/* 
 
 .detail1{
     margin-top: 20px;
 }
 .detail2{
     margin-bottom: 50px;
-}
+} */
 
 
 button:disabled{
@@ -227,9 +221,8 @@ body
     background: linear-gradient(to top, #fbc2eb 0%, #a18cd1 100%);
 }
 
-.payment{
+/* .payment{
   padding: 5px 20px 15px 20px;
-  /*border: 1px solid lightgrey;*/
   border-radius: 3px;
   margin-top:1rem;
   background: #f8f8f8;
@@ -241,16 +234,16 @@ body
   position: relative;
 } 
 
-  .jumbo
-  {
-    border:1px solid black;
-    width:10rem;
-    padding:1rem;
-  }
-  .not_selected
-  {
-    display:none;
-  }
+.jumbo
+{
+border:1px solid black;
+width:10rem;
+padding:1rem;
+}
+.not_selected
+{
+display:none;
+} */
   
   /* .payment-logo{
     position: absolute;
@@ -286,9 +279,9 @@ body
   }
   */
 
-  .payment h2{
+  /* .payment h2{
     text-align: center;
     letter-spacing: 2px;
     margin-bottom: 15px;
     color: #0d3c61;
-  }
+  } */
