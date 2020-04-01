@@ -19,35 +19,19 @@
   max-height: 700px;
   height: 650px;
   width: 1600px;
+
 }
 
 .carousel-inner
 {
   background-color:white;
 }
-.carousel-item img
-{
-  padding-left: 10px;
-  padding-right: 10px;
-}
+
 
 .offer
 {
   width:100%;
   height:100%;
-}
-
-
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-height: 30px;
-width: 30px;
-/* outline: black; */
-background-image: none;
-color: darkorchid;
-vertical-align:center;
-font-size: 55px;
-filter:invert(100%)
 }
 
 
@@ -60,15 +44,10 @@ filter:invert(100%)
 {
 filter:invert(100%)
 }
+ 
 
 
 
-
-
-.bg
-{
-  background-image:url('gallery/all.jpg');
-}
 
 .con1
 {
