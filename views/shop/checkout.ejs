@@ -21,25 +21,48 @@
                   <div class="card-header text-center hhead" style="color: white;background-color: #7952b3;">
                       <h4>Billing Details</h4>
                   </div>
-                  <div class="card-body">
-                    <label for="name"><i class="fa fa-user"></i> Full Name</label>
-                    <input type="text" class="check_inp" id="name" name="name" placeholder="John M. Doe">
-                    <label for="address"><i class="fa fa-address-card-o"></i> Address</label>
-                    <input type="text" class="check_inp" id="adr" name="address" placeholder="542 W. 15th Street">
-                    <label for="city"><i class="fa fa-institution"></i> City</label>
-                    <input type="text" class="check_inp" id="city" name="city" placeholder="Mumbai">
-                  <div class="row">
-                    <div class="col-lg-6 col-xs-12">
-                      <label for="state"><i class="fa fa-globe"></i> State</label>
-                      <input type="text" class="check_inp" id="state" name="state" placeholder="Maharashtra">
+                  <% if(Object.keys(previousOrderDetails).length === 0){ %>
+                    <div class="card-body">
+                      <label for="name"><i class="fa fa-user"></i> Full Name</label>
+                      <input type="text" class="check_inp" id="name" name="name" placeholder="John M. Doe">
+                      <label for="address"><i class="fa fa-address-card-o"></i> Address</label>
+                      <input type="text" class="check_inp" id="adr" name="address" placeholder="542 W. 15th Street">
+                      <label for="city"><i class="fa fa-institution"></i> City</label>
+                      <input type="text" class="check_inp" id="city" name="city" placeholder="Mumbai">
+                      <div class="row">
+                        <div class="col-lg-6 col-xs-12">
+                          <label for="state"><i class="fa fa-globe"></i> State</label>
+                          <input type="text" class="check_inp" id="state" name="state" placeholder="Maharashtra">
+                        </div>
+                        <div class="col-lg-6 col-xs-12">
+                          <label for="zip"><i class="fa fa-map-marker"></i> Zip</label>
+                          <input type="text" class="check_inp" id="zip" name="zip" placeholder="400008">
+                        </div>
+                        <a href="/shopping-cart">< Back</a>
+                      </div> 
                     </div>
-                    <div class="col-lg-6 col-xs-12">
-                      <label for="zip"><i class="fa fa-map-marker"></i> Zip</label>
-                      <input type="text" class="check_inp" id="zip" name="zip" placeholder="400008">
+                  <% } else { %>
+                    <div class="card-body">
+                      <label for="name"><i class="fa fa-user"></i> Full Name</label>
+                      <input type="text" class="check_inp" id="name" name="name" value="<%= previousOrderDetails.name %>" placeholder="John M. Doe">
+                      <label for="address"><i class="fa fa-address-card-o"></i> Address</label>
+                      <input type="text" class="check_inp" id="adr" name="address" value="<%= previousOrderDetails.address %>" placeholder="542 W. 15th Street">
+                      <label for="city"><i class="fa fa-institution"></i> City</label>
+                      <input type="text" class="check_inp" id="city" name="city" value="<%= previousOrderDetails.city %>" placeholder="Mumbai">
+                      <div class="row">
+                        <div class="col-lg-6 col-xs-12">
+                          <label for="state"><i class="fa fa-globe"></i> State</label>
+                          <input type="text" class="check_inp" id="state" name="state" value="<%= previousOrderDetails.state %>" placeholder="Maharashtra">
+                        </div>
+                        <div class="col-lg-6 col-xs-12">
+                          <label for="zip"><i class="fa fa-map-marker"></i> Zip</label>
+                          <input type="text" class="check_inp" id="zip" name="zip" value="<%= previousOrderDetails.zip %>" placeholder="400008">
+                        </div>
+                        <a href="/shopping-cart">< Back</a>
+                      </div> 
                     </div>
-                    <a href="<%= prevUrl %>">< Back</a>
-                  </div> 
-                  </div>
+                  <% } %>
+                  
                 </div>
               </div>
             </div>

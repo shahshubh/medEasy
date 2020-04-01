@@ -90,15 +90,6 @@ router.get('/checkout', isLoggedIn, function (req, res) {
     if (!req.session.cart) {
         res.redirect('/shopping-cart');
     }
-    let result;
-    let referer = req.get('referer');
-    let temp = "http://"+req.get('host');
-    if(referer){
-        result = referer.replace(temp, '');
-    } else {
-        result = "/"
-    }
-    console.log("CHECKOUT: ",result);
     var cart = new Cart(req.session.cart);
     var flag = 0;
     Object.values(cart.items).forEach(function(product){
@@ -111,7 +102,22 @@ router.get('/checkout', isLoggedIn, function (req, res) {
         req.flash('error','Some items in your cart are out of stock ! Please remove some items. ');
         res.redirect('/shopping-cart');
     } else {
-        res.render('shop/checkout', {cart: cart, total: cart.totalPrice, errMsg: errMsg, noErrors: !errMsg, prevUrl: result });
+        Order.find({user: req.user} ,function(err,result){
+            var previousOrderDetails;
+            if(result.length === 0){
+                previousOrderDetails = {};
+            } else if(result.length === 1){
+                previousOrderDetails = result[0];
+            } else {
+                result.sort(function(a, b) {
+                    a = new Date(a.purchaseDate);
+                    b = new Date(b.purchaseDate);
+                    return a>b ? -1 : a<b ? 1 : 0;
+                });
+                previousOrderDetails = result[0];
+            }            
+            res.render('shop/checkout', {cart: cart, total: cart.totalPrice, errMsg: errMsg, noErrors: !errMsg, previousOrderDetails: previousOrderDetails });
+        });
     }
 });
 
