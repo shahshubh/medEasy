@@ -1,7 +1,16 @@
-/* body
+@import url('https://fonts.googleapis.com/css?family=Baloo+Bhaijaan|Ubuntu');
+body
 {
-    font-family:Roboto;
-}  */
+	font-family:Roboto;
+	/* background: #2196F3;
+	background: -webkit-linear-gradient(to right, #8ef7ff, #2196F3); 
+  background: linear-gradient(to right, #8ef7ff, #2196F3);  */
+    background: -webkit-gradient(linear, left bottom, left top, from(#eb99eb), to(#a18cd1));
+    background: -webkit-linear-gradient(bottom, #fbc2eb 0%, #a18cd1 100%);
+    background: -moz-linear-gradient(bottom, #fbc2eb 0%, #a18cd1 100%);
+    background: -o-linear-gradient(bottom, #fbc2eb 0%, #a18cd1 100%);
+    background: linear-gradient(to top, #fbc2eb 0%, #a18cd1 100%);
+}
 .container.con1
 {
     background-color: white;
@@ -207,19 +216,7 @@ button:disabled{
 
 
 
-@import url('https://fonts.googleapis.com/css?family=Baloo+Bhaijaan|Ubuntu');
-body
-{
-	font-family:Roboto;
-	/* background: #2196F3;
-	background: -webkit-linear-gradient(to right, #8ef7ff, #2196F3); 
-  background: linear-gradient(to right, #8ef7ff, #2196F3);  */
-    background: -webkit-gradient(linear, left bottom, left top, from(#eb99eb), to(#a18cd1));
-    background: -webkit-linear-gradient(bottom, #fbc2eb 0%, #a18cd1 100%);
-    background: -moz-linear-gradient(bottom, #fbc2eb 0%, #a18cd1 100%);
-    background: -o-linear-gradient(bottom, #fbc2eb 0%, #a18cd1 100%);
-    background: linear-gradient(to top, #fbc2eb 0%, #a18cd1 100%);
-}
+
 
 /* .payment{
   padding: 5px 20px 15px 20px;
