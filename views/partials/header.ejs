@@ -206,7 +206,8 @@
             if(matches.length>0){
                 const html = matches.slice(0,4).map(match => `
                     <div style="margin: 0;" class="card card-body">
-                        <a href="/products/${match._id}"><h4>${match.title} (${match.price})</h4></a>
+                        <a href="/products/${match._id}">
+                        <h5><img src="${match.image}" style="width:40px;height:40px">${match.title}-${match.tablets}</h5></a>
                     </div>
                 `).join('');
                 matchList.innerHTML = html;

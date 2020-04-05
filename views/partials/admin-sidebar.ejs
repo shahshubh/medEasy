@@ -1,3 +1,7 @@
+<style>
+  
+  </style>
+
 <div class="sidebar" data-color="purple" data-background-color="black" data-image="/images/sidebar-1.jpg">
     <div class="logo">
       <a href="/admin" class="simple-text logo-normal">
@@ -5,14 +9,14 @@
       </a>
     </div>
     <div class="sidebar-wrapper">
-      <ul class="nav">
-        <li class="nav-item  ">
+      <ul class="nav id="sidebarr"">
+        <li class="nav-item active " id="dashboard">
           <a class="nav-link" href="/admin">
             <i class="material-icons">dashboard</i>
             <p>Dashboard</p>
           </a>
         </li>
-        <li class="nav-item ">
+        <li class="nav-item" id="Orders" >
           <a class="nav-link" href="/admin/orders">
             <i class="material-icons">content_paste</i>
             <p>Orders</p>
@@ -48,6 +52,40 @@
             <p>Maps</p>
           </a>
         </li>
+        <li class="nav-item ">
+          <a class="nav-link" href="/">
+            <i class="material-icons">person</i>
+            <p>Log out</p>
+          </a>
+        </li>
       </ul>
     </div>
   </div>
+
+  <script>
+//     $('#dashboard').addClass('active');
+//     $('#sidebarr li a').on('click', function (e) {
+//     e.preventDefault();
+//     $('#sidebarr li a.active').removeClass('active');
+//     $(this).addClass('active');
+// });
+
+$('#sidebarr li a').click(function() {
+    $('#sidebarr li.active').removeClass('active');
+    $(this).closest('li').addClass('active');
+});
+
+    </script>
+
+<script>
+  $(document).ready(function() {
+
+    $('#orders tr').click(function() {
+        var href = $(this).find("a").attr("href");
+        if(href) {
+            window.location = href;
+        }
+    });
+
+});
+</script>
