@@ -40,6 +40,13 @@
          </nav>
         <!-- End Navbar -->
       <div class="content" >
+        <div class="row justify-content-center">
+          <div class="col-sm-6 col-md-4">
+              <div style="text-align: center;" id="danger" class="alert alert-danger <% if(noMessages){ %> d-none <% } %>" >
+                  <%= errMsg %>
+              </div>
+          </div>
+        </div>
         <div class="container" style="width: 70%; margin: 0 auto;">
           <div class="row">
             <div class="col-md-12">

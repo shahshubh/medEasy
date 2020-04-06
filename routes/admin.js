@@ -78,30 +78,13 @@ router.post('/admin/store',function(req,res){
     var image = req.body.image;
     var qty = req.body.qty;
     var tags = req.body._tags;
+    var _tags = tags.split(",");
+
     var composition = req.body.composition; 
     var desc = req.body.description; 
     var precautions = req.body.precautions; 
 
     var category = req.body.select;
-
-    if(title.length == 0 ||
-        brand.length == 0 ||
-        mfgDate.length == 0 ||
-        expDate.length == 0 ||
-        price.length == 0 ||
-        tablets.length == 0 ||
-        image.length == 0 ||
-        qty.length == 0 ||
-        composition.length == 0 ||
-        tags.length == 0 ||
-        desc.length == 0 ||
-        precautions.length == 0 ||
-        category.length == 0 ){
-
-            req.flash('error', 'Please fill all the fields'); 
-            res.redirect("/admin/store/new");
-        }
-    
     var newProduct = {
         title: title, 
         brand: brand, 
@@ -111,24 +94,31 @@ router.post('/admin/store',function(req,res){
         tablets: tablets, 
         image: image, 
         qty: qty,
-        //_tags: 
+        _tags: _tags,
         composition: composition,
         description: desc,
         precautions: precautions,
         category: category
     };
 
+    if(title.length == 0 || brand.length == 0 || mfgDate.length == 0 || expDate.length == 0 || price.length == 0 || 
+        tablets.length == 0 || image.length == 0 || qty.length == 0 || composition.length == 0 || 
+        desc.length == 0 || precautions.length == 0 || category.length == 0 ){
+            req.flash('error', 'Please fill all the fields'); 
+            res.redirect("/admin/store/new");
+    } else {
     //create new cmpground and save to db
-    Product.create(newProduct,  function(err, newlyCreated){
-        if(err){
-            console.log(err);
-        }
-        else{
-            console.log(newlyCreated);  
-            req.flash('success', 'Sucessfully added product'); 
-            res.redirect("/admin/store");
-        }
-    });
+        Product.create(newProduct,  function(err, newlyCreated){
+            if(err){
+                console.log(err);
+            }
+            else{
+                console.log(newlyCreated);  
+                req.flash('success', 'Sucessfully added product'); 
+                res.redirect("/admin/store");
+            }
+        });
+    }
 });
 
 router.get('/admin/store/new',function(req,res){
@@ -257,12 +247,13 @@ router.get('/admin/products',isLoggedIn,isAdmin,function(req,res){
 //EDIT 
 
 router.get("/admin/store/:id/edit", isLoggedIn,isAdmin, function(req,res){  
+    var errMsg = req.flash('error')[0];
     Product.findById(req.params.id, function(err, foundProduct){
         if(err){
             res.redirect("/admin/store");
         }
         else{                
-            res.render("admin/edit", {product: foundProduct});
+            res.render("admin/edit", {product: foundProduct, errMsg: errMsg, noMessages: !errMsg });
         }
     }); 
 });
@@ -287,32 +278,39 @@ router.put("/admin/store/:id", isLoggedIn, isAdmin, function(req,res){
     var tags = req.body._tags;
     var _tags = tags.split(",");
     var category = req.body.select
+    if(title.length == 0 || brand.length == 0 || mfgDate.length == 0 || expDate.length == 0 || price.length == 0 || 
+        tablets.length == 0 || image.length == 0 || qty.length == 0 || composition.length == 0 || 
+        desc.length == 0 || precautions.length == 0 || category.length == 0 ){
+            req.flash('error', 'Please fill all the fields'); 
+            res.redirect(`/admin/store/${req.params.id}/edit`);
+        } else {
+            var updatedProduct = {
+                title: title, 
+                brand: brand, 
+                mfgDate: mfgDate, 
+                expDate: expDate, 
+                price: price, 
+                tablets: tablets, 
+                image: image, 
+                qty: qty,
+                _tags: _tags,
+                composition: composition,
+                description: desc,
+                precautions: precautions,
+                category: category
+            };
+        
+            Product.findByIdAndUpdate(req.params.id, updatedProduct, function(err,product){
+                if(err){
+                    res.redirect("/admin");  
+                }
+                else{
+                    req.flash('success', 'Sucessfully Updated product'); 
+                    res.redirect("/admin/store");
+                }
+            });
+        }   
     
-    var updatedProduct = {
-        title: title, 
-        brand: brand, 
-        mfgDate: mfgDate, 
-        expDate: expDate, 
-        price: price, 
-        tablets: tablets, 
-        image: image, 
-        qty: qty,
-        _tags: _tags,
-        composition: composition,
-        description: desc,
-        precautions: precautions,
-        category: category
-    };
-
-    Product.findByIdAndUpdate(req.params.id, updatedProduct, function(err,product){
-        if(err){
-            res.redirect("/admin");  
-        }
-        else{
-            req.flash('success', 'Sucessfully Updated product'); 
-            res.redirect("/admin/store");
-        }
-    });
 });
 
 
