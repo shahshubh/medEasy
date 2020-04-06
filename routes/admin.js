@@ -82,7 +82,25 @@ router.post('/admin/store',function(req,res){
     var desc = req.body.description; 
     var precautions = req.body.precautions; 
 
-    var category = req.body.select
+    var category = req.body.select;
+
+    if(title.length == 0 ||
+        brand.length == 0 ||
+        mfgDate.length == 0 ||
+        expDate.length == 0 ||
+        price.length == 0 ||
+        tablets.length == 0 ||
+        image.length == 0 ||
+        qty.length == 0 ||
+        composition.length == 0 ||
+        tags.length == 0 ||
+        desc.length == 0 ||
+        precautions.length == 0 ||
+        category.length == 0 ){
+
+            req.flash('error', 'Please fill all the fields'); 
+            res.redirect("/admin/store/new");
+        }
     
     var newProduct = {
         title: title, 
@@ -114,7 +132,8 @@ router.post('/admin/store',function(req,res){
 });
 
 router.get('/admin/store/new',function(req,res){
-    res.render("admin/new");
+    var errMsg = req.flash('error')[0];
+    res.render("admin/new", {errMsg: errMsg, noMessages: !errMsg });
 }); 
 
 router.get("/admin/store/:category",function(req,res){
@@ -144,11 +163,12 @@ router.get('/admin/orders', function(req,res){
 });
 
 router.get('/admin/pending-orders', function(req,res){
+    var successMsg = req.flash('success')[0];
     Order.find({isDelivered: false}, function(err,allOrder){
         if(err){
             console.log(err);
         } else {
-            res.render('admin/pending-orders',{orders: allOrder});
+            res.render('admin/pending-orders',{orders: allOrder, successMsg: successMsg, noMessages: !successMsg});
         }
     });
 });
@@ -159,6 +179,7 @@ router.put('/admin/orders/status/:id/confirmed', function(req,res){
         if(err){
             console.log(err);
         } else {
+            req.flash('success',"Order Confirmed");
             res.redirect("/admin/pending-orders");
         }
     });
@@ -170,6 +191,7 @@ router.put('/admin/orders/status/:id/delivered', function(req,res){
         if(err){
             console.log(err);
         } else {
+            req.flash('success',"Order Delivered");
             res.redirect("/admin/pending-orders");
         }
     });
@@ -302,6 +324,7 @@ router.delete("/admin/store/:id",isLoggedIn, isAdmin, function(req,res){
             res.redirect("/admin");
         }
         else{
+            req.flash('success','Product Deleted sucessfully');
             res.redirect("/admin/store");
         }
     });

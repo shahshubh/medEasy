@@ -64,13 +64,17 @@
                 <div class="card-body table-responsive">
                   <table class="table  table-striped" id="users">
                    <thead class="text-warning">
+                      <th>Sr No.</th>
                       <th>ID</th>
                       <th>Name</th>
                       <th>Email</th>
                     </thead>
                     <tbody>
+                      <% var sr = 0; %>
                       <% users.forEach(function(user){ %>
+                      <% sr = sr+1; %>
                         <tr>
+                          <td><%= sr %></td>
                           <td><%= user._id %></td>
                           <td><%= user.fullname %></td>
                           <td><%= user.email %></td>

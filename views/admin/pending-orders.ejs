@@ -43,8 +43,15 @@
         </div>
        </nav>
       <!-- End Navbar -->
-
+      
      <div class="content">
+      <div class="row justify-content-center">
+        <div class="col-sm-6 col-md-4">
+            <div style="margin-top: 10px;text-align: center;" id="success" class="alert alert-success <% if(noMessages){ %> d-none <% } %>" >
+                <%= successMsg %>
+            </div>
+        </div>
+      </div>
         <div class="container-fluid">
           <div class="row">
             <div class="col-md-12">

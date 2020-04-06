@@ -1,16 +1,15 @@
-<style>
-  
-  </style>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <div class="sidebar" data-color="purple" data-background-color="black" data-image="/images/sidebar-1.jpg">
     <div class="logo">
       <a href="/admin" class="simple-text logo-normal">
+        <i class="material-icons">person</i>
         <%= currentUser.fullname %> 
       </a>
     </div>
     <div class="sidebar-wrapper">
-      <ul class="nav id="sidebarr"">
-        <li class="nav-item active " id="dashboard">
+      <ul class="nav" id="sidebarr">
+        <li class="nav-item active" id="dashboard">
           <a class="nav-link" href="/admin">
             <i class="material-icons">dashboard</i>
             <p>Dashboard</p>
@@ -24,7 +23,7 @@
         </li>
         <li class="nav-item ">
           <a class="nav-link" href="/admin/pending-orders">
-            <i class="material-icons">content_paste</i>
+            <i class="material-icons">event</i>
             <p>Pending Orders</p>
           </a>
         </li>
@@ -42,7 +41,7 @@
         </li>
         <li class="nav-item ">
             <a class="nav-link" href="/admin/admins">
-              <i class="material-icons">supervised_user_circle</i>
+              <i class="material-icons">how_to_reg</i>
               <p>Admins</p>
             </a>
           </li>
@@ -53,8 +52,8 @@
           </a>
         </li>
         <li class="nav-item ">
-          <a class="nav-link" href="/">
-            <i class="material-icons">person</i>
+          <a class="nav-link" href="/user/logout">
+            <i style="transform: rotate(270deg);" class="material-icons">get_app</i>
             <p>Log out</p>
           </a>
         </li>
@@ -74,8 +73,7 @@ $('#sidebarr li a').click(function() {
     $('#sidebarr li.active').removeClass('active');
     $(this).closest('li').addClass('active');
 });
-
-    </script>
+</script>
 
 <script>
   $(document).ready(function() {

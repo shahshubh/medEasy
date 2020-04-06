@@ -3,21 +3,16 @@
 
 <head>
   <title>
-    Admin Page
-  </title>
-  <!-- <link href="css\material-dashboard.css" rel="stylesheet">
-    <link href="css\search.css" rel="stylesheet"> -->
+  </title>    
     <link href="/stylesheets/css/material-dashboard.css" rel="stylesheet">
     <link href="/stylesheets/css/search.css" rel="stylesheet">
-
 
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
   <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
- 
-
 </head>
+
 <script src="/javascripts/search.js"></script>
 <body class="dark-edition">
   <div class="wrapper ">
@@ -61,16 +56,20 @@
                 <div class="card-header card-header-primary">
                   <h4 class="card-title">Admins</h4>
                 </div>
-                <div class="card-body table-responsive"style="text-align: center;">
+                <div class="card-body table-responsive">
                   <table class="table  table-striped" id="users">
-                   <thead class="text-warning">
+                  <thead class="text-warning">
+                      <th>Sr No.</th>
                       <th>ID</th>
                       <th>Name</th>
                       <th>Email</th>
                     </thead>
                     <tbody>
+                      <% var sr = 0; %>
                       <% admins.forEach(function(admin){ %>
+                      <% sr = sr+1; %>
                         <tr>
+                          <td><%= sr %></td>
                           <td><%= admin._id %></td>
                           <td><%= admin.fullname %></td>
                           <td><%= admin.email %></td>
