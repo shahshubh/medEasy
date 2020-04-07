@@ -333,142 +333,152 @@ $.getJSON("/test", addData);
 
     <!-- for graphs -->
     <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
-		<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-	
-		<script>
-			
-			$(function () {
-				var dataPoints = [];
-				var productDataPoints = [];
-				var ordersDataPoints = [];
-				
-				// CanvasJS column chart to show revenue from Jan 2015 - Dec 2015
-				var revenueColumnChart = new CanvasJS.Chart("revenue-column-chart", {
-					animationEnabled: true,
-					backgroundColor: "transparent",
-					theme: "theme2",
-					axisX: {
-						labelFontSize: 14,
-						labelFontColor: "white",
-						valueFormatString: "DD MMM YYYY"
-					},
-					axisY: {
-						labelFontSize: 14,
-						prefix: "₹",
-						labelFontColor: "white"
-					},
-					toolTip: {
-						borderThickness: 0,
-						cornerRadius: 0
-					},
-					data: [
-						{
-							type: "column",
-							yValueFormatString: "₹ ###,###.##",
-							dataPoints: dataPoints
-						}
-					]
-				});
-				
-				//CanvasJS pie chart to show product wise annual revenue for 2015
-				var productsRevenuePieChart = new CanvasJS.Chart("products-revenue-pie-chart", {
-					animationEnabled: true,
-					theme: "theme2",
-					legend: {
-						fontSize: 14
-					},
-					toolTip: {
-						borderThickness: 0,
-						content: "<span style='\"'color: {color};'\"'>{name}</span>: ₹ {y} (#percent%)",
-						cornerRadius: 0
-					},
-					data: [
-						{       
-							indexLabelFontColor: "#676464",
-							indexLabelFontSize: 14,
-							legendMarkerType: "square",
-							legendText: "{label}",
-							indexLabel: "{label}",
-							showInLegend: true,
-							startAngle:  90,
-							type: "pie",
-							dataPoints: productDataPoints
-						}
-					]
-				});
-				
-				
-				//CanvasJS spline chart to show orders from Jan 2015 to Dec 2015
-				var ordersSplineChart = new CanvasJS.Chart("orders-spline-chart", {
-					animationEnabled: true,
-					backgroundColor: "transparent",
-					theme: "theme2",
-					toolTip: {
-						borderThickness: 0,
-						cornerRadius: 0
-					},
-					axisX: {
-						labelFontSize: 14,
-						labelFontColor: "white",
-						valueFormatString: "DD MMM YYYY"
-					},
-					axisY: {
-						gridThickness: 0,
-						labelFontSize: 14,
-						lineThickness: 2,
-						labelFontColor: "white"
-					},
-					data: [
-						{
-							markerColor: "#5b005c",
-							lineColor: "#f000ff",
-							type: "bar",
-							dataPoints: ordersDataPoints
-						}
-					]
-				});
+	<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 
-				function addData(data) {
-					for (var i = 0; i < data.length; i++) {
-						dataPoints.push({
-							x: new Date(data[i]._id),
-							y: data[i].total
-						});
-					}					
-					console.log("data",dataPoints);
-					revenueColumnChart.render();
-				}
-				function addProductData(data) {
-					for (var i = 0; i < data.length; i++) {
-            if(data[i].soldQty && data[i].soldQty > 0){
-              productDataPoints.push({
-							label: data[i].title,
-							y: data[i].soldQty*data[i].price,
-							name: data[i].title
-						});
-            }
-						
+	<script>
+		$(function () {
+			$('.count').each(function () {
+				$(this).prop('Counter',0).animate({
+					Counter: $(this).text()
+				}, {
+					duration: 2000,
+					easing: 'swing',
+					step: function (now) {
+						$(this).text(Math.ceil(now));
 					}
-					console.log("productData",productDataPoints);
-					productsRevenuePieChart.render();
-				}
-
-				function addOrdersData(data) {
-					for (var i = 0; i < data.length; i++) {
-						ordersDataPoints.push({
-							x: new Date(data[i]._id),
-							y: data[i].count
-						});
-					}
-					console.log("orderData",ordersDataPoints);
-					ordersSplineChart.render();
-				}
-				$.getJSON("/test", addData);
-				$.getJSON("/test3", addProductData);
-				$.getJSON("/test4", addOrdersData);
-				
+				});
 			});
-		</script>
+			var dataPoints = [];
+			var productDataPoints = [];
+			var ordersDataPoints = [];
+			
+			// CanvasJS column chart to show revenue from Jan 2015 - Dec 2015
+			var revenueColumnChart = new CanvasJS.Chart("revenue-column-chart", {
+				animationEnabled: true,
+				backgroundColor: "transparent",
+				theme: "theme2",
+				axisX: {
+					labelFontSize: 14,
+					labelFontColor: "white",
+					valueFormatString: "DD MMM YYYY"
+				},
+				axisY: {
+					labelFontSize: 14,
+					prefix: "₹",
+					labelFontColor: "white"
+				},
+				toolTip: {
+					borderThickness: 0,
+					cornerRadius: 0
+				},
+				data: [
+					{
+						type: "column",
+						yValueFormatString: "₹ ###,###.##",
+						dataPoints: dataPoints
+					}
+				]
+			});
+			
+			//CanvasJS pie chart to show product wise annual revenue for 2015
+			var productsRevenuePieChart = new CanvasJS.Chart("products-revenue-pie-chart", {
+				animationEnabled: true,
+				theme: "theme2",
+				legend: {
+					fontSize: 14
+				},
+				toolTip: {
+					borderThickness: 0,
+					content: "<span style='\"'color: {color};'\"'>{name}</span>: ₹ {y} (#percent%)",
+					cornerRadius: 0
+				},
+				data: [
+					{       
+						indexLabelFontColor: "#676464",
+						indexLabelFontSize: 14,
+						legendMarkerType: "square",
+						legendText: "{label}",
+						indexLabel: "{label}",
+						showInLegend: true,
+						startAngle:  90,
+						type: "pie",
+						dataPoints: productDataPoints
+					}
+				]
+			});
+			
+			
+			//CanvasJS spline chart to show orders from Jan 2015 to Dec 2015
+			var ordersSplineChart = new CanvasJS.Chart("orders-spline-chart", {
+				animationEnabled: true,
+				backgroundColor: "transparent",
+				theme: "theme2",
+				toolTip: {
+					borderThickness: 0,
+					cornerRadius: 0
+				},
+				axisX: {
+					labelFontSize: 14,
+					labelFontColor: "white",
+					valueFormatString: "DD MMM YYYY"
+				},
+				axisY: {
+					gridThickness: 0,
+					labelFontSize: 14,
+					lineThickness: 2,
+					labelFontColor: "white"
+				},
+				data: [
+					{
+						markerColor: "#5b005c",
+						lineColor: "#f000ff",
+						type: "bar",
+						dataPoints: ordersDataPoints
+					}
+				]
+			});
+
+			function addData(data) {
+				for (var i = 0; i < data.length; i++) {
+					dataPoints.push({
+						x: new Date(data[i]._id),
+						y: data[i].total
+					});
+				}					
+				console.log("data",dataPoints);
+				revenueColumnChart.render();
+			}
+			function addProductData(data) {
+				for (var i = 0; i < data.length; i++) {
+		if(data[i].soldQty && data[i].soldQty > 0){
+			productDataPoints.push({
+						label: data[i].title,
+						y: data[i].soldQty*data[i].price,
+						name: data[i].title
+					});
+		}
+					
+				}
+				console.log("productData",productDataPoints);
+				productsRevenuePieChart.render();
+			}
+
+			function addOrdersData(data) {
+				for (var i = 0; i < data.length; i++) {
+					ordersDataPoints.push({
+						x: new Date(data[i]._id),
+						y: data[i].count
+					});
+				}
+				console.log("orderData",ordersDataPoints);
+				ordersSplineChart.render();
+			}
+			$.getJSON("/test", addData);
+			$.getJSON("/test3", addProductData);
+			$.getJSON("/test4", addOrdersData);
+			
+		});
+	</script>
 <!-- end for graphs -->
 
 </head>
@@ -505,7 +515,7 @@ $.getJSON("/test", addData);
                     <i class="material-icons">shopping_cart</i>
                   </div>
                   <p class="card-category">Orders</p>
-                  <h1 class="card-title"><%= orderCount %></h1>
+                  <h3 class="card-title"><span class="count"><%= orderCount %></span></h3>
                 </div>
                  <div class="card-footer">
                   <div class="stats">
@@ -521,7 +531,7 @@ $.getJSON("/test", addData);
                     <i class="material-icons">store</i>
                   </div>
                   <p class="card-category">Revenue</p>
-                  <h3 class="card-title">₹ <%= revenue%></h3>
+                  <h3 class="card-title">₹ <span class="count"><%= revenue %></span></h3>
                 </div>
                 <div class="card-footer">
                   <div class="stats">
@@ -537,7 +547,7 @@ $.getJSON("/test", addData);
                     <i class="material-icons">view_list</i>
                   </div>
                   <p class="card-category">Products</p>
-                  <h3 class="card-title"><%= productCount %></h3>
+                  <h3 class="card-title"><span class="count"><%= productCount %></span></h3>
                 </div>
                  <div class="card-footer">
                   <div class="stats">
@@ -553,7 +563,7 @@ $.getJSON("/test", addData);
                     <i class="material-icons">person</i>
                   </div>
                   <p class="card-category">Users</p>
-                  <h3 class="card-title"><%= userCount %></h3>
+                  <h3 class="card-title"><span class="count"><%= userCount %></span></h3>
                 </div>
                 <div class="card-footer">
                   <div class="stats">
