@@ -1,339 +1,34 @@
-<!--<!DOCTYPE HTML>
-<html>
-<head>
-<script>
-window.onload = function() {
-
-var dataPoints = [];
-
-var chart = new CanvasJS.Chart("chartContainer", {
-	animationEnabled: true,
-	theme: "light1",
-	title: {
-		text: "Daily Sales Data"
-    },
-    dataPointWidth: 50,
-	axisY: {
-		title: "Sales",
-		titleFontSize: 24
-	},
-	data: [{
-        type: "column",
-		yValueFormatString: "₹ #,###",
-		dataPoints: dataPoints  
-	}]
-});
-
-function addData(data) {
-	for (var i = 0; i < data.length; i++) {
-		dataPoints.push({
-			x: new Date(data[i]._id),
-			y: data[i].total
-		});
-    }
-    console.log("data",dataPoints);
-	chart.render();
-
-}
-
-$.getJSON("/test", addData);
-
-}
-</script>
-</head>
-<body>
-<div id="chartContainer" style="height: 500px; width: 100%;"></div>
-<script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
-<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-</body>
-</html>-->
-
-
-<!-- Working code by shubh -->
-<!-- <!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<meta http-equiv="x-ua-compatible" content="ie=edge">
-		
-		<title>Annual Sales - 2015</title>
-		 -->
-		<!-- Bootstrap CSS -->
-		<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-		
-		<style>
-			body {
-				background-color: #fafafa;
-				font-size: 16px;
-				line-height: 1.5;
-			}
-			
-			h1,h2,h3,h4,h5,h6 {
-				font-weight: 400;	
-			}
-			
-			#revenue-tag {
-				font-weight: inherit !important;
-				border-radius: 0px !important;
-			}
-			
-			.card {
-				border: 0rem;
-				border-radius: 0rem;
-			}
-			
-			.card-header {
-				background-color: #37474F;
-				border-radius: 0 !important;
-				color:	white;
-				margin-bottom: 0;
-				padding:	1rem;
-			}
-			
-			.card-block {
-				border: 1px solid #cccccc;	
-			}
-			
-			.shadow {
-				box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14),
-										0 1px 18px 0 rgba(0, 0, 0, 0.12),
-										0 3px 5px -1px rgba(0, 0, 0, 0.2);
-			}
-			
-			#revenue-column-chart, #products-revenue-pie-chart, #orders-spline-chart {
-				height: 300px;
-				width: 100%;
-			}			
-
-			.row{
-				margin-top: 20px;
-				margin-bottom: 20px;
-			}
-		</style>
-		
-		
-		<script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
-		<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-		<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-	
-		<script>
-			
-			$(function () {
-				var dataPoints = [];
-				var productDataPoints = [];
-				var ordersDataPoints = [];
-				
-				
-				var revenueColumnChart = new CanvasJS.Chart("revenue-column-chart", {
-					animationEnabled: true,
-					backgroundColor: "transparent",
-					theme: "theme2",
-					axisX: {
-						labelFontSize: 14,
-				
-					},
-					axisY: {
-						labelFontSize: 14,
-						prefix: "₹"
-					},
-					toolTip: {
-						borderThickness: 0,
-						cornerRadius: 0
-					},
-					data: [
-						{
-							type: "column",
-							yValueFormatString: "₹ ###,###.##",
-							dataPoints: dataPoints
-						}
-					]
-				});
-				
-				
-			
-				var productsRevenuePieChart = new CanvasJS.Chart("products-revenue-pie-chart", {
-					animationEnabled: true,
-					theme: "theme2",
-					legend: {
-						fontSize: 14
-					},
-					toolTip: {
-						borderThickness: 0,
-						content: "<span style='\"'color: {color};'\"'>{name}</span>: ₹ {y} (#percent%)",
-						cornerRadius: 0
-					},
-					data: [
-						{       
-							indexLabelFontColor: "#676464",
-							indexLabelFontSize: 14,
-							legendMarkerType: "square",
-							legendText: "{label}",
-							indexLabel: "{label}",
-							showInLegend: true,
-							startAngle:  90,
-							type: "pie",
-							dataPoints: productDataPoints
-						}
-					]
-				});
-				
-				
-		
-
-				var ordersSplineChart = new CanvasJS.Chart("orders-spline-chart", {
-					animationEnabled: true,
-					backgroundColor: "transparent",
-					theme: "theme2",
-					toolTip: {
-						borderThickness: 0,
-						cornerRadius: 0
-					},
-					axisX: {
-						labelFontSize: 14,
-
-						valueFormatString: "MMM YYYY"
-					},
-					axisY: {
-						gridThickness: 0,
-						labelFontSize: 14,
-						lineThickness: 2
-					},
-					data: [
-						{
-							type: "bar",
-							dataPoints: ordersDataPoints
-							[
-								{ x: new Date("1 Jan 2015"), y: 17376 },
-								{ x: new Date("1 Feb 2015"), y: 21431 },
-								{ x: new Date("1 Mar 2015"), y: 25724 },
-								{ x: new Date("1 Apr 2015"), y: 22138 },
-								{ x: new Date("1 May 2015"), y: 20676 },
-								{ x: new Date("1 Jun 2015"), y: 25429 },
-								{ x: new Date("1 Jul 2015"), y: 29160 },
-								{ x: new Date("1 Aug 2015"), y: 23317 },
-								{ x: new Date("1 Sep 2015"), y: 31883 },
-								{ x: new Date("1 Oct 2015"), y: 30034 },
-								{ x: new Date("1 Nov 2015"), y: 31768 },
-								{ x: new Date("1 Dec 2015"), y: 41215 }
-							]
-						}
-					]
-				});
-
-				function addData(data) {
-					for (var i = 0; i < data.length; i++) {
-						dataPoints.push({
-							x: new Date(data[i]._id),
-							y: data[i].total
-						});
-					}					
-					console.log("data",dataPoints);
-					revenueColumnChart.render();
-				}
-				function addProductData(data) {
-					for (var i = 0; i < data.length; i++) {
-						productDataPoints.push({
-							label: data[i].title,
-							y: data[i].soldQty*data[i].price,
-							name: data[i].title
-						});
-					}
-					console.log("productData",productDataPoints);
-					productsRevenuePieChart.render();
-				}
-
-				function addOrdersData(data) {
-					for (var i = 0; i < data.length; i++) {
-						ordersDataPoints.push({
-							x: new Date(data[i]._id),
-							y: data[i].count
-						});
-					}
-					console.log("orderData",ordersDataPoints);
-					ordersSplineChart.render();
-				}
-				$.getJSON("/test", addData);
-				$.getJSON("/test3", addProductData);
-				$.getJSON("/test4", addOrdersData);
-				
-			});
-		</script>
-		
-	</head>
-	<body>
-		<div class="container">
-			
-			
-			<div class="row">
-				<div class="col-md-12 col-xs-12">
-					<div class="card shadow">
-						<h4 class="card-header">Revenue <span class="tag tag-success" id="revenue-tag"></span></h4>
-						<div class="card-block">
-							<div id="revenue-column-chart"></div>
-						</div>
-					</div>
-				</div>
-			</div> row
-
-			<div class="row">
-				<div class="col-lg-6">
-					<div class="card shadow">
-						<h4 class="card-header">Product Wise Revenue</h4>
-						<div class="card-block">
-							<div id="products-revenue-pie-chart"></div>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-lg-6">
-					<div class="card shadow">
-						<h4 class="card-header">Orders</h4>
-						<div class="card-block">
-							<div id="orders-spline-chart"></div>
-						</div>
-					</div>
-				</div>
-			</div>  row
-		</div> container
-	</body>
-</html> -->
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>
-    Admin Page
-  </title>
-  <meta charset="utf-8">
+	<title>
+		MedEasy
+	</title>
+	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
-  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link href="/stylesheets/css/material-dashboard.css" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" >
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
-		<style>
-        #revenue-column-chart, #products-revenue-pie-chart, #orders-spline-chart 
-        {
-          height: 400px;
-		  width: 93%;
-		  align-content: center;
-		  background-color:transparent;
-        }			
-        .row{
-          margin-top: 20px;
-          margin-bottom: 20px;
-
-			}
-		</style>
+	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link href="/stylesheets/css/material-dashboard.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" >
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<style>
+		#revenue-column-chart, #products-revenue-pie-chart, #orders-spline-chart {
+			height: 400px;
+			width: 93%;
+			align-content: center;
+			background-color:transparent;
+		}			
+		.row{
+			margin-top: 20px;
+			margin-bottom: 20px;
+		}
+	</style>
 
     <!-- for graphs -->
     <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
 	<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</head>
 
 	<script>
 		$(function () {
@@ -351,9 +46,20 @@ $.getJSON("/test", addData);
 			var dataPoints = [];
 			var productDataPoints = [];
 			var ordersDataPoints = [];
-			
+			CanvasJS.addColorSet("customColorSet",
+                [
+					"#003f5c",
+					"#2f4b7c",
+					"#665191",
+					"#a05195",
+					"#d45087",
+					"#f95d6a",
+					"#ff7c43",
+					"#ffa600"               
+                ]);
 			// CanvasJS column chart to show revenue from Jan 2015 - Dec 2015
 			var revenueColumnChart = new CanvasJS.Chart("revenue-column-chart", {
+				colorSet: "customColorSet",
 				animationEnabled: true,
 				backgroundColor: "transparent",
 				theme: "theme2",
@@ -382,6 +88,7 @@ $.getJSON("/test", addData);
 			
 			//CanvasJS pie chart to show product wise annual revenue for 2015
 			var productsRevenuePieChart = new CanvasJS.Chart("products-revenue-pie-chart", {
+				colorSet: "customColorSet",
 				animationEnabled: true,
 				theme: "theme2",
 				legend: {
@@ -410,6 +117,7 @@ $.getJSON("/test", addData);
 			
 			//CanvasJS spline chart to show orders from Jan 2015 to Dec 2015
 			var ordersSplineChart = new CanvasJS.Chart("orders-spline-chart", {
+				colorSet: "customColorSet",
 				animationEnabled: true,
 				backgroundColor: "transparent",
 				theme: "theme2",
@@ -419,14 +127,16 @@ $.getJSON("/test", addData);
 				},
 				axisX: {
 					labelFontSize: 14,
-					labelFontColor: "white",
-					valueFormatString: "DD MMM YYYY"
+					labelFontColor: "#202040",
+					valueFormatString: "DD MMM YYYY",
+					labelFontWeight: "bold"
 				},
 				axisY: {
 					gridThickness: 0,
 					labelFontSize: 14,
 					lineThickness: 2,
-					labelFontColor: "white"
+					labelFontColor: "#202040",
+					labelFontWeight: "bold"
 				},
 				data: [
 					{
@@ -445,21 +155,20 @@ $.getJSON("/test", addData);
 						y: data[i].total
 					});
 				}					
-				console.log("data",dataPoints);
+				//console.log("data",dataPoints);
 				revenueColumnChart.render();
 			}
 			function addProductData(data) {
 				for (var i = 0; i < data.length; i++) {
-		if(data[i].soldQty && data[i].soldQty > 0){
-			productDataPoints.push({
-						label: data[i].title,
-						y: data[i].soldQty*data[i].price,
-						name: data[i].title
-					});
-		}
-					
+					if(data[i].soldQty && data[i].soldQty > 0){
+						productDataPoints.push({
+									label: data[i].title,
+									y: data[i].soldQty*data[i].price,
+									name: data[i].title
+								});
+					}
 				}
-				console.log("productData",productDataPoints);
+				//console.log("productData",productDataPoints);
 				productsRevenuePieChart.render();
 			}
 
@@ -470,18 +179,17 @@ $.getJSON("/test", addData);
 						y: data[i].count
 					});
 				}
-				console.log("orderData",ordersDataPoints);
+				//console.log("orderData",ordersDataPoints);
 				ordersSplineChart.render();
 			}
-			$.getJSON("/test", addData);
-			$.getJSON("/test3", addProductData);
-			$.getJSON("/test4", addOrdersData);
+			$.getJSON("/api/daily-sales", addData);
+			$.getJSON("/api/product-sales", addProductData);
+			$.getJSON("/api/daily-orders-count", addOrdersData);
 			
 		});
 	</script>
 <!-- end for graphs -->
 
-</head>
 
 <body class="dark-edition">
   <div class="wrapper ">

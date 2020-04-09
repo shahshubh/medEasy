@@ -22078,3 +22078,9 @@ fieldset[disabled][disabled] .dark-edition .has-error .form-control,
 }
 
 /*# sourceMappingURL=dashboard-free.css.map */
+
+
+
+#sidebarr .nav-item:hover .nav-link{
+  background: linear-gradient(60deg, #7b1fa2, #913f9e);
+}

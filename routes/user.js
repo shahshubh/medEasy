@@ -22,9 +22,6 @@ router.get('/user/order-history', isLoggedIn ,function (req, res) {
             cart = new Cart(order.cart);
             order.items = cart.generateArray();
         });
-        /*console.log("---------------orders-------------");
-        console.log(orders);
-        console.log(Object.values(orders[0].cart.items)[0]);*/
         res.render('user/my_orders', {currentUser: req.user, orders: orders});
     });
 });
@@ -34,9 +31,6 @@ router.get('/user/order-history/details/:oid', isLoggedIn ,function (req, res) {
         if(err){
             return res.write('Error !');
         }
-        /*console.log("---------------orders-------------");
-        console.log(orders);
-        console.log(Object.values(orders[0].cart.items)[0]);*/
         var products = Object.values(order.cart.items);
         res.render('user/user_order_details', {order: order, products: products});
     });

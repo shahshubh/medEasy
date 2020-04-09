@@ -25,22 +25,7 @@ function Paginator(items, page, per_page) {
   };
 }
 
-
-/* api route */ 
-router.get('/api/products',function(req,res){
-  Product.find({},function(err,allProducts){
-    if(err){
-      console.log(err);
-    }
-    else{
-      res.json(allProducts);
-    }
-  });
-});
-
-
 /* GET home page. */
-
 router.get('/', function(req, res, next) {
   var successMsg = req.flash('success')[0];
   var errorMsg = req.flash('error')[0];
@@ -56,37 +41,6 @@ router.get('/', function(req, res, next) {
     }
   });
 });
-
-
-/*router.get('/allproducts', function(req, res, next) {
-  var successMsg = req.flash('success')[0];
-  var errorMsg = req.flash('error')[0];
-  var isIcon;
-  if(successMsg==="Added to Cart"){
-    isIcon = true;
-  }
-  Product.find({},function(err, allProducts){
-    if(err){
-      console.log(err);
-    }else{
-      var result = Paginator(allProducts,req.query.page,req.query.limit)
-      res.render('shop/category_products', { products: result.data, paginationResult: result ,successMsg: successMsg, errorMsg: errorMsg ,noMessages: !successMsg, noError: !errorMsg});
-    }
-  });
-});*/
-
-/*function cat(){
-  var catg = req.params.name;
-  Product.find({category: catg},function(err, catgProducts){
-    if(err){
-      console.log(err);
-    }else{
-      return catgProducts;
-    }
-  });
-}*/
-
-
 
 router.get('/category/:name' ,(req, res) => {
   var successMsg = req.flash('success')[0];
@@ -107,39 +61,27 @@ router.get('/category/:name' ,(req, res) => {
   })
 });
 
-/*
-router.get('/category/:name', function(req, res, next) {
-  var successMsg = req.flash('success')[0];
-  var errorMsg = req.flash('error')[0];
-  var catg = req.params.name;
-  Product.find({category: catg},function(err, catgProducts){
-    if(err){
-      console.log(err);
-    }else{
-      res.render('shop/category_products', { products: catgProducts, successMsg: successMsg, errorMsg: errorMsg ,noMessages: !successMsg, noError: !errorMsg});
-    }
-  });
-});
-*/
-
-
-
-
-
-
-
-
-
-
-
 
 router.get('/developer',function(req,res){
   res.render('developers/developer');
 });
 
 
+/* ************************************************ */
 
-router.get('/test',function(req,res){
+router.get('/api/products',function(req,res){
+  Product.find({},function(err,allProducts){
+    if(err){
+      console.log(err);
+    }
+    else{
+      res.json(allProducts);
+    }
+  });
+});
+
+/* Daily Sales Data */ 
+router.get('/api/daily-sales',function(req,res){
   Order.aggregate(
     [
       {$match: {}},
@@ -150,6 +92,7 @@ router.get('/test',function(req,res){
   )
 });
 
+/*
 router.get('/test1',function(req,res){
   Order.aggregate(
     [
@@ -163,25 +106,11 @@ router.get('/test1',function(req,res){
       res.json(result);
     }
   )
-});
+});*/
 
-router.get('/test2',function(req,res){
-  Order.aggregate(
-    [
-      {$match: {}},
-      {$group: {_id: "$user",  name : { $first: '$name' },total: {$sum: "$cart.totalPrice"}}},
-      {$sort: {total: -1}},
-      {$limit: 5}
-    ], function(err,result){
-      res.json(result);
-      /*User.findById(result[0]._id,function(err,result){
-        res.json(result);
-      });*/
-    }
-  )
-});
+/* Every Product Sales Data */ 
 
-router.get('/test3',function(req,res){
+router.get('/api/product-sales',function(req,res){
   Product.aggregate(
     [
       {$match: {}},
@@ -194,20 +123,9 @@ router.get('/test3',function(req,res){
   )
 });
 
-router.get('/test5',function(req,res){
-  Order.aggregate(
-    [
-      {$match: {}},
-      {$group: {_id: '',total: {$sum: "$cart.totalPrice"}}},
-      {$project: {total: '$total' }}
-      
-    ], function(err,result){
-      res.json(result);
-    }
-  )
-});
+/* Daily Orders Data */
 
-router.get('/test4',function(req,res){
+router.get('/api/daily-orders-count',function(req,res){
   Order.aggregate(
     [
       {$match: {}},
@@ -219,41 +137,8 @@ router.get('/test4',function(req,res){
   )
 });
 
-router.get('/test6',function(req,res){
-  Product.aggregate(
-    [
-      {$match: {}},
 
-      {$sort: -1}
-      
-    ], function(err,result){
-      res.json(result);
-    }
-  )
-});
 
-/*
-router.get('/autocomplete',function(req,res,next){
-  var regex = new RegExp(req.query["term"],'i');
-  var productfilter = Product.find({title: regex},{'title': 1}).sort({"updated_at": -1}).sort({"created_at": -1}).limit(5)
-  productfilter.exec(function(err,data){
-    console.log(data);
-    var result =[];
-    if(!err){
-      if(data && data.length && data.length >0){
-        data.forEach(function(user){
-          let obj={
-            id: user._id,
-            label: user.title
-          };
-          result.push(obj);
-        })
-      }
-      res.jsonp(result);
-    }
-  })
-});
-*/
 module.exports = router;
 
 function isLoggedIn(req, res, next){

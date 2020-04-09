@@ -17,7 +17,6 @@ router.get('/add-to-cart/:id', function (req, res) {
         }
         cart.add(product, product.id);
         req.session.cart = cart;
-        //console.log(req.session.cart);
         req.flash('success', 'Added to Cart');
         res.redirect('/category/'+product.category);  
     });
@@ -55,20 +54,8 @@ router.get('/shopping-cart', function (req, res) {
     if (!req.session.cart) {
         return res.render('shop/shopping-cart', { products: null });
     }
-    let result;
-    let referer = req.get('referer');
-    let temp = "http://"+req.get('host');
-    if(referer){
-        result = referer.replace(temp, '');
-    } else {
-        result = "/"
-    }
-    console.log("CART: ",result);
-    //console.log(temp);
-    //console.log(req.get('referer'));
-    //console.log(req.get('host'));
     var cart = new Cart(req.session.cart);
-    res.render('shop/shopping-cart', { products: cart.generateArray(), totalPrice: cart.totalPrice, prevUrl: result ,errMsg: errMsg, noErrors: !errMsg});
+    res.render('shop/shopping-cart', { products: cart.generateArray(), totalPrice: cart.totalPrice,errMsg: errMsg, noErrors: !errMsg});
 });
 
 
@@ -130,12 +117,11 @@ router.post('/checkout', isLoggedIn, function (req, res) {
         req.flash('error', "Please fill out all the shipping details");
         return res.redirect('/checkout');
     }
-    if(req.body.Radio==='a')
+    if(req.body.Radio==='online')
     {
-        
         var stripe = require('stripe')('sk_test_D7997ZtAIPpJolaDEaFl4cp0007MSV4quL');
-    // `source` is obtained with Stripe.js; see https://stripe.com/docs/payments/accept-a-payment-charges#web-create-token
-    //console.log(req.body.Radio);
+        // `source` is obtained with Stripe.js; see https://stripe.com/docs/payments/accept-a-payment-charges#web-create-token
+        //console.log(req.body.Radio);
     stripe.charges.create(
         {
             amount: cart.totalPrice * 100,
@@ -165,25 +151,10 @@ router.post('/checkout', isLoggedIn, function (req, res) {
                 state: req.body.state,
                 zip: req.body.zip
             });
-            //console.log(cart);
-            //console.log("ORDER: ", order);
             Object.values(cart.items).forEach(function(product){
                 let prevQty = product.item.qty;
                 let newQty = prevQty-product.qty; 
-
-//UPDATE QTY in database
-
-/*
-    const getId = (id) => {
-        if(id){
-            if(id.length !== 24){
-                return id;
-            }
-        }
-        return ObjectId(id);
-    };
-*/
-    //db.orders.findOne({ _id: getId(req.params.id) })
+                //UPDATE QTY in database
                 Product.findOneAndUpdate({"_id": ObjectId(`${product.item._id}`)},{$set: {"qty": newQty}},function(err,data){
                     if(err){
                         console.log(err);
@@ -204,17 +175,17 @@ router.post('/checkout', isLoggedIn, function (req, res) {
                 to: req.user.email,
                 subject: 'MedEasy',
                 text: '',
-                html: `<h2>Successfully recieved your order ${order.user.fullname}</h2>
-        <br>
-        Your order quantity: <b>${cart.totalQty}</b>
-        <br>
-        Your order price: <b>₹ ${cart.totalPrice}</b>
-        <p>You can view you order details in order history under your account</p>
-        <hr>
-        <b>
-        <h3>Thank you for ordering with MedEasy!</h3>
-        <h4>Get Well Soon !!</h4>
-        </b>`
+                html: ` <h2>Successfully recieved your order ${order.user.fullname}</h2>
+                        <br>
+                        Your order quantity: <b>${cart.totalQty}</b>
+                        <br>
+                        Your order price: <b>₹ ${cart.totalPrice}</b>
+                        <p>You can view you order details in order history under your account</p>
+                        <hr>
+                        <b>
+                        <h3>Thank you for ordering with MedEasy!</h3>
+                        <h4>Get Well Soon !!</h4>
+                        </b>`
             };
 
             transporter.sendMail(mailOptions, function (err, data) {
@@ -229,13 +200,13 @@ router.post('/checkout', isLoggedIn, function (req, res) {
 
 
             order.save(function (err, result) {
-                req.flash('success', 'Sucessfully bought the product');
+                req.flash('success', 'Order Placed Succesfully.');
                 req.session.cart = null;
                 res.redirect('/');
             });
         });
     }
-    else if(req.body.Radio==='b')
+    else if(req.body.Radio==='b') /* Cash On Delivery */
     {
         var date = new Date();
         date.setHours(0,0,0,0);
@@ -252,8 +223,6 @@ router.post('/checkout', isLoggedIn, function (req, res) {
             state: req.body.state,
             zip: req.body.zip
         });
-        //console.log(cart);
-        //console.log("ORDER: ", order);
         Object.values(cart.items).forEach(function(product){
             let prevQty = product.item.qty;
             let newQty = prevQty-product.qty; 
@@ -303,21 +272,17 @@ router.post('/checkout', isLoggedIn, function (req, res) {
             }
         });
         order.save(function (err, result) {
-            req.flash('success', 'Sucessfully bought the product');
+            req.flash('success', 'Order Placed Succesfully.');
             req.session.cart = null;
             res.redirect('/');
         });
     }
     else{
-        console.log("NOTHING");
         res.redirect('/');
-
     }
 });
 
 module.exports = router;
-
-
 
 //MIDDLEWARE
 function isLoggedIn(req, res, next) {

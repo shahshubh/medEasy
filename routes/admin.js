@@ -55,8 +55,7 @@ router.get('/admin',isLoggedIn,isAdmin,function(req,res){
 });
 
 
-
-router.get("/admin/store",function(req,res){
+router.get("/admin/store", isLoggedIn, isAdmin, function(req,res){
     var successMsg = req.flash('success')[0];
     Product.find({}, function(err,foundProduct){
         if(err){
@@ -67,8 +66,13 @@ router.get("/admin/store",function(req,res){
     })
 });
 
+router.get('/admin/store/new', isLoggedIn, isAdmin, function(req,res){
+    var errMsg = req.flash('error')[0];
+    res.render("admin/new", {errMsg: errMsg, noMessages: !errMsg });
+}); 
+
 //CREATE
-router.post('/admin/store',function(req,res){
+router.post('/admin/store', isLoggedIn, isAdmin, function(req,res){
     var title = req.body.title; 
     var brand = req.body.brand; 
     var mfgDate = req.body.mfgDate; 
@@ -83,8 +87,8 @@ router.post('/admin/store',function(req,res){
     var composition = req.body.composition; 
     var desc = req.body.description; 
     var precautions = req.body.precautions; 
-
     var category = req.body.select;
+
     var newProduct = {
         title: title, 
         brand: brand, 
@@ -107,7 +111,7 @@ router.post('/admin/store',function(req,res){
             req.flash('error', 'Please fill all the fields'); 
             res.redirect("/admin/store/new");
     } else {
-    //create new cmpground and save to db
+        //create new cmpground and save to db
         Product.create(newProduct,  function(err, newlyCreated){
             if(err){
                 console.log(err);
@@ -121,12 +125,9 @@ router.post('/admin/store',function(req,res){
     }
 });
 
-router.get('/admin/store/new',function(req,res){
-    var errMsg = req.flash('error')[0];
-    res.render("admin/new", {errMsg: errMsg, noMessages: !errMsg });
-}); 
 
-router.get("/admin/store/:category",function(req,res){
+
+router.get("/admin/store/:category", isLoggedIn, isAdmin, function(req,res){
     var successMsg = req.flash('success')[0];
     var cat = req.params.category;
     Product.find({category: cat}, function(err,foundProducts){
@@ -139,10 +140,7 @@ router.get("/admin/store/:category",function(req,res){
 });
 
 
-
-
-
-router.get('/admin/orders', function(req,res){
+router.get('/admin/orders', isLoggedIn, isAdmin, function(req,res){
     Order.find({}, function(err,allOrder){
         if(err){
             console.log(err);
@@ -152,7 +150,19 @@ router.get('/admin/orders', function(req,res){
     })
 });
 
-router.get('/admin/pending-orders', function(req,res){
+
+router.get('/admin/order-details/:id',isLoggedIn, isAdmin, function(req,res){
+    Order.findById(req.params.id, function(err, foundOrder){
+        if(err){
+            console.log(err);
+        } else {
+            res.render('admin/order_list',{order: foundOrder});
+        }
+    });
+});
+
+
+router.get('/admin/pending-orders',isLoggedIn, isAdmin, function(req,res){
     var successMsg = req.flash('success')[0];
     Order.find({isDelivered: false}, function(err,allOrder){
         if(err){
@@ -163,7 +173,7 @@ router.get('/admin/pending-orders', function(req,res){
     });
 });
 
-router.put('/admin/orders/status/:id/confirmed', function(req,res){
+router.put('/admin/orders/status/:id/confirmed',isLoggedIn, isAdmin, function(req,res){
     var orderId = req.params.id;
     Order.findByIdAndUpdate(orderId, {isConfirmed: true}, function(err,order){
         if(err){
@@ -175,7 +185,7 @@ router.put('/admin/orders/status/:id/confirmed', function(req,res){
     });
 });
 
-router.put('/admin/orders/status/:id/delivered', function(req,res){
+router.put('/admin/orders/status/:id/delivered',isLoggedIn, isAdmin, function(req,res){
     var orderId = req.params.id;
     Order.findByIdAndUpdate(orderId, {isDelivered: true}, function(err,order){
         if(err){
@@ -189,7 +199,7 @@ router.put('/admin/orders/status/:id/delivered', function(req,res){
 
 
 
-router.get('/admin/users', function(req,res){
+router.get('/admin/users',isLoggedIn, isAdmin, function(req,res){
     User.find({isSeller: 'false'}, function(err,allUser){
         if(err){
             console.log(err);
@@ -199,7 +209,7 @@ router.get('/admin/users', function(req,res){
     })
 });
 
-router.get('/admin/admins', function(req,res){
+router.get('/admin/admins',isLoggedIn, isAdmin, function(req,res){
     User.find({isSeller: 'true'}, function(err,allAdmin){
         if(err){
             console.log(err);
@@ -209,43 +219,13 @@ router.get('/admin/admins', function(req,res){
     })
 });
 
-router.get('/admin/order-details/:id', function(req,res){
-    Order.findById(req.params.id, function(err, foundOrder){
-        if(err){
-            console.log(err);
-        } else {
-            res.render('admin/order_list',{order: foundOrder});
-        }
-    });
-});
-router.get('/admin/map', function(req,res){
+router.get('/admin/map',isLoggedIn, isAdmin, function(req,res){
     res.render('admin/map');
 });
 
 
 
-
-
-
-
-/*
-router.get('/admin/products',isLoggedIn,isAdmin,function(req,res){
-    var successMsg = req.flash('success')[0];
-    Product.find({},function(err, allProducts){
-        if(err){
-            console.log(err);
-        }else{
-            res.render('admin/index', { products: allProducts, successMsg: successMsg, noMessages: !successMsg });
-        }
-    });
-    
-});
-*/
-
-
-
 //EDIT 
-
 router.get("/admin/store/:id/edit", isLoggedIn,isAdmin, function(req,res){  
     var errMsg = req.flash('error')[0];
     Product.findById(req.params.id, function(err, foundProduct){
@@ -312,7 +292,6 @@ router.put("/admin/store/:id", isLoggedIn, isAdmin, function(req,res){
         }   
     
 });
-
 
 
 //Destroy Route

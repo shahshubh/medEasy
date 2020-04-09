@@ -9,7 +9,7 @@
     </div>
     <div class="sidebar-wrapper">
       <ul class="nav" id="sidebarr">
-        <li class="nav-item active" id="dashboard">
+        <li class="nav-item" id="dashboard">
           <a class="nav-link" href="/admin">
             <i class="material-icons">dashboard</i>
             <p>Dashboard</p>
@@ -61,20 +61,6 @@
     </div>
   </div>
 
-  <script>
-//     $('#dashboard').addClass('active');
-//     $('#sidebarr li a').on('click', function (e) {
-//     e.preventDefault();
-//     $('#sidebarr li a.active').removeClass('active');
-//     $(this).addClass('active');
-// });
-
-$('#sidebarr li a').click(function() {
-    $('#sidebarr li.active').removeClass('active');
-    $(this).closest('li').addClass('active');
-});
-</script>
-
 <script>
   $(document).ready(function() {
 
@@ -84,6 +70,5 @@ $('#sidebarr li a').click(function() {
             window.location = href;
         }
     });
-
 });
 </script>

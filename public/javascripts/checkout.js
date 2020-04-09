@@ -1,5 +1,5 @@
 $('input:radio[name=Radio]').change(function(){
-    if($(this).attr("value")==="a")
+    if($(this).attr("value")==="online")
     {
         Stripe.setPublishableKey('pk_test_fBeLxHDvJLkK0dMf0YWuHNgD00gdx9fJFY');
         var $form = $('#checkout-form');
@@ -33,10 +33,12 @@ $('input:radio[name=Radio]').change(function(){
 var pay=document.querySelector("#pay");
 $('input[type=radio]').click(function()
 {
-    if($('input[value=a]').prop("checked")) {
+    if($('input[value=online]').prop("checked")) {
+        alert("heelo");
         pay.classList.remove("not_selected");
 
     }else if($('input[value=b]').prop("checked")){
+        alert("asjsj");
         pay.classList.add("not_selected");
     }
 });

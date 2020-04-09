@@ -4,11 +4,7 @@
 <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script> -->
 
 <% include ../partials/header %>
-<!-- <style>
-    .cart-div{
-        margin-top: 50px;
-    }
-</style> -->
+
 <% if(!products || totalPrice==0){ %>
     <div class="container con1 payment wrapper" style="height:45%">
         <div class="row justify-content-center">
@@ -47,7 +43,7 @@
                             <div class="media-body">
                                 <h4 class="media-heading"><a href="/products/<%= product.item._id %>"><%= product.item.title %></a></h4>
                                 <h5 class="media-heading"><i>
-                                     <%= product.item.brand %></i></h5>
+                                        <%= product.item.brand %></i></h5>
                                 <span>Status: </span><span class="text-success"><strong>In Stock</strong></span>
                             </div>
                         </div></td>
@@ -79,7 +75,6 @@
                         <td></td>
                         <td></td>
                         <td>
-                            <!--<a href="<%= prevUrl %>">-->
                             <a href="/">
                                 <button type="button" style="white-space: nowrap;" class="btn btn-primary">Continue Shopping</button>
                             </a>
