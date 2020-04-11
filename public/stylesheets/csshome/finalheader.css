@@ -101,9 +101,9 @@
     }
 
     .searchbar:hover > .search_input{
-    width: 200px;
+    width: 400px;
     caret-color:black;
-    transition: width 0.5s linear;
+    transition: width 0.4s linear;
     vertical-align: middle;
     }
 
@@ -123,8 +123,4 @@
     border-radius: 50%;
     color: #7952b3;
     text-decoration:none;
-    }
-    .search_icon:hover{
-        color:black;
-        font-size: 30px;
     }

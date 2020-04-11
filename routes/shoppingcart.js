@@ -18,7 +18,8 @@ router.get('/add-to-cart/:id', function (req, res) {
         cart.add(product, product.id);
         req.session.cart = cart;
         req.flash('success', 'Added to Cart');
-        res.redirect('/category/'+product.category);  
+        res.redirect("back");
+        //res.redirect('/category/'+product.category);  
     });
 });
 

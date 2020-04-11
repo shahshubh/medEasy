@@ -42,6 +42,25 @@ router.get('/', function(req, res, next) {
   });
 });
 
+router.get('/category/allproducts' ,(req, res) => {
+  var successMsg = req.flash('success')[0];
+  var errorMsg = req.flash('error')[0];
+  var isIcon;
+  if(successMsg==="Added to Cart"){
+    isIcon = true;
+  }
+  var catg = "All products";
+  Product.find({}, function(err, foundProducts){
+    if(err){
+      console.log(err);
+    } else {
+      console.log("Found: ",foundProducts);
+      var result = Paginator(foundProducts,req.query.page,req.query.limit);
+      res.render('shop/all-products', { products: result.data, paginationResult: result ,category: catg ,successMsg: successMsg, errorMsg: errorMsg ,noMessages: !successMsg, noError: !errorMsg, isIcon: isIcon});
+    }
+  })
+});
+
 router.get('/category/:name' ,(req, res) => {
   var successMsg = req.flash('success')[0];
   var errorMsg = req.flash('error')[0];
@@ -55,11 +74,13 @@ router.get('/category/:name' ,(req, res) => {
       console.log(err);
     } else {
       var result = Paginator(foundProducts,req.query.page,req.query.limit);
-      console.log(result);
-      res.render('shop/category_products', { products: result.data, paginationResult: result ,successMsg: successMsg, errorMsg: errorMsg ,noMessages: !successMsg, noError: !errorMsg, isIcon: isIcon});
+      //console.log(result);
+      res.render('shop/category_products', { products: result.data, paginationResult: result ,category: catg ,successMsg: successMsg, errorMsg: errorMsg ,noMessages: !successMsg, noError: !errorMsg, isIcon: isIcon});
     }
   })
 });
+
+
 
 
 router.get('/developer',function(req,res){

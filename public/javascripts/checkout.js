@@ -22,7 +22,6 @@ $('input:radio[name=Radio]').change(function(){
                 $form.find('button').prop('disabled', false);
             } else {
                 var token = response.id;
-                console.log(token);
                 $form.append($('<input type="hidden" name="stripeToken" />').val(token));
                 $form.get(0).submit();
             }
@@ -34,11 +33,9 @@ var pay=document.querySelector("#pay");
 $('input[type=radio]').click(function()
 {
     if($('input[value=online]').prop("checked")) {
-        alert("heelo");
         pay.classList.remove("not_selected");
 
     }else if($('input[value=b]').prop("checked")){
-        alert("asjsj");
         pay.classList.add("not_selected");
     }
 });

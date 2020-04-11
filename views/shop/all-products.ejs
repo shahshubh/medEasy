@@ -52,17 +52,17 @@
                     <ul class="pagination">
                         <% if(paginationResult.prev_page){ %>
                             <li class="page-item">
-                                <a class="page-link" href="/category/<%= products[0].category %>?page=<%= paginationResult.prev_page %>" tabindex="-1">Previous</a>
+                                <a class="page-link" href="/category/allproducts?page=<%= paginationResult.prev_page %>" tabindex="-1">Previous</a>
                             </li>
                         <% } %>
                             
                         <% for(var i=1; i <= paginationResult.total_pages; i++){ %>
-                            <li class="page-item"><a class="page-link" href="/category/<%= products[0].category %>?page=<%= i %>"><%= i %></a></li>
+                            <li class="page-item"><a class="page-link" href="/category/allproducts?page=<%= i %>"><%= i %></a></li>
                         <% } %>
                             
                         <% if(paginationResult.next_page){ %>
                             <li class="page-item">
-                                <a class="page-link" href="/category/<%= products[0].category %>?page=<%= paginationResult.next_page %>" tabindex="-1">Next</a>
+                                <a class="page-link" href="/category/allproducts?page=<%= paginationResult.next_page %>" tabindex="-1">Next</a>
                             </li>
                         <% } %>
                     </ul>
