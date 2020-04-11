@@ -6,8 +6,6 @@
     "start": "node app.js"
   },
   "dependencies": {
-    "admin-bro": "^1.6.6",
-    "admin-bro-expressjs": "^0.4.0",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.19.0",
     "connect-flash": "^0.1.1",
@@ -27,6 +25,7 @@
     "minimist": "^1.2.5",
     "mongoose": "^5.8.7",
     "morgan": "~1.9.1",
+    "node-fetch": "^2.6.0",
     "nodemailer": "^6.4.2",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",

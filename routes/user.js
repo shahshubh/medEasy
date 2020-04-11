@@ -49,7 +49,7 @@ router.get('/user/signup', function (req, res) {
 router.post('/user/signup', passport.authenticate('local.signup', {
     failureRedirect: '/user/signup',
     failureFlash: true
-}), function(req,res){
+}),function(req,res){
     if(req.session.oldUrl){
         var oldUrl = req.session.oldUrl;
         req.session.oldUrl = null;

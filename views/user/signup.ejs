@@ -8,7 +8,8 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Main CSS-->
-    <link href="/stylesheets/css/main.css" rel="stylesheet" media="all">
+    <link href="/stylesheets/css/main.css" rel="stylesheet" media="all">    
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 
 <div class="page-wrapper bg-gra-01 p-t-180 p-b-100 font-poppins">
@@ -29,17 +30,6 @@
                     <div class="input-group">
                         <input class="input--style-3" type="text" id="fullname" placeholder="Full Name *" name="fullname">
                     </div>
-                    <!--<div class="input-group">
-                        <div class="rs-select2 js-select-simple select--no-search">
-                            <select name="gender">
-                                <option disabled="disabled" selected="selected">Gender</option>
-                                <option>Male</option>
-                                <option>Female</option>
-                                <option>Other</option>
-                            </select>
-                            <div class="select-dropdown"></div>
-                        </div>
-                    </div>-->
                     <div class="input-group">
                         <input class="input--style-3" type="email" id="email" placeholder="Email *" name="email">
                     </div>
@@ -48,6 +38,9 @@
                     </div>
                     <div class="input-group">
                         <input class="input--style-3" type="password" class="checkbox" name="isseller" placeholder="Admin Code">
+                    </div>
+                    <div class="input-group">
+                        <div class="g-recaptcha" data-sitekey="6LfnnOgUAAAAADaVfpmRaZqqz0itXY8110IXTMjz"></div>
                     </div>
                     <div class="p-t-10">
                         <button class="btn btn--pill btn--green" type="submit">Submit</button>
