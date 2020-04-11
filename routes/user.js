@@ -43,7 +43,8 @@ router.get('/user/logout', function(req, res, next){
 
 router.get('/user/signup', function (req, res) {
     var messages = req.flash('error');
-    res.render('user/signup', { /*csrfToken: req.csrfToken(),*/ messages: messages, hasError: messages.length > 0 });
+    var siteKey = process.env.CAPTCHASITEKEY;
+    res.render('user/signup', { /*csrfToken: req.csrfToken(),*/ messages: messages, hasError: messages.length > 0, siteKey: siteKey });
 });
 
 router.post('/user/signup', passport.authenticate('local.signup', {

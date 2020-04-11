@@ -31,7 +31,7 @@ passport.use('local.signup', new LocalStrategy({
 
         /* Google recaptcha v2 */
         let captcha = Object.values(req.body)[4];
-        const secretKey = '6LfnnOgUAAAAAKqQYVVTGOCtaD7gGVd2Y3cnsW5N';
+        const secretKey = process.env.CAPTCHASECRETKEY;
         if(captcha === undefined || captcha==='' || captcha === null){
             return done(null, false, {message: 'Please select captcha'});
         }
