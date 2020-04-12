@@ -203,13 +203,46 @@
             }
             outputHtml(matches);
         };
-        //show result in html
-        const outputHtml = matches =>{
+   //show result in html
+   const outputHtml = matches =>{
             if(matches.length>0){
                 const html = matches.slice(0,4).map(match => `
-                    <div style="margin: 0;" class="card card-body">
-                        <a href="/products/${match._id}">
-                        <h5><img src="${match.image}" style="width:40px;height:40px">${match.title}-${match.tablets}</h5></a>
+                
+                    <div style="margin: 0;text-decoration:none" class="card card-body">
+                        <a href="/products/${match._id}" style="color:"black" class="dropp">
+                            <div class="container itemm">
+                                <div class="row" style="width:100%">
+                                    <div class="col-sm-3">
+                                        <img src="${match.image}" style="width:40px;height:40px">
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                           <h4>${match.title}</h4> 
+                                           <div class="prdct-details">
+                                             <br>
+                                            ${match.category} 
+                                            <br>
+                                            <i>${match.brand}</i>
+                                            </div>
+                                    </div>
+
+                                    <div class="col-sm-3 rightt">
+                                        
+                                           <b> ₹ ${match.price}</b> 
+                                             <br>
+                                             <br>
+                                             
+                                                <button type="button" >    
+                                                    <i class="fa fa-cart-plus" aria-hidden="true" style="font-size: larger;"></i>
+                                                </button>
+                                           
+                                   
+                                    </div>
+                                    
+                                </div>
+                            </div>
+
+                         </a>
                     </div>
                 `).join('');
                 matchList.innerHTML = html;

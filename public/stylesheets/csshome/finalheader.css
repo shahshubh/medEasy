@@ -63,7 +63,29 @@
 
 
 /* search */
+.dropp
+{
+  color:rgb(0, 0, 0);
+} 
+.rightt
+{
+  color:#7952b3;
+} 
 
+.dropp:hover{
+  text-decoration: none;
+  color:rgb(0, 0, 0);
+
+}
+.prdct-detail
+{
+  color:rgb(81, 85, 81);
+}
+.itemm:hover
+{
+  background-color: rgb(209, 209, 209);
+  text-decoration: none;
+}
   
 .searchbar{
     margin-left:27px;
