@@ -80,14 +80,16 @@ router.get('/checkout', isLoggedIn, function (req, res) {
     }
     var cart = new Cart(req.session.cart);
     var flag = 0;
-    Object.values(cart.items).forEach(function(product){
-        if(product.qty>product.item.qty){
+    var cartItems =  Object.values(cart.items);
+    for(var i=0; i<cartItems.length; i++){
+        if(cartItems[i].qty>cartItems[i].item.qty){
             flag = 1;
-            return false;
+            break;
         } 
-    });
+    };
     if(flag === 1){
-        req.flash('error','Some items in your cart are out of stock ! Please remove some items. ');
+        var outOfStockProduct = cartItems[i].item.title;
+        req.flash('error',`Product - '${outOfStockProduct}' is out of stock. Please decrease its quantity. `);
         res.redirect('/shopping-cart');
     } else {
         Order.find({user: req.user} ,function(err,result){
