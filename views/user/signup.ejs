@@ -21,7 +21,7 @@
                 <% }) %>
             </div>
         <% } %>
-        <div class="card card-3">
+        <div data-aos="zoom-in" class="card card-3">
             <div class="card-heading">
             </div>
             <div class="card-body">
@@ -54,49 +54,10 @@
     </div>
 </div>
 
-
-
-        <!--<h1>Sign Up</h1>
-        <form name="myform" action="/user/signup" method="POST" onsubmit="return validate()">
-            <div class="form-group">
-                <label for="email">E-mail</label>
-                <input type="text" id="email" name="email" class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" class="form-control">
-            </div>
-            <div class="form-group">
-                <input type="checkbox" class="checkbox" name="isseller">Be a seller
-            </div>-->
-            <!-- <input type="hidden" name="_csrf" value="ejstags  csrfToken"> -->
-            <!--<button type="submit" class="btn btn-primary signup-btn">Sign Up</button>
-        </form>
-    </div>
-</div>
-
+<script src="/javascripts/aos.js"></script> 
 <script>
-var btn = document.querySelector('.signup-btn')
-btn.onclick=function(){
-if(document.querySelector('.checkbox').checked){
-alert("HEllo");
-}
-}
-function validate(){
-    var x=document.myform.email.value;  
-    var y=document.myform.password.value;  
-    var apos=x.indexOf("@");  
-    var dotpos=x.lastIndexOf(".");  
-    if (apos<1 || dotpos<apos+2 || dotpos+2>=x.length ){  
-        alert("Please enter a valid e-mail address");  
-        return false;  
-    }
-}
+    AOS.init();
 </script>
--->
-
-
-
 
 
 

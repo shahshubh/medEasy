@@ -3,7 +3,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 <% include ../partials/header %>
-<div class="container con1 payment wrapper" >
+<div  data-aos="zoom-in" class="container con1 payment wrapper" >
   <div class="payment-logo">
     <p>O</p>
   </div>
@@ -30,7 +30,7 @@
                     </thead>
                     <tbody class="align-middle" style="font-weight:500;font-size:17px;vertical-align:center">
                       <% orders.forEach(function(order){ %>
-                        <tr>
+                        <tr data-aos="fade-up">
                           <th><%= order._id %></th>
                           <% 
                             var d = order.purchaseDate;
@@ -65,7 +65,10 @@
   </div>
 </div>
   
-
+<script src="/javascripts/aos.js"></script> 
+<script>
+    AOS.init();
+</script>
 
 </body>
 </html>

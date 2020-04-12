@@ -21,7 +21,7 @@
         <hr class="line_hr">
         <div class="row">
             <% products.forEach(function(product){ %>
-                <div class="col-sm-12 col-md-4 col-lg-4">
+                <div data-aos="zoom-in" class="col-sm-12 col-md-4 col-lg-4">
                     <div class="card mb-3">
                         <div class="container con1">
                             <img class="card-img-top" src="<%= product.image %>" alt="Card image cap">
@@ -68,6 +68,10 @@
                     </ul>
                 </nav>
             </div>
+<script src="/javascripts/aos.js"></script> 
+<script>
+    AOS.init();
+</script>
 <% include ../partials/footer %>
 
 
