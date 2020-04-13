@@ -38,7 +38,7 @@
 
     <!-- header start -->
     <!--Navbar-->
-   <nav class="navbar navbar-expand-xl navbar-dark flex-column flex-md-row bd-navbar headd" >
+   <nav class="navbar navbar-expand-xl navbar-dark flex-column flex-md-row bd-navbar headd fixed-top" >
         <div class="container con_head" style="max-width:100%">
         <div class="navbar-header ">
         <!-- Navbar brand -->
@@ -63,8 +63,12 @@
                         <div class="d-flex h-100">
                             <div class="searchbar">
                                 <input class="search_input" type="text" id="searchName" placeholder="search...">
-                                <a href="#" class="search_icon"><i class="fa fa-search"></i></a>
-                                <div id="match-list"></div>
+                                <!-- <a href="#" class="search_icon"><i class="fa fa-search"></i></a> -->
+                                
+                                    <a href="#" onclick="myFun()" class="search_icon"><i class="fa fa-search"></i></a>
+                            
+                                <div class="match_list" id="match-list">   
+                                </div>
                             </div>
                         </div>
                     </li>
@@ -106,6 +110,83 @@
         
 </nav>
 
+    <!-- <button type="button" class="close" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button> -->
+      <script>
+        function myFun() {
+          var x = document.getElementById("match-list");
+          if (x.style.display === "none") {
+            x.style.display = "block";
+          } else {
+            x.style.display = "none";
+          }
+        }
+        </script>
+      <script>
+        const search = document.getElementById('searchName');
+        const matchList = document.getElementById('match-list');
+    
+        const searchProducts = async searchText => {
+            const res = await fetch('/api/products');
+            const products = await res.json();
+            //Get match to input
+            let matches = products.filter(product => {
+                const regex = new RegExp(`${searchText}`,'gi');
+                console.log("Searchtext "+searchText);
+                let tagsArray = product._tags.join(" ");
+                console.log("tagsArray "+tagsArray);
+                return  product.title.match(regex) || tagsArray.match(regex);
+            });
+            console.log("Matches: ",matches);
+            if(searchText.length === 0 || matches.length === 0){
+                matches=[];
+                matchList.innerHTML ="";
+            }
+            outputHtml(matches);
+        };
+   //show result in html
+   const outputHtml = matches =>{
+       
+            if(matches.length>0){
+                const html = matches.slice(0,20).map(match => `
+                
+                    <div class="card card-body dropdown-content"style="  padding-left: 0.5em; padding-right: 0.25em;">                   
+                        <div class="container itemm"> 
+                            <div class="row" style="width:100%;">
+                                <div class="col-sm-2" style="text-align:center;padding:0">
+                                    <img src="${match.image}" class="center">
+                                </div>
+                                <div class="col-sm-7">
+                                    <a href="/products/${match._id}" style="color:"black font-size:18px;font-weight:200" class="dropp"> 
+                                        ${match.title}
+                                        <div class="prdct-details" style="font-size:15px;color:rgba(21,27,57,0.6);">                                           
+                                            <i>${match._tags}</i>
+                                            <br>
+                                            <label style="color:black;background-color: rgb(203, 200, 240);padding-left:7px;padding-right:7px;">${match.brand}</label>
+                                        </div>
+                                    </a>
+                                </div>
+                                
+                                <div class="col-sm-3 rightt">
+                                    <div class="prdct-price">₹ ${match.price}</div>
+                                    
+                                        <a href="/add-to-cart/${match._id}"> 
+                                            <button type="button" class="pulse">    
+                                                <i class="fa fa-cart-plus" aria-hidden="true"></i>
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+                matchList.innerHTML = html;
+            }
+        }
+        search.addEventListener('input',() => searchProducts(search.value))
+    </script>
 
 <!--
 <!DOCTYPE html>
@@ -176,80 +257,7 @@
     </nav>
 -->
 
-    <!--<div class="nav nav-bar navbar-left">
-        <input type="text" id="searchName" placeholder="Search..">
-    </div>
-    <div id="match-list"></div>-->
-
-    <script>
-        const search = document.getElementById('searchName');
-        const matchList = document.getElementById('match-list');
     
-        const searchProducts = async searchText => {
-            const res = await fetch('/api/products');
-            const products = await res.json();
-            //Get match to input
-            let matches = products.filter(product => {
-                const regex = new RegExp(`${searchText}`,'gi');
-                console.log("Searchtext "+searchText);
-                let tagsArray = product._tags.join(" ");
-                console.log("tagsArray "+tagsArray);
-                return  product.title.match(regex) || tagsArray.match(regex);
-            });
-            console.log("Matches: ",matches);
-            if(searchText.length === 0 || matches.length === 0){
-                matches=[];
-                matchList.innerHTML ="";
-            }
-            outputHtml(matches);
-        };
-   //show result in html
-   const outputHtml = matches =>{
-            if(matches.length>0){
-                const html = matches.slice(0,4).map(match => `
-                
-                    <div style="margin: 0;text-decoration:none" class="card card-body">
-                        <a href="/products/${match._id}" style="color:"black" class="dropp">
-                            <div class="container itemm">
-                                <div class="row" style="width:100%">
-                                    <div class="col-sm-3">
-                                        <img src="${match.image}" style="width:40px;height:40px">
-                                    </div>
-
-                                    <div class="col-sm-6">
-                                           <h4>${match.title}</h4> 
-                                           <div class="prdct-details">
-                                             <br>
-                                            ${match.category} 
-                                            <br>
-                                            <i>${match.brand}</i>
-                                            </div>
-                                    </div>
-
-                                    <div class="col-sm-3 rightt">
-                                        
-                                           <b> ₹ ${match.price}</b> 
-                                             <br>
-                                             <br>
-                                             
-                                                <button type="button" >    
-                                                    <i class="fa fa-cart-plus" aria-hidden="true" style="font-size: larger;"></i>
-                                                </button>
-                                           
-                                   
-                                    </div>
-                                    
-                                </div>
-                            </div>
-
-                         </a>
-                    </div>
-                `).join('');
-                matchList.innerHTML = html;
-            }
-        }
-        search.addEventListener('input',() => searchProducts(search.value))
-    </script>
 
 
 <!--

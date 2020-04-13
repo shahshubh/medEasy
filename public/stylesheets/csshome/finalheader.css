@@ -62,14 +62,84 @@
     }
 
 
+    
+
+
 /* search */
+
+
+.pulse{
+  background: none;
+  border: 2px solid;
+  font: inherit;
+  font-weight: 200;
+  line-height: 1;
+  margin: 0.5em;
+  padding: .25em .25em;
+  color: #563d7c;
+  transition: 0.25s;
+
+} 
+.pulse:focus {
+  animation: pulse 1s;
+  border-color: #563d7c;
+  color: #7952b3;
+  box-shadow: 0 0 0 2em rgba(#fff,0);
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 var(--hover); }
+}
+
+.offset {  
+  box-shadow: 
+    0.3em 0.3em 0 0 var(--color),
+    inset 0.3em 0.3em 0 0 var(--color);
+
+}
+
+.offst:hover,.offset:focus
+{
+  box-shadow: 
+      0 0 0 0 var(--hover),
+      inset 6em 3.5em 0 0 var(--hover);
+}
+
+.center {
+  width: 50px;
+  height: 50px;
+}
+
+body::-webkit-scrollbar {
+  width: 10px;               /* width of the entire scrollbar */
+}
+
+body::-webkit-scrollbar-track {
+  background: #efe8f8;        /* color of the tracking area */
+}
+body::-webkit-scrollbar-thumb {
+  background-color:#9b939e ; /* color of the scroll thumb */
+  border-radius: 20px;       /* roundness of the scroll thumb */
+  /* border: 2.5px solid #6f00ca ; creates padding around scroll thumb */
+}
+/* 
+.search_input:focus+div#match-list{
+  display:block;
+} */
+
+.match_list {
+  height: 328px;
+  overflow-y:auto;
+  
+}
 .dropp
 {
   color:rgb(0, 0, 0);
+  font-size: 18px;
 } 
 .rightt
 {
-  color:#7952b3;
+  color:black;
 } 
 
 .dropp:hover{
@@ -80,10 +150,38 @@
 .prdct-detail
 {
   color:rgb(81, 85, 81);
+  font-size: 15px;
+}
+.prdct-brand
+{
+  background-color: rgb(203, 200, 240);
+}
+.prdct-price
+{
+  color: rgb(201, 27, 62);
+  font-size: 17px;
+  font-weight: 700;
+}
+.itemm{
+  max-width:100%;
+  max-height:100%;
+  margin-bottom:-20px;
+  margin-top:-20px ;
+  padding-right: 0px;
+   padding-left: 0px;
+
 }
 .itemm:hover
 {
-  background-color: rgb(209, 209, 209);
+  text-decoration: none;
+}
+.dropdown-content{
+  padding-left: 0.5em;
+  padding-right: 0.25em;
+}
+.dropdown-content:hover
+{
+  background-color: rgb(226, 222, 222);
   text-decoration: none;
 }
   
