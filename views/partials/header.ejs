@@ -110,9 +110,16 @@
         
 </nav>
 
-    <!-- <button type="button" class="close" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button> -->
+      <!-- <script>
+        $(document).mouseup(function(e){
+            var container = $("#match-list");
+        
+            // If the target of the click isn't the container
+            if(!container.is(e.target) && container.has(e.target).length === 0){
+                container.hide();
+            }
+        });
+        </script> -->
       <script>
         function myFun() {
           var x = document.getElementById("match-list");
@@ -151,9 +158,9 @@
             if(matches.length>0){
                 const html = matches.slice(0,20).map(match => `
                 
-                    <div class="card card-body dropdown-content"style="  padding-left: 0.5em; padding-right: 0.25em;">                   
+                    <div class="card card-body dropdown-content"style=" padding-left: 0.5em; padding-right: 0.25em;">                   
                         <div class="container itemm"> 
-                            <div class="row" style="width:100%;">
+                            <div class="row" style="width:100%;vertical-align:center">
                                 <div class="col-sm-2" style="text-align:center;padding:0">
                                     <img src="${match.image}" class="center">
                                 </div>
