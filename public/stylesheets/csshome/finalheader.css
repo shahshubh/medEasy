@@ -244,3 +244,13 @@ body::-webkit-scrollbar-thumb {
     color: #7952b3;
     text-decoration:none;
     }
+
+    body{
+      padding-top: 65px;
+    }
+
+    .search-add-to-cart:hover > button{
+      color: white;
+      background-color: #7952b3;
+      border-color: #7952b3;
+    }

@@ -109,21 +109,17 @@
     
         
 </nav>
-
-    <!-- <button type="button" class="close" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button> -->
-      <script>
-        function myFun() {
-          var x = document.getElementById("match-list");
-          if (x.style.display === "none") {
+    <script>
+    function myFun() {
+        var x = document.getElementById("match-list");
+        if (x.style.display === "none") {
             x.style.display = "block";
-          } else {
+        } else {
             x.style.display = "none";
-          }
         }
-        </script>
-      <script>
+    }
+    </script>
+    <script>
         const search = document.getElementById('searchName');
         const matchList = document.getElementById('match-list');
     
@@ -132,46 +128,46 @@
             const products = await res.json();
             //Get match to input
             let matches = products.filter(product => {
-                const regex = new RegExp(`${searchText}`,'gi');
-                console.log("Searchtext "+searchText);
-                let tagsArray = product._tags.join(" ");
-                console.log("tagsArray "+tagsArray);
-                return  product.title.match(regex) || tagsArray.match(regex);
+                if(product.qty>0){
+                    const regex = new RegExp(`${searchText}`,'gi');
+                    console.log("Searchtext "+searchText);
+                    let tagsArray = product._tags.join(" ");
+                    console.log("tagsArray "+tagsArray);
+                    return  product.title.match(regex) || tagsArray.match(regex) || product.category.match(regex);
+                }
             });
-            console.log("Matches: ",matches);
+            //console.log("Matches: ",matches);
             if(searchText.length === 0 || matches.length === 0){
                 matches=[];
                 matchList.innerHTML ="";
             }
             outputHtml(matches);
         };
+
    //show result in html
-   const outputHtml = matches =>{
-       
+    const outputHtml = matches =>{
             if(matches.length>0){
-                const html = matches.slice(0,20).map(match => `
-                
+                const html = matches.slice(0,10).map(match => `
                     <div class="card card-body dropdown-content"style="  padding-left: 0.5em; padding-right: 0.25em;">                   
                         <div class="container itemm"> 
                             <div class="row" style="width:100%;">
-                                <div class="col-sm-2" style="text-align:center;padding:0">
+                                <div class="col-sm-2" style="text-align:center; margin:auto; padding:0;">
                                     <img src="${match.image}" class="center">
                                 </div>
                                 <div class="col-sm-7">
                                     <a href="/products/${match._id}" style="color:"black font-size:18px;font-weight:200" class="dropp"> 
                                         ${match.title}
-                                        <div class="prdct-details" style="font-size:15px;color:rgba(21,27,57,0.6);">                                           
-                                            <i>${match._tags}</i>
-                                            <br>
-                                            <label style="color:black;background-color: rgb(203, 200, 240);padding-left:7px;padding-right:7px;">${match.brand}</label>
+                                        <div class="prdct-details" style="font-size:15px;color:rgba(21,27,57,0.6);">  
+                                            <div>by ${match.brand}</div>
+                                            <label style="margin-top: 10px;color:black;background-color: rgb(203, 200, 240);padding-left:7px; padding-right:7px;">${match.category}</label>
                                         </div>
                                     </a>
-                                </div>
+                                </div> 
                                 
                                 <div class="col-sm-3 rightt">
                                     <div class="prdct-price">₹ ${match.price}</div>
                                     
-                                        <a href="/add-to-cart/${match._id}"> 
+                                        <a class="search-add-to-cart" href="/add-to-cart/${match._id}"> 
                                             <button type="button" class="pulse">    
                                                 <i class="fa fa-cart-plus" aria-hidden="true"></i>
                                             </button>
@@ -187,104 +183,3 @@
         }
         search.addEventListener('input',() => searchProducts(search.value))
     </script>
-
-<!--
-<!DOCTYPE html>
-<html>
-<head>
-    <title>MedEasy</title>
-    
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-
-    
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-</head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="/">Navbar</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-        </button>
-        
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <% if(!currentUser){ %>
-                <ul class="navbar-nav ml-auto">
-                    <%  if(session.cart && session.cart.totalQty > 0){ %>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/shopping-cart">  <i class="fa fa-shopping-cart"></i> Shopping Cart <span class="badge badge-success badge-pill"><%= session.cart.totalQty %></span> </a>
-                        </li>
-                    <% } else{ %>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/shopping-cart">  <i class="fa fa-shopping-cart"></i> Shopping Cart </a>
-                        </li>
-                    <% } %>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/user/signin"> Sign In</a>
-                    </li>   
-                    <li class="nav-item">
-                        <a class="nav-link" href="/user/signup"> Sign Up</a>
-                    </li>               
-                </ul>
-            <% } else { %>
-                <ul class="navbar-nav ml-auto">
-                    <%  if(session.cart && session.cart.totalQty > 0){ %>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/shopping-cart">  <i class="fa fa-shopping-cart"></i> Shopping Cart <span class="badge badge-success badge-pill"><%= session.cart.totalQty %></span> </a>
-                        </li>
-                    <% } else{ %>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/shopping-cart">  <i class="fa fa-shopping-cart"></i> Shopping Cart </a>
-                        </li>
-                    <% } %>
-                    
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            User 
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="/user/profile">Your Account</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="/user/logout">Logout</a>
-                        </div>
-                    </li>                 
-                </ul>
-            <% } %>
-        </div>
-    </nav>
--->
-
-    
-
-
-<!--
-    <script>
-        $(function(){
-            $('#searchName').autocomplete({
-                source: function(req,res){
-                    $.ajax({
-                        url: "autocomplete/",
-                        dataType:"jsonp",
-                        type: "GET",
-                        data: req,
-                        success: function(data){
-                            res(data);
-                        },
-                        error: function(err){
-                            console.log(err);
-                        }
-                    });
-                },
-                minLength: 1,
-                select: function(event,ui){
-                    if(ui.items){
-                        $('#searchName').text(ui.item.label);
-                    }
-                }
-            })
-        })
-    </script>
--->

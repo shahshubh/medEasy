@@ -199,9 +199,6 @@ router.post('/checkout', isLoggedIn, function (req, res) {
                     console.log("Email sent !!");
                 }
             });
-
-
-
             order.save(function (err, result) {
                 req.flash('success', 'Order Placed Succesfully.');
                 req.session.cart = null;

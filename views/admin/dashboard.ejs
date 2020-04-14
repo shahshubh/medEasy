@@ -1,62 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<title>
-		MedEasy
-	</title>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta http-equiv="x-ua-compatible" content="ie=edge">
-	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link href="/stylesheets/css/material-dashboard.css" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" >
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-	<style>
-		#revenue-column-chart, #products-revenue-pie-chart, #orders-spline-chart {
-			height: 400px;
-			width: 93%;
-			align-content: center;
-			background-color:transparent;
-		}			
-		.row{
-			margin-top: 20px;
-			margin-bottom: 20px;
-		}
-	</style>
+	<head>
+		<title>
+			MedEasy
+		</title>
+		<meta charset="utf-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1, shrink-to-fit=no"
+		/>
+		<meta http-equiv="x-ua-compatible" content="ie=edge" />
+		<link
+			href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+		/>
+		<link href="/stylesheets/css/material-dashboard.css" rel="stylesheet" />
+		<link
+			rel="stylesheet"
+			type="text/css"
+			href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+			integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+			crossorigin="anonymous"
+		/>
+		<style>
+			.btn-group{
+				margin-bottom: 2px;
+				margin-top: 3px;
+			}
 
-    <!-- for graphs -->
-    <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
-	<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-</head>
+			.btn-group > button {
+				margin: 2px !important;
+			}
+
+			.btn-group > button:hover {
+				border-color: linear-gradient(60deg, #7b1fa2, #913f9e);
+				background: linear-gradient(60deg, #7b1fa2, #913f9e);
+			}
+
+			#revenue-column-chart,
+			#products-revenue-pie-chart,
+			#orders-spline-chart {
+				height: 400px;
+				width: 93%;
+				align-content: center;
+				background-color: transparent;
+			}
+			.row {
+				margin-top: 20px;
+				margin-bottom: 20px;
+			}
+		</style>
+
+		<!-- for graphs -->
+		<script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+		<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+	</head>
 
 	<script>
 		$(function () {
-			$('.count').each(function () {
-				$(this).prop('Counter',0).animate({
-					Counter: $(this).text()
-				}, {
-					duration: 2000,
-					easing: 'swing',
-					step: function (now) {
-						$(this).text(Math.ceil(now));
-					}
-				});
+			$(".count").each(function () {
+				$(this)
+					.prop("Counter", 0)
+					.animate(
+						{
+							Counter: $(this).text(),
+						},
+						{
+							duration: 2000,
+							easing: "swing",
+							step: function (now) {
+								$(this).text(Math.ceil(now));
+							},
+						}
+					);
 			});
 			var dataPoints = [];
 			var productDataPoints = [];
 			var ordersDataPoints = [];
-			CanvasJS.addColorSet("customColorSet",
-                [
-					"#003f5c",
-					"#2f4b7c",
-					"#665191",
-					"#a05195",
-					"#d45087",
-					"#f95d6a",
-					"#ff7c43",
-					"#ffa600"               
-                ]);
+
+			var newProductDataPoints = [];
+
+			CanvasJS.addColorSet("customColorSet", [
+				"#003f5c",
+				"#2f4b7c",
+				"#665191",
+				"#a05195",
+				"#d45087",
+				"#f95d6a",
+				"#ff7c43",
+				"#ffa600",
+			]);
 			// CanvasJS column chart to show revenue from Jan 2015 - Dec 2015
 			var revenueColumnChart = new CanvasJS.Chart("revenue-column-chart", {
 				colorSet: "customColorSet",
@@ -66,55 +106,61 @@
 				axisX: {
 					labelFontSize: 14,
 					labelFontColor: "white",
-					valueFormatString: "DD MMM YYYY"
+					valueFormatString: "DD MMM YYYY",
 				},
 				axisY: {
 					labelFontSize: 14,
 					prefix: "₹",
-					labelFontColor: "white"
+					labelFontColor: "white",
 				},
 				toolTip: {
 					borderThickness: 0,
-					cornerRadius: 0
+					cornerRadius: 0,
 				},
 				data: [
 					{
 						type: "column",
 						yValueFormatString: "₹ ###,###.##",
-						dataPoints: dataPoints
-					}
-				]
+						dataPoints: dataPoints,
+					},
+				],
 			});
-			
+
 			//CanvasJS pie chart to show product wise annual revenue for 2015
-			var productsRevenuePieChart = new CanvasJS.Chart("products-revenue-pie-chart", {
-				colorSet: "customColorSet",
-				animationEnabled: true,
-				theme: "theme2",
-				legend: {
-					fontSize: 14
-				},
-				toolTip: {
-					borderThickness: 0,
-					content: "<span style='\"'color: {color};'\"'>{name}</span>: ₹ {y} (#percent%)",
-					cornerRadius: 0
-				},
-				data: [
-					{       
-						indexLabelFontColor: "#676464",
-						indexLabelFontSize: 14,
-						legendMarkerType: "square",
-						legendText: "{label}",
-						indexLabel: "{label}",
-						showInLegend: true,
-						startAngle:  90,
-						type: "pie",
-						dataPoints: productDataPoints
-					}
-				]
-			});
-			
-			
+			var productsRevenuePieChart = new CanvasJS.Chart(
+				"products-revenue-pie-chart",
+				{
+					title: {
+						text: ""
+					},
+					colorSet: "customColorSet",
+					animationEnabled: true,
+					theme: "theme2",
+					legend: {
+						fontSize: 14,
+					},
+					toolTip: {
+						borderThickness: 0,
+						content:
+							"<span style='\"'color: {color};'\"'>{name}</span>: ₹ {y} (#percent%)",
+						cornerRadius: 0,
+					},
+					data: [
+						{
+							indexLabelFontColor: "#676464",
+							indexLabelFontSize: 14,
+							legendMarkerType: "square",
+							legendText: "{label}",
+							indexLabel: "{label}",
+							showInLegend: true,
+							startAngle: 90,
+							type: "pie",
+							dataPoints: productDataPoints,
+						},
+					],
+				}
+			);
+
 			//CanvasJS spline chart to show orders from Jan 2015 to Dec 2015
 			var ordersSplineChart = new CanvasJS.Chart("orders-spline-chart", {
 				colorSet: "customColorSet",
@@ -123,49 +169,49 @@
 				theme: "theme2",
 				toolTip: {
 					borderThickness: 0,
-					cornerRadius: 0
+					cornerRadius: 0,
 				},
 				axisX: {
 					labelFontSize: 14,
 					labelFontColor: "#202040",
 					valueFormatString: "DD MMM YYYY",
-					labelFontWeight: "bold"
+					labelFontWeight: "bold",
 				},
 				axisY: {
 					gridThickness: 0,
 					labelFontSize: 14,
 					lineThickness: 2,
 					labelFontColor: "#202040",
-					labelFontWeight: "bold"
+					labelFontWeight: "bold",
 				},
 				data: [
 					{
 						markerColor: "#5b005c",
 						lineColor: "#f000ff",
 						type: "bar",
-						dataPoints: ordersDataPoints
-					}
-				]
+						dataPoints: ordersDataPoints,
+					},
+				],
 			});
 
 			function addData(data) {
 				for (var i = 0; i < data.length; i++) {
 					dataPoints.push({
 						x: new Date(data[i]._id),
-						y: data[i].total
+						y: data[i].total,
 					});
-				}					
+				}
 				//console.log("data",dataPoints);
 				revenueColumnChart.render();
 			}
 			function addProductData(data) {
 				for (var i = 0; i < data.length; i++) {
-					if(data[i].soldQty && data[i].soldQty > 0){
+					if (data[i].soldQty && data[i].soldQty > 0) {
 						productDataPoints.push({
-									label: data[i].title,
-									y: data[i].soldQty*data[i].price,
-									name: data[i].title
-								});
+							label: data[i].title,
+							y: data[i].soldQty * data[i].price,
+							name: data[i].title,
+						});
 					}
 				}
 				//console.log("productData",productDataPoints);
@@ -176,233 +222,345 @@
 				for (var i = 0; i < data.length; i++) {
 					ordersDataPoints.push({
 						x: new Date(data[i]._id),
-						y: data[i].count
+						y: data[i].count,
 					});
 				}
 				//console.log("orderData",ordersDataPoints);
 				ordersSplineChart.render();
 			}
 			$.getJSON("/api/daily-sales", addData);
-			$.getJSON("/api/product-sales", addProductData);
+			$.getJSON("/api/product-sales/ayurveda", addProductData);
 			$.getJSON("/api/daily-orders-count", addOrdersData);
-			
+
+			var updateChartOptions = {
+					title: {
+						text: ""
+					},
+					colorSet: "customColorSet",
+					animationEnabled: true,
+					theme: "theme2",
+					legend: {
+						fontSize: 14,
+					},
+					toolTip: {
+						borderThickness: 0,
+						content:
+							"<span style='\"'color: {color};'\"'>{name}</span>: ₹ {y} (#percent%)",
+						cornerRadius: 0,
+					},
+					data: [
+						{
+							indexLabelFontColor: "#676464",
+							indexLabelFontSize: 14,
+							legendMarkerType: "square",
+							legendText: "{label}",
+							indexLabel: "{label}",
+							showInLegend: true,
+							startAngle: 90,
+							type: "pie",
+							dataPoints: [],
+						},
+					],
+				}
+			function addNewProductData(data) {
+				newProductDataPoints = [];
+				for (var i = 0; i < data.length; i++) {
+					if (data[i].soldQty && data[i].soldQty > 0) {
+						newProductDataPoints.push({
+							label: data[i].title,
+							y: data[i].soldQty * data[i].price,
+							name: data[i].title,
+						});
+					}
+				}
+				if(data.length <= 0){
+					updateChartOptions.title.text = "No Products purchased from this category"
+				} else {
+					updateChartOptions.title.text = ""
+				}
+				
+				updateChartOptions.data[0].dataPoints = newProductDataPoints;
+				productsRevenueNewPieChart = new CanvasJS.Chart("products-revenue-pie-chart", updateChartOptions);
+				productsRevenueNewPieChart.render();
+			}
+
+			$("#chart-ayurveda").click(function () {
+				$.getJSON("/api/product-sales/ayurveda", addNewProductData);
+			});
+			$("#chart-baby-and-mom-care").click(function () {
+				$.getJSON("/api/product-sales/baby-and-mom-care", addNewProductData);
+			});
+			$("#chart-diabetic-care").click(function () {
+				$.getJSON("/api/product-sales/diabetic-care", addNewProductData);
+			});
+			$("#chart-medicines").click(function () {
+				$.getJSON("/api/product-sales/medicines", addNewProductData);
+			});
+			$("#chart-health-conditions").click(function () {
+				$.getJSON("/api/product-sales/health-conditions", addNewProductData);
+			});
+			$("#chart-homeopathy").click(function () {
+				$.getJSON("/api/product-sales/homeopathy", addNewProductData);
+			});
+			$("#chart-nutritions").click(function () {
+				$.getJSON("/api/product-sales/nutritions", addNewProductData);
+			});
+			$("#chart-personal-care").click(function () {
+				$.getJSON("/api/product-sales/personal-care", addNewProductData);
+			});
+
 		});
 	</script>
-<!-- end for graphs -->
+	<!-- end for graphs -->
 
+	<body class="dark-edition">
+		<div class="wrapper">
+			<% include ../partials/admin-sidebar %>
+			<div class="main-panel">
+				<!-- Navbar -->
+				<nav
+					class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top"
+					id="navigation-example"
+				>
+					<div class="container-fluid">
+						<div class="navbar-wrapper">
+							<div class="row">
+								<a class="navbar-brand" href="javascript:void(0)">Dashboard</a>
+							</div>
+						</div>
+						<button
+							class="navbar-toggler"
+							type="button"
+							data-toggle="collapse"
+							aria-controls="navigation-index"
+							aria-expanded="false"
+							aria-label="Toggle navigation"
+							data-target="#navigation-example"
+						>
+							<span class="sr-only">Toggle navigation</span>
+							<span class="navbar-toggler-icon icon-bar"></span>
+							<span class="navbar-toggler-icon icon-bar"></span>
+							<span class="navbar-toggler-icon icon-bar"></span>
+						</button>
+					</div>
+				</nav>
+				<!-- End Navbar -->
 
-<body class="dark-edition">
-  <div class="wrapper ">
-<% include ../partials/admin-sidebar %>
-	<div class="main-panel">
-		  <!-- Navbar -->
-		  <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top " id="navigation-example">
-			<div class="container-fluid">
-			  <div class="navbar-wrapper">
-				<div class="row ">
-				  <a class="navbar-brand" href="javascript:void(0)">Dashboard</a>
+				<div class="content">
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
+								<div class="card card-stats">
+									<div class="card-header card-header-warning card-header-icon">
+										<div class="card-icon">
+											<i class="material-icons">shopping_cart</i>
+										</div>
+										<p class="card-category">Orders</p>
+										<h3 class="card-title">
+											<span class="count"><%= orderCount %></span>
+										</h3>
+									</div>
+									<div class="card-footer">
+										<div class="stats">
+											<i class="material-icons">update</i> Just Updated
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
+								<div class="card card-stats">
+									<div class="card-header card-header-success card-header-icon">
+										<div class="card-icon">
+											<i class="material-icons">store</i>
+										</div>
+										<p class="card-category">Revenue</p>
+										<h3 class="card-title">
+											₹ <span class="count"><%= revenue %></span>
+										</h3>
+									</div>
+									<div class="card-footer">
+										<div class="stats">
+											<i class="material-icons">update</i> Just Updated
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
+								<div class="card card-stats">
+									<div class="card-header card-header-danger card-header-icon">
+										<div class="card-icon">
+											<i class="material-icons">view_list</i>
+										</div>
+										<p class="card-category">Products</p>
+										<h3 class="card-title">
+											<span class="count"><%= productCount %></span>
+										</h3>
+									</div>
+									<div class="card-footer">
+										<div class="stats">
+											<i class="material-icons">update</i> Just Updated
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
+								<div class="card card-stats">
+									<div class="card-header card-header-info card-header-icon">
+										<div class="card-icon">
+											<i class="material-icons">person</i>
+										</div>
+										<p class="card-category">Users</p>
+										<h3 class="card-title">
+											<span class="count"><%= userCount %></span>
+										</h3>
+									</div>
+									<div class="card-footer">
+										<div class="stats">
+											<i class="material-icons">update</i> Just Updated
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-lg-12">
+								<div class="card card-chart">
+									<div class="card-header card-header-success">
+										<div class="ct-chart" id="revenue-column-chart"></div>
+									</div>
+									<div class="card-body">
+										<h4 class="card-title">Daily Sales Chart</h4>
+										<p class="card-category">
+											<!-- <span class="text-success"><i class="fa fa-long-arrow-up"></i> 55% </span> increase in today sales.</p> -->
+										</p>
+									</div>
+
+									<div class="card-footer">
+										<div class="stats">
+											<i class="material-icons">access_time</i> Just Updated
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-xl-6 col-lg-12">
+								<div class="card card-chart">
+									<div class="btn-group" role="group" aria-label="Basic example">
+										<button id="chart-ayurveda" type="button" class="btn btn-secondary">Ayurveda</button>
+										<button id="chart-baby-and-mom-care" type="button" class="btn btn-secondary">Baby and mom care</button>
+										<button id="chart-diabetic-care" type="button" class="btn btn-secondary">Diabetic care</button>
+										<button id="chart-medicines" type="button" class="btn btn-secondary">Medicines</button>
+									</div>
+									<div class="btn-group" role="group" aria-label="Basic example">
+										<button id="chart-health-conditions" type="button" class="btn btn-secondary">Health conditions</button>
+										<button id="chart-homeopathy" type="button" class="btn btn-secondary">Homeopathy</button>
+										<button id="chart-nutritions" type="button" class="btn btn-secondary">Nutritions</button>
+										<button id="chart-personal-care" type="button" class="btn btn-secondary">Personal Care</button>
+									</div>
+									<div style="margin-top: 20px;" class="card-header card-header-warning">
+										<div class="ct-chart" id="products-revenue-pie-chart"></div>
+										
+									</div>
+									<div class="card-body">
+										<h4 class="card-title">Category-wise products Sales Chart</h4>
+									</div>
+									<div class="card-footer">
+										<div class="stats">
+											<i class="material-icons">access_time</i>Just Updated
+										</div>
+									</div>
+								</div>
+							</div>
+							<div style="margin-top: 126px;" class="col-xl-6 col-lg-12">
+								<div class="card card-chart">
+									<div class="card-header card-header-info">
+										<div class="ct-chart" id="orders-spline-chart"></div>
+									</div>
+									<div class="card-body">
+										<h4 class="card-title">Orders Chart</h4>
+									</div>
+									<div class="card-footer">
+										<div class="stats">
+											<i class="material-icons">access_time</i>Just Updated
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-lg-12 col-md-12">
+								<div class="card">
+									<div class="card-header card-header-primary">
+										<h4 class="card-title">Top 5 Users</h4>
+									</div>
+									<div class="card-body table-responsive">
+										<table class="table table-hover">
+											<thead class="text-warning">
+												<th>User ID</th>
+												<th>Name</th>
+												<th>Amount Spent</th>
+											</thead>
+											<tbody>
+												<% topUser.forEach(function(user){ %>
+												<tr>
+													<td><%= user._id %></td>
+													<td><%= user.name %></td>
+													<td>₹ <%= user.total %></td>
+												</tr>
+												<% }) %>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-12 col-md-12">
+								<div class="card">
+									<div class="card-header card-header-primary">
+										<h4 class="card-title">Top 5 Products Purchased</h4>
+									</div>
+									<div class="card-body table-responsive">
+										<table class="table table-hover">
+											<thead class="text-warning">
+												<th>ID</th>
+												<th>Name</th>
+												<th>Price</th>
+												<th>Brand</th>
+												<th>Sold Qty</th>
+												<th>Status</th>
+											</thead>
+											<tbody>
+												<% topProduct.forEach(function(product){ %>
+												<tr>
+													<td><%= product._id %></td>
+													<td><%= product.title %></td>
+													<td>₹ <%= product.price %></td>
+													<td><%= product.brand %></td>
+													<td><%= product.soldQty%></td>
+													<% if(product.qty > 0){ %>
+													<td>
+														<span class="badge badge-pill badge-success"
+															>In stock</span
+														>
+													</td>
+													<% } else { %>
+													<td>
+														<span class="badge badge-pill badge-danger"
+															>Out of stock</span
+														>
+													</td>
+													<% } %>
+												</tr>
+												<% }) %>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
-			  </div>
-			  <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation" data-target="#navigation-example">
-				<span class="sr-only">Toggle navigation</span>
-				<span class="navbar-toggler-icon icon-bar"></span>
-				<span class="navbar-toggler-icon icon-bar"></span>
-				<span class="navbar-toggler-icon icon-bar"></span>
-			  </button>
 			</div>
-		   </nav>
-		  <!-- End Navbar -->
-
-      <div class="content">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
-              <div class="card card-stats">
-                <div class="card-header card-header-warning card-header-icon">
-                  <div class="card-icon">
-                    <i class="material-icons">shopping_cart</i>
-                  </div>
-                  <p class="card-category">Orders</p>
-                  <h3 class="card-title"><span class="count"><%= orderCount %></span></h3>
-                </div>
-                 <div class="card-footer">
-                  <div class="stats">
-                    <i class="material-icons">update</i> Just Updated
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
-              <div class="card card-stats">
-                <div class="card-header card-header-success card-header-icon">
-                  <div class="card-icon">
-                    <i class="material-icons">store</i>
-                  </div>
-                  <p class="card-category">Revenue</p>
-                  <h3 class="card-title">₹ <span class="count"><%= revenue %></span></h3>
-                </div>
-                <div class="card-footer">
-                  <div class="stats">
-                    <i class="material-icons">update</i> Just Updated
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
-              <div class="card card-stats">
-                <div class="card-header card-header-danger card-header-icon">
-                  <div class="card-icon">
-                    <i class="material-icons">view_list</i>
-                  </div>
-                  <p class="card-category">Products</p>
-                  <h3 class="card-title"><span class="count"><%= productCount %></span></h3>
-                </div>
-                 <div class="card-footer">
-                  <div class="stats">
-                    <i class="material-icons">update</i> Just Updated
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
-              <div class="card card-stats">
-                <div class="card-header card-header-info card-header-icon">
-                  <div class="card-icon">
-                    <i class="material-icons">person</i>
-                  </div>
-                  <p class="card-category">Users</p>
-                  <h3 class="card-title"><span class="count"><%= userCount %></span></h3>
-                </div>
-                <div class="card-footer">
-                  <div class="stats">
-                    <i class="material-icons">update</i> Just Updated
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-lg-12">
-              <div class="card card-chart">
-                <div class="card-header card-header-success">
-                  <div class="ct-chart" id="revenue-column-chart"></div>
-                </div>
-                <div class="card-body">
-                  <h4 class="card-title">Revenue</h4>
-                  <p class="card-category">
-                    <!-- <span class="text-success"><i class="fa fa-long-arrow-up"></i> 55% </span> increase in today sales.</p> -->
-                </div>
-                <div class="card-footer">
-                  <div class="stats">
-                    <i class="material-icons">access_time</i> Just Updated
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-6 col-lg-12">
-              <div class="card card-chart">
-                <div class="card-header card-header-warning">
-                  <div class="ct-chart" id="products-revenue-pie-chart"></div>
-                </div>
-                <div class="card-body">
-                  <h4 class="card-title">Category Revenue Chart</h4>
-                </div>
-                <div class="card-footer">
-                  <div class="stats">
-                    <i class="material-icons">access_time</i>Just Updated
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-6 col-lg-12">
-              <div class="card card-chart">
-                <div class="card-header card-header-info">
-                  <div class="ct-chart" id="orders-spline-chart"></div>
-                </div>
-                <div class="card-body">
-                  <h4 class="card-title">Orders Chart</h4>
-                </div>
-                <div class="card-footer">
-                  <div class="stats">
-                    <i class="material-icons">access_time</i>Just Updated
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-
-
-
-          
-          
-          
-          <div class="row">
-            <div class="col-lg-12 col-md-12">
-              <div class="card">
-                <div class="card-header card-header-primary">
-                  <h4 class="card-title">Top 5 Users</h4>
-                </div>
-                <div class="card-body table-responsive">
-                  <table class="table table-hover">
-                    <thead class="text-warning">
-                      <th>User ID</th>
-                      <th>Name</th>
-                      <th>Amount Spent</th>
-                    </thead>
-                    <tbody>
-                      <% topUser.forEach(function(user){ %>
-                        <tr>
-                          <td><%= user._id %></td>
-                          <td><%= user.name %></td>
-                          <td>₹ <%= user.total %></td>
-                        </tr>
-                      <% }) %>
-                      
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-12 col-md-12">
-              <div class="card">
-                <div class="card-header card-header-primary">
-                  <h4 class="card-title">Top 5 Products Purchased</h4>
-                </div>
-                <div class="card-body table-responsive">
-                  <table class="table table-hover">
-                    <thead class="text-warning">
-                      <th>ID</th>
-                      <th>Name</th>
-                      <th>Price</th>
-                      <th>Brand</th>
-                      <th>Sold Qty</th>
-                      <th>Status</th>
-
-                    </thead>
-                    <tbody>
-                      <% topProduct.forEach(function(product){ %>
-                        <tr>
-                          <td><%= product._id %></td>
-                          <td><%= product.title %></td>
-                          <td>₹ <%= product.price %></td>
-                          <td><%= product.brand %></td>
-                          <td><%= product.soldQty%></td>
-                          <% if(product.qty > 0){ %>
-                            <td><span class="badge badge-pill badge-success">In stock</span></td>
-                          <% } else { %>
-                            <td><span class="badge badge-pill badge-danger">Out of stock</span></td>
-                          <% } %>
-                        </tr>
-                      <% }) %>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <% include ../partials/admin-footer %>
+		</div>
+		<% include ../partials/admin-footer %>
+	</body>
+</html>

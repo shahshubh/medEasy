@@ -15,31 +15,32 @@ function Paginator(items, page, per_page) {
   paginatedItems = items.slice(offset).slice(0, per_page),
   total_pages = Math.ceil(items.length / per_page);
   return {
-  page: page,
-  limit: per_page,
-  prev_page: page - 1 ? page - 1 : null,
-  next_page: (total_pages > page) ? page + 1 : null,
-  total: items.length,
-  total_pages: total_pages,
-  data: paginatedItems
+    page: page,
+    limit: per_page,
+    prev_page: page - 1 ? page - 1 : null,
+    next_page: (total_pages > page) ? page + 1 : null,
+    total: items.length,
+    total_pages: total_pages,
+    data: paginatedItems
   };
 }
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  var successMsg = req.flash('success')[0];
-  var errorMsg = req.flash('error')[0];
-  var isIcon;
-  if(successMsg==="Added to Cart"){
-    isIcon = true;
-  }
-  Product.find({},function(err, allProducts){
-    if(err){
-      console.log(err);
-    }else{
-      res.render('shop/homepg', { products: allProducts, successMsg: successMsg, errorMsg: errorMsg ,noMessages: !successMsg, noError: !errorMsg, isIcon: isIcon});
+    var successMsg = req.flash('success')[0];
+    var errorMsg = req.flash('error')[0];
+    var isIcon;
+    if(successMsg==="Added to Cart"){
+      isIcon = true;
     }
-  });
+    
+    Product.find({},function(err, allProducts){
+      if(err){
+        console.log(err);
+      }else{
+        res.render('shop/homepg', { products: allProducts, successMsg: successMsg, errorMsg: errorMsg ,noMessages: !successMsg, noError: !errorMsg, isIcon: isIcon});
+      }
+    });
 });
 
 router.get('/category/allproducts' ,(req, res) => {
@@ -131,13 +132,12 @@ router.get('/test1',function(req,res){
 
 /* Every Product Sales Data */ 
 
-router.get('/api/product-sales',function(req,res){
+router.get('/api/product-sales/:category',function(req,res){
   Product.aggregate(
     [
-      {$match: {}},
-      {$project: {_id: 1,title: 1,price: 1,soldQty: 1,brand: 1,qty: 1}},
-      {$sort: {soldQty: -1}},
-      {$limit: 5}
+      {$match: {category: req.params.category}},
+      {$project: {_id: 1,title: 1,price: 1,soldQty: 1,brand: 1,qty: 1,category: 1}},
+      {$sort: {soldQty: -1}}    
     ], function(err,result){
       res.json(result);
     }
