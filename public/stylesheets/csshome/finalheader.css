@@ -106,8 +106,11 @@
 }
 
 .center {
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
+  margin-top: 13px;
+  max-width: 60px;
+  max-height: 60px;
 }
 
 body::-webkit-scrollbar {

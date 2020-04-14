@@ -14,20 +14,21 @@
             </div>
         </div>
         <div class="row row_m">
-            <div class="col">
+            <div data-aos="fade-down" class="col">
                 <h2 class="cat_hd"><%= category.toUpperCase() %></h2>
             </div>
         </div>
         <hr class="line_hr">
         <div class="row">
             <% products.forEach(function(product){ %>
-                <div data-aos="zoom-in" class="col-sm-12 col-md-4 col-lg-4">
+                <div data-aos="zoom-in" class="col-sm-12 col-md-6 col-lg-4">
                     <div class="card mb-3">
                         <div class="container con1">
                             <img class="card-img-top" src="<%= product.image %>" alt="Card image cap">
                         </div>
                         <div class="card-body">
-                            <h4 class="card-title"><a href="/products/<%= product._id %>" title="View Product"><span><%= product.title %></span></a></h4>
+                            <h5 style="font-size:18px;" class="card-title"><a href="/products/<%= product._id %>" title="View Product"><span><%= product.title %></span></a></h5>
+            
                             <div class="row">
                                 <div class="col">
                                     <p class="pr" >₹ <%= product.price %></p>

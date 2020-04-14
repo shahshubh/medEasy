@@ -38,7 +38,7 @@
 
     <!-- header start -->
     <!--Navbar-->
-   <nav class="navbar navbar-expand-xl navbar-dark flex-column flex-md-row bd-navbar headd fixed-top" >
+   <nav class="navbar navbar-expand-xl navbar-dark flex-column flex-md-row bd-navbar headd" >
         <div class="container con_head" style="max-width:100%">
         <div class="navbar-header ">
         <!-- Navbar brand -->
@@ -109,10 +109,21 @@
     
         
 </nav>
-    <script>
-    function myFun() {
-        var x = document.getElementById("match-list");
-        if (x.style.display === "none") {
+
+    <!-- <script>
+        $(document).mouseup(function(e){
+            var container = $("#match-list");
+        
+            // If the target of the click isn't the container
+            if(!container.is(e.target) && container.has(e.target).length === 0){
+                container.hide();
+            }
+        });
+        </script> -->
+      <script>
+        function myFun() {
+          var x = document.getElementById("match-list");
+          if (x.style.display === "none") {
             x.style.display = "block";
         } else {
             x.style.display = "none";
