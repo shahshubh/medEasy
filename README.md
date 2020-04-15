@@ -16,4 +16,4 @@ signup using your valid email-id to recieve order confirmation email.
 
 # Deployed Version at
 
-[https://medeasyy.herokuapp.com/admin](https://medeasyy.herokuapp.com/)
+[https://medeasyy.herokuapp.com](https://medeasyy.herokuapp.com/)
