@@ -12,7 +12,7 @@ var productSchema = new mongoose.Schema({
     mfgDate: {type: String, required: true},
     expDate: {type: String, required: true},
     brand: {type: String, required: true},
-    precautions: {type: String},
+    precautions: {type: String, required: true},
     tablets: {type: String, required: true}
 });
 

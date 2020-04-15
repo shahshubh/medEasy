@@ -1,5 +1,7 @@
 var mongoose    = require("mongoose");
 var Product = require("../models/product");
+var Order = require("../models/order");
+var User = require("../models/user");
 
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useUnifiedTopology', false);
@@ -9,7 +11,6 @@ mongoose.connect("mongodb+srv://shubh:medeasy@cluster0-tikja.mongodb.net/test?re
 
 
 var products = [
-     
     new Product({
         image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5x3-4aTyaiQUvRWPtudzSAQi0LRLKE_FtwEQUmHanpxiCxja3&s',
         title: 'Etymology',
@@ -25,8 +26,6 @@ var products = [
         precautions: 'Keep away from direct sunlight.',
         tablets: '10 tablets'
     }),
-   
-    
     new Product({
         image: 'https://cdn.medlife.com/productImages/SUGARTN18A/SUGARTN18A-1.jpg?id=2020-04-08-08:49:06.138000',
         title: 'Sugar Free Gold Pellets',
@@ -93,7 +92,7 @@ var products = [
         description: 'Oral Hypoglycermic Agent (OHAs)',
         price: '1648',
         qty: '16',
-        _tags: ['diabetes',''],
+        _tags: ['diabetes'],
         category: "diabetic-care",
         composition: 'Gymnema Sylvestre 100Mg,Enicostemma Littorale 50 Mg,Pterocarpus Marsupium 95 Mg,Syzygium Cuminii 30 Mg,Emblica Officinalis 75 Mg',
         mfgDate: '01/12/2017',
@@ -108,7 +107,7 @@ var products = [
         description: 'Direction for Use:As a prolonged cure, 3 times daily 10-15 drops in a little water before meals',
         price: '308',
         qty: '5',
-        _tags: ['diabetes',''],
+        _tags: ['diabetes'],
         category: "diabetic-care",
         composition: 'Acidium phosphoricum,,Arscenicum,Lycopdium',
         mfgDate: '22/02/2019',
@@ -281,21 +280,6 @@ var products = [
         brand: 'Ostocalcium',
         precautions: 'Keep out of reach of children. Keep away from direct sunlight. ',
         tablets: '30 tablets'
-    }),
-    new Product({
-        image: '',
-        title: '',
-        description: '',
-        price: '',
-        qty: '',
-        _tags: [''],
-        category: "nutritions",
-        composition: ' ',
-        mfgDate: '17/09/2019',
-        expDate: '17/09/2022',
-        brand: '',
-        precautions: 'Keep out of reach of children. Keep away from direct sunlight. ',
-        tablets: ' tablets'
     }),
     new Product({
         image: 'https://cdn.medlife.com/productImages/ENSURPR03A/ENSURPR03A-1.jpg?id=2020-04-13-06:57:32.567000',
@@ -537,7 +521,7 @@ var products = [
     //     precautions: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Id obcaecati a ducimus ex sed necessitatibus!',
     //     tablets: '10 tablets'
     // }),
-      new Product({
+    new Product({
         image: 'https://cdn.medlife.com/productImages/CETAPLB05A/CETAPLB05A-1.jpg?id=2020-04-08T08:49:48.284000+00:00',
         title: 'Cetaphil Gentle Skin Cleanser',
         description: 'A mild, soap-free face and body cleanser that hydrates and soothes skin as it cleans.',
@@ -768,7 +752,7 @@ var products = [
         description: 'Vicks vapourub is a multi-purpose liniment that relieves 6 cold symptoms: breathing difficulty, body ache, cough, blocked nose, headache & muscular stiffness. Pudinah ke phool, Karpoor, Ajwain ke phool, Tarpin ka tail, Nilgiri tail, and Jatiphal tail are the active ingredients which help to breathe easily within 5 min',
         price: '130',
         qty: '5',
-        _tags: ['cough,cold'],
+        _tags: ['cough','cold'],
         category: "health-conditions",
         composition: 'Pudinah ke phool, Karpoor, Ajwain ke phool, Tarpin ka tail, Nilgiri tail, and Jatiphal tail.Suitable for adults and children above 2 years old.        ',
         mfgDate: '10/02/2019',
@@ -813,7 +797,7 @@ var products = [
         description: 'Zandu Balm is an Ayurvedic remedy for all regular pains like headache, backache and cold. It consists of powerful ayurvedic herbs that relieve pain instantly. Dermatologically tested and safe for skin.',
         price: '36',
         qty: '5',
-        _tags: ['cold,bodyache,headache'],
+        _tags: ['cold','bodyache','headache'],
         category: "health-conditions",
         composition: 'Mentha Sp. Satva: 14.0%, Gaultheria Fragrantissima :OL. 12.0%, Eucalyptus Globulus: OL. 0.80%, Base q.s.',
         mfgDate: '10/02/2019',
@@ -828,7 +812,7 @@ var products = [
         description: 'Use as directed by the doctor',
         price: '235',
         qty: '5',
-        _tags: ['Bone-joint'],
+        _tags: ['Bone joint'],
         category: "homeopathy",
         composition: 'Refer packing',
         mfgDate: '10/02/2019',
@@ -843,7 +827,7 @@ var products = [
         description: 'Homeocal tablet is used in the pre post-menopausal period, osteoporosis, other associated symptoms like joint pains, backache, neck pain. SBL Homeocal tablets minimize the effects of hormonal imbalance during pre post-menopausal period. It restores proper metabolism and absorption of essential nutrients needed for optimum bone health and relieves symptoms of osteoporosis.',
         price: '140',
         qty: '5',
-        _tags: ['Bone-joint'],
+        _tags: ['Bone joint'],
         category: "homeopathy",
         composition: 'Calcarea carbonica 3x,Calcarea fluorica 3x,Calcarea phosphorica 3x,Silicea 3x,xcipients q.s',
         mfgDate: '10/02/2019',
@@ -858,7 +842,7 @@ var products = [
         description: 'Getting old never goes easy on you, you start having problems regarding your health. Your physical structure becomes weak, your bones start to soften and muscles start to tighten your legs and joints start to hurt all around. That is why Orthomuv from SBL which is a liquid based syrup tends to treat such complications regarding muscles, joint pain and inflammation. Ingredients include Arnica montana, Bryonia alba, Dulcamara along with many more such ingredients chosen in particular to aid and support your recovery from muscle pulls and sprains, along with treating conditions like arthritis.',
         price: '275',
         qty: '5',
-        _tags: ['Bone-joint'],
+        _tags: ['Bone joint'],
         category: "homeopathy",
         composition: 'Arnica montana,Bryonia alba,Dulcamara,Rhus toxicodendron,Gaultheria procumbens,Acidum benzoicum,Kali iodatum',
         mfgDate: '10/02/2019',
@@ -873,7 +857,7 @@ var products = [
         description: 'An effective formulation with laxative action combining the valuable Homoeopathic remedies and an additional constituent phenolphthalein that tones up the intestines, regulates bowel habits, relieves constipation & anal itching. Also relieves the associated complaints of bloated sensation, flatulence, abdominal pain & straining during defecation.',
         price: '323',
         qty: '5',
-        _tags: ['Digestive-aid'],
+        _tags: ['Digestive aid'],
         category: "homeopathy",
         composition: 'Phenolphthalein 1x,Senna 1x,Sulphur 1x',
         mfgDate: '10/02/2019',
@@ -888,7 +872,7 @@ var products = [
         description: 'Use As directed by the doctor        ',
         price: '234',
         qty: '5',
-        _tags: ['Digestive-aid'],
+        _tags: ['Digestive aid'],
         category: "homeopathy",
         composition: 'Refer package',
         mfgDate: '10/02/2019',
@@ -900,22 +884,24 @@ var products = [
 ]
 
 var done=0;
-Product.remove({}, function(err){
+User.remove({}, function(err, result){
     if(err){
-        console.log(err);
-    }
-    console.log("Removed products");
-    for(var i=0; i<products.length; i++){
-        products[i].save(function(err,result){
-            done++;
-            if(done === products.length){
-                exit();
-            }
-        })
+        console.log("Error ", err);
+    } else {
+        console.log("Removed all");
     }
 });
+/*for(var i=0; i<products.length; i++){
+    products[i].save(function(err,result){
+        done++;
+        console.log(done);
+        if(done === products.length){
+            exit();
+        }
+    });
+}
 
 
 function exit(){
     mongoose.disconnect();
-}
+}*/

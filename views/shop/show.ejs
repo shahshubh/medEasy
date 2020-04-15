@@ -13,9 +13,17 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
 <link rel="stylesheet" href="/stylesheets/show.css">
-
-       
+        <div style="margin: auto;margin-bottom: 0;margin-top: 20px;text-align: center;" class="col-sm-5 col-lg-5">
+            <div id="success" class="alert alert-success <% if(noMessages){ %> d-none <% } %>" >
+                <% if(isIcon){ %>
+                    <i class="fa fa-check" aria-hidden="true"></i> <%= successMsg %>
+                <% } else { %>
+                    <%= successMsg %>
+                <% } %>
+            </div>
+        </div>
         <div data-aos="zoom-in" class="container con1 payment wrapper" >
+            
             <div class="row">
                 <div class="col-lg-5 col-xs-12 image">
                     <img src="<%= product.image %>" class="w-100 h-100">

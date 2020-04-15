@@ -11,7 +11,7 @@ router.get('/admin',isLoggedIn,isAdmin,function(req,res){
         if(!err){
             Product.countDocuments({},function(err,pc){
                 if(!err){
-                    User.countDocuments({},function(err,uc){
+                    User.countDocuments({isSeller: false},function(err,uc){
                         if(!err){
                             Order.aggregate(
                                 [
@@ -218,11 +218,6 @@ router.get('/admin/admins',isLoggedIn, isAdmin, function(req,res){
         }   
     })
 });
-
-router.get('/admin/map',isLoggedIn, isAdmin, function(req,res){
-    res.render('admin/map');
-});
-
 
 
 //EDIT 

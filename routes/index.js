@@ -56,7 +56,7 @@ router.get('/category/allproducts' ,(req, res) => {
       console.log(err);
     } else {
       console.log("Found: ",foundProducts);
-      var result = Paginator(foundProducts,req.query.page,req.query.limit);
+      var result = Paginator(foundProducts,req.query.page,req.query.limit || 12);
       res.render('shop/all-products', { products: result.data, paginationResult: result ,category: catg ,successMsg: successMsg, errorMsg: errorMsg ,noMessages: !successMsg, noError: !errorMsg, isIcon: isIcon});
     }
   })

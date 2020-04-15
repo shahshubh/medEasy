@@ -59,13 +59,13 @@
                     <div class="row">
                       <div class="col-md-4">
                         <div class="form-group">
-                          <label class="bmd-label-floating">Name</label>
+                          <label class="bmd-label-floating">Name *</label>
                           <input type="text" name="title" value="<%= product.title %>" class="form-control">
                         </div>
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
-                          <label class="bmd-label-floating">Brand</label>
+                          <label class="bmd-label-floating">Brand *</label>
                           <input type="text" name="brand" value="<%= product.brand %>" class="form-control">
                         </div>
                       </div>
@@ -100,14 +100,14 @@
                     <div class="row">
                       <div class="col-md-6">
                         <div class="form-group">
-                          <label class="bmd-label-floating">Manufacturing date</label>
+                          <label class="bmd-label-floating">Manufacturing date *</label>
                           <input type="text"  name="mfgDate" value="<%= product.mfgDate %>" class="form-control">
                         </div>
                       </div>
                       <div class="col-md-6">
                         
                         <div class="form-group">
-                          <label class="bmd-label-floating">Expiry date</label>
+                          <label class="bmd-label-floating">Expiry date *</label>
                           <input type="text" name="expDate" value="<%= product.expDate %>" class="form-control">
                         </div>
                       </div>
@@ -116,13 +116,13 @@
                   <div class="row">
                       <div class="col-md-6">
                         <div class="form-group">
-                          <label class="bmd-label-floating">Price</label>
+                          <label class="bmd-label-floating">Price *</label>
                           <input type="text"  name="price" value="<%= product.price %>" class="form-control">
                         </div>
                       </div>
                       <div class="col-md-6">
                         <div class="form-group">
-                          <label class="bmd-label-floating">Tablets/ml</label>
+                          <label class="bmd-label-floating">Tablets/ml *</label>
                           <input type="text" name="tablets" value="<%= product.tablets %>" class="form-control">
                         </div>
                       </div>
@@ -131,13 +131,13 @@
                     <div class="row">
                       <div class="col-md-8">
                         <div class="form-group">
-                          <label class="bmd-label-floating">Image url</label>
+                          <label class="bmd-label-floating">Image url *</label>
                           <input type="text" name="image" value="<%= product.image %>" class="form-control">
                         </div>
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
-                          <label class="bmd-label-floating">Qty</label>
+                          <label class="bmd-label-floating">Qty *</label>
                           <input type="number" name="qty" value="<%= product.qty %>" class="form-control">
                         </div>
                       </div>
@@ -146,7 +146,7 @@
                     <div class="row">
                       <div class="col-md-12">
                         <div class="form-group">
-                          <label class="bmd-label-floating">Tags</label>
+                          <label class="bmd-label-floating">Tags (add tags separated by commas eg. a,b,c)</label>
                           <% var tags = product._tags %>
                           <% var _tags = tags.join(",") %>
                           <input type="text" name="_tags" value="<%= _tags %>" class="form-control">
@@ -163,7 +163,7 @@
                     <div class="row">
                       <div class="col-md-12">
                         <div class="form-group">
-                          <label>Composition</label>
+                          <label>Composition *</label>
                           <div class="form-group">
                             <label class="bmd-label-floating"></label>
                             <textarea class="form-control" rows="2" name="composition" ><%= product.composition %></textarea>
@@ -175,7 +175,7 @@
                     <div class="row">
                       <div class="col-md-12">
                         <div class="form-group">
-                          <label>Description</label>
+                          <label>Description *</label>
                           <div class="form-group">
                             <label class="bmd-label-floating"></label>
                             <textarea class="form-control" rows="3"name="description"><%= product.description %></textarea>
@@ -187,7 +187,7 @@
                     <div class="row">
                       <div class="col-md-12">
                         <div class="form-group">
-                          <label>Precautions</label>
+                          <label>Precautions *</label>
                           <div class="form-group">
                             <label class="bmd-label-floating"></label>
                             <textarea class="form-control" rows="2" name="precautions"><%= product.precautions %></textarea>

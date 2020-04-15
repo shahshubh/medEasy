@@ -61,13 +61,19 @@ router.get('/shopping-cart', function (req, res) {
 
 
 router.get('/products/:id',function(req,res){
+    var successMsg = req.flash('success')[0];
+    var isIcon;
+    if(successMsg==="Added to Cart"){
+        isIcon = true;
+    }
+
     var productId = req.params.id;
     Product.findById(productId, function(err,foundProduct){
     if(err){
         console.log(err);
     }
     else{
-        res.render('shop/show',{product: foundProduct })
+        res.render('shop/show',{product: foundProduct, successMsg: successMsg,noMessages: !successMsg, isIcon: isIcon })
     }
     });
 });
