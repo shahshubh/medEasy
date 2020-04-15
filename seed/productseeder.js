@@ -884,11 +884,12 @@ var products = [
 ]
 
 var done=0;
-User.remove({}, function(err, result){
+Product.updateMany({},{ $set: {soldQty: 0} }, function(err, result){
     if(err){
         console.log("Error ", err);
     } else {
-        console.log("Removed all");
+        done++;
+        console.log("Set ",done );
     }
 });
 /*for(var i=0; i<products.length; i++){

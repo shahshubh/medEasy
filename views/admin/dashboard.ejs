@@ -263,6 +263,7 @@
 					],
 				}
 			function addNewProductData(data) {
+				console.log("data = ", data);
 				newProductDataPoints = [];
 				for (var i = 0; i < data.length; i++) {
 					if (data[i].soldQty && data[i].soldQty > 0) {

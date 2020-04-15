@@ -135,14 +135,16 @@ router.get('/test1',function(req,res){
 router.get('/api/product-sales/:category',function(req,res){
   Product.aggregate(
     [
-      {$match: {category: req.params.category}},
+      {$match: { $and: [ {category: req.params.category}, { soldQty: { $gt: 0 } } ] } },
       {$project: {_id: 1,title: 1,price: 1,soldQty: 1,brand: 1,qty: 1,category: 1}},
       {$sort: {soldQty: -1}}    
     ], function(err,result){
       res.json(result);
     }
   )
+
 });
+
 
 /* Daily Orders Data */
 
