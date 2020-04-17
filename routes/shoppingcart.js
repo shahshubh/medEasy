@@ -60,7 +60,7 @@ router.get('/shopping-cart', function (req, res) {
 });
 
 
-router.get('/products/:id',function(req,res){
+router.get('/products/:id', function(req,res){
     var successMsg = req.flash('success')[0];
     var isIcon;
     if(successMsg==="Added to Cart"){
@@ -79,7 +79,7 @@ router.get('/products/:id',function(req,res){
 });
 
 
-router.get('/checkout', isLoggedIn, function (req, res) {
+router.get('/checkout', isLoggedIn, isNotAdmin, function (req, res) {
     var errMsg = req.flash('error')[0];
     if (!req.session.cart) {
         res.redirect('/shopping-cart');
@@ -117,7 +117,7 @@ router.get('/checkout', isLoggedIn, function (req, res) {
     }
 });
 
-router.post('/checkout', isLoggedIn, function (req, res) {
+router.post('/checkout', isLoggedIn, isNotAdmin, function (req, res) {
     if (!req.session.cart) {
         res.redirect('/shopping-cart');
     }
@@ -297,4 +297,13 @@ function isLoggedIn(req, res, next) {
     }
     req.session.oldUrl = req.url;
     res.redirect('/user/signin');
+}
+
+function isNotAdmin(req, res, next){
+    if(!req.user.isSeller){
+        return next();
+    }
+    req.session.oldUrl = req.url;
+    req.flash('error','Please signin as user to order');
+    res.redirect('/admin');
 }

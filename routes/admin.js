@@ -7,6 +7,7 @@ var User = require("../models/user");
 
 
 router.get('/admin',isLoggedIn,isAdmin,function(req,res){
+    var errMsg = req.flash('error')[0];
     Order.countDocuments({},function(err,c){
         if(!err){
             Product.countDocuments({},function(err,pc){
@@ -37,7 +38,7 @@ router.get('/admin',isLoggedIn,isAdmin,function(req,res){
                                                     var productCount = pc;
                                                     var userCount = uc;
                                                     var revenue = result[0].total;
-                                                    res.render('admin/dashboard', {orderCount: orderCount, productCount: productCount, userCount: userCount, revenue: revenue, topUser: result2, topProduct: results });
+                                                    res.render('admin/dashboard', {orderCount: orderCount, productCount: productCount, userCount: userCount, revenue: revenue, topUser: result2, topProduct: results, errMsg: errMsg, noMessages: !errMsg  });
                                                 }
                                             )
                                             
