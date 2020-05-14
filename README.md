@@ -56,7 +56,7 @@ An Online E-commerce website for medicines.
 <img src="./demo/dashboard.png" />
 <br>
 <hr>
-<h2 align="center">Orders</h2>
+<h2 align="center">All Orders</h2>
 <hr>
 <img src="./demo/admin-orders.png"/>
 <br>
