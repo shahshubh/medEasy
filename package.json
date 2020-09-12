@@ -28,7 +28,7 @@
     "minimist": "^1.2.5",
     "mongoose": "^5.8.7",
     "morgan": "~1.9.1",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.1",
     "nodemailer": "^6.4.2",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
