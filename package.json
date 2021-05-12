@@ -29,7 +29,7 @@
     "mongoose": "^5.8.7",
     "morgan": "~1.9.1",
     "node-fetch": "^2.6.0",
-    "nodemailer": "^6.4.2",
+    "nodemailer": "^6.4.16",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
     "stripe": "^8.4.0"
